@@ -1,3 +1,13 @@
 # Functional Requirements
+1. Schedule exam dates and times (patients, equipment, staff)
+2. Delete, create, store, transfer, and update patient records (demographics, clinical, reports)
+3. Delete, create, store, transfer, and update exam orders
+4. Recognize and create conflict alerts and resolutions
+5. Ability to view and select from list of patients in order to obtain patient's information
+6. Store, retrieve, and view images from radiology exams (from database) 
+7. Store, retrieve, and view transcription reports and radiologist's impressions
 
 # Non-Functional Requirements
+1. Programming language will be in Java
+2. Does not have to be scalable
+3. All confidential information will be password protected
