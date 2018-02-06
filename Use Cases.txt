@@ -1,4 +1,4 @@
-Use Case 1
+Process Patient Use Case
 
 1. New order arrives from HIS.
 2. Register/update patient info obtained from order (Refering physician, etc...).
