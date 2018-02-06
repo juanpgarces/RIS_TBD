@@ -1,21 +1,25 @@
 # Functional Requirements
-1. Schedule exam dates and times (patients, equipment, staff)
-2. Delete, create, and update patient records (demographics, clinical, reports)
-3. Transfer patient records to other "systems"
-4. Delete, create, and update exam orders
-5. Transfer exam orders information if necessary 
-6. Recognize and create conflict alerts and resolutions
-7. Ability to view and select from list of patients in order to obtain patient's information
-8. Store and retrieve images from radiology exams (from database) 
-9. Store and retrieve transcription reports and radiologist's impressions
-10. Physician (User) should have a portal to review all necessary information from patients (Only that Physician's patients)
-11. Ability to create, delete, update different physician to access the system (User)
-12. Ability to assign a patient to a physician (referring or current?)
+1. Schedule exam dates and times (patients, equipment, staff) (3) (Scheduling)
+2. Delete, create, and update patient records (demographics, clinical, reports) (3)
+3. Transfer patient records to other "systems" (null)   
+4. Delete, create, and update exam orders (3)
+5. Transfer exam orders information if necessary (null)
+6. Recognize and create conflict alerts and resolutions (2)
+7. Ability to view and select from list of patients in order to obtain patient's information (3)
+8. Store and retrieve images from radiology exams (from database) (2)
+9. Store and retrieve transcription reports and radiologist's impressions (2)
+10. Physician (User) should have a portal to review all necessary information from patients (Only that Physician's patients) (2)
+11. Ability to create, delete, update different physician to access the system (User)(1)
+12. Ability to assign a patient to a physician (referring or current?) (3)
+13. System should be able to keep track of how much the patients will owe after their procedures (3)
+14. There should be a portal for registering a patient. (1)
+
 
 # Non-Functional Requirements
 1. Programming language will be in Java
-2. Does not have to be scalable
-3. All confidential information will be password protected
+2. All confidential information will be password protected
+3. System will keep out unauthorized users
+4. 
 
 #Things we should ask -------------
-1. Are we registering a patient from our own system, or the information is already available?
+
