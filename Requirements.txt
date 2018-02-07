@@ -19,7 +19,7 @@
 1. Programming language will be in Java
 2. All confidential information will be password protected
 3. System will keep out unauthorized users
-4. 
+4. Diffrent physicians will not be able to see the patient data of other physicians
 
 #Things we should ask -------------
 
