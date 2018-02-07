@@ -14,6 +14,7 @@
 13. System should be able to keep track of how much the patients will owe after their procedures (3)
 14. There should be a portal for registering a patient. (1)
 15. System should have diffrent views depending on who is logged in. (1)
+16. Physician should be able to see a schedual of their patients procedures (2)
  
 
 
