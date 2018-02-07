@@ -13,11 +13,13 @@
 12. Ability to assign a patient to a physician (referring or current?) (3)
 13. System should be able to keep track of how much the patients will owe after their procedures (3)
 14. There should be a portal for registering a patient. (1)
+15. System should have diffrent views depending on who is logged in. (1)
+16. 
 
 
 # Non-Functional Requirements
 1. Programming language will be in Java
-2. All confidential information will be password protected
+2. System will be password protected
 3. System will keep out unauthorized users
 4. Diffrent physicians will not be able to see the patient data of other physicians
 
