@@ -12,6 +12,12 @@ Radiology Procedure
 3. System will add up the costs based on the procedure.
 4. System will generate a bill.
 
+Referring Doctor Use
+
+1. Referring doctor logs on and selects froma list of his patient's
+2. System shows patients information, images, and radiologist transcripts in the view.
+
+
 
 
 
