@@ -8,14 +8,17 @@ Order Scheduling Use Case
 Radiology Procedure
 
 1. Radiologist logs on to check for incoming patients.
-2. After image is taken image is uploaded to the system along with the radiologist's transcripts.
-3. System will add up the costs based on the procedure.
-4. System will generate a bill.
+2. After image is taken, image is uploaded to the system.
+3. System allows for input of radiologist's transcripts to go with the image.
+4. Images and images are updated to the patient's profile/information.
+5. System will add up the costs based on the procedure.
+6. System will generate a bill.
 
 Referring Doctor Use
 
 1. Referring doctor logs on and selects froma list of his patient's
 2. System shows patients information, images, and radiologist transcripts in the view.
+3. System gives the doctor the option t schedule another order.
 
 
 
