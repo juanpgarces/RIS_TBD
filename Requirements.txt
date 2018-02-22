@@ -4,19 +4,21 @@
 1. System will schedule dates and times involving patients, equipment, and staff (3)
 4. Delete, create, and update exam orders (3)
 6. Recognize and create conflict alerts and resolutions (2)
+18. Physician should be notified when final report is ready (3)
 
 --------------------Record Keeping---------------------
 2. Delete, create, and update patient records (demographics, clinical, reports) (3)
 3. Transfer patient records to other "systems" (null)
 8. Store and retrieve images from radiology exams (from database) (2)
-9. Store and retrieve transcription reports and radiologist's impressions (2)   
+9. Store and retrieve transcription reports and radiologist's impressions (3)   
 5. Transfer exam orders information if necessary (null)
+17. Need to be able to pull up any past records (3)
 
 --------------------Views---------------------
 7. Ability to view and select from list of patients in order to obtain patient's information (Physicians and technicians) (3)
 10. Physician (User) should have a portal to review all necessary information from patients (Only that Physician's patients) (2)
 16. Physician should be able to see a schedule of their patients procedures (2)
-15. System should have different views depending on who is logged in. (1)
+15. System should have different views depending on who is logged in. (3)
 14. There should be a portal for registering a patient. (1)
 
 --------------------Administrative Capabilities---------------------
