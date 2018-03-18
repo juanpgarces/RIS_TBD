@@ -1,0 +1,28 @@
+Order Scheduling Use Case
+
+1. New order arrives from HIS.
+2. Register/update patient info obtained from order (Refering physician, etc...).
+3. Schedule order (date, time, patient info, procedure info, attending physician)
+4. System will check for scheduling conflicts and alert user of the said conflict.
+
+Radiology Procedure
+
+1. Radiologist logs on to check for incoming patients.
+2. After image is taken, image is uploaded to the system.
+3. System allows for input of radiologist's transcripts to go with the image.
+4. Images and images are updated to the patient's profile/information.
+5. System will add up the costs based on the procedure.
+6. System will generate a bill.
+
+Referring Doctor Use
+
+1. Referring doctor logs on and selects froma list of his patient's
+2. System shows patients information, images, and radiologist transcripts in the view.
+3. System gives the doctor the option t schedule another order.
+
+
+
+
+
+//1. Once image is taken, the system will store image into PACS
+//2. Bill the patient based on the images taken.
