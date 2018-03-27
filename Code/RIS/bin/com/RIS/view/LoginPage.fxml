@@ -36,11 +36,11 @@
                   <Button layoutX="197.0" layoutY="391.0" mnemonicParsing="false" onAction="#changeSceneToDoctorPage" prefHeight="31.0" prefWidth="89.0" text="Login" />
                </children>
             </AnchorPane>
-            <Button fx:id="btn_physician1" layoutY="310.0" onAction="#handleUserChange" prefHeight="60.0" prefWidth="177.0" ripplerFill="BLACK" text="Physician">
+            <Button fx:id="btn_physician1" layoutY="310.0" onAction="#handleUserChange" prefHeight="60.0" prefWidth="177.0" text="Physician">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button fx:id="btn_patient1" layoutY="199.0" onAction="#handleUserChange" prefHeight="60.0" prefWidth="177.0" ripplerFill="BLACK" text="Patient">
+            <Button fx:id="btn_patient1" layoutY="199.0" onAction="#handleUserChange" prefHeight="60.0" prefWidth="177.0" text="Patient">
                <font>
                   <Font size="18.0" />
                </font></Button>
