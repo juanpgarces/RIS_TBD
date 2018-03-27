@@ -18,7 +18,7 @@ public class LoginPage extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("../com/RIS/view/LoginPage.fxml"));
-		stage.setTitle("Insulin Pump");
+		stage.setTitle("RIS");
 	    stage.getIcons().add(new Image("file:blueHeartbeat.png"));
         stage.setResizable(false);
     
