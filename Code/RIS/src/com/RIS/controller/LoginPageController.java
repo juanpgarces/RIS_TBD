@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
-import com.jfoenix.controls.JFXButton;
 
 import application.RISDbConfig;
 import javafx.event.ActionEvent;
@@ -16,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 public class LoginPageController implements Initializable {
 
 	@FXML
-	private JFXButton btn_patient1, btn_physician1;	
+	private Button btn_patient1, btn_physician1;	
 	@FXML
 	private AnchorPane pn_patient1, pn_physician1;	
 	@FXML

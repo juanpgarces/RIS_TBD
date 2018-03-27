@@ -8,15 +8,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.RIS.model.Record;
-import com.jfoenix.controls.JFXButton;
 
 import application.RISDbConfig;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
+
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.SelectionMode;
@@ -31,7 +32,7 @@ public class UserDataController {
 	@FXML private TableColumn<Record, String> clnGlucoseLevel;
 	@FXML private TableColumn<Record, String> clnInsulinAdmin;
 	@FXML private TableColumn<Record, String> clnStatus;
-	@FXML private JFXButton btnPatientMainMenu;
+	@FXML private Button btnPatientMainMenu;
 	String IDP;
 	
    

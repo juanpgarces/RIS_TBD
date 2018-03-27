@@ -10,8 +10,6 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.JLabel;
-
 import application.RISDbConfig;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
