@@ -70,7 +70,7 @@ public class AddPatientController {
 			if(event.getSource() == btnAddNewPatient) {
 
 		    Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-			Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/InsulinPump/view/DoctorPage.fxml"));
+			Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/DoctorPage.fxml"));
 		    Scene tableViewScene = new Scene(tableViewParent);
 	        window.setScene(tableViewScene);
 	        window.show();
@@ -81,7 +81,7 @@ public class AddPatientController {
 	public void changeSceneToDoctorHome(ActionEvent event) throws IOException {
 			if(event.getSource() == btndoctorHomeButton) {
 		    Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-			Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/InsulinPump/view/DoctorPage.fxml"));
+			Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/DoctorPage.fxml"));
 		    Scene tableViewScene = new Scene(tableViewParent);
 	        window.setScene(tableViewScene);
 	        window.show();

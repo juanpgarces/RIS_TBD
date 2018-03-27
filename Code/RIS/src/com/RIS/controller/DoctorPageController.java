@@ -141,8 +141,8 @@ public class DoctorPageController {
 			if(event.getSource() == addPatient) {
 		    Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		    window.setTitle("Insulin Pump");
-		    window.getIcons().add(new Image("/com/InsulinPump/images/blueHeartbeat.png"));
-			Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/InsulinPump/view/AddPatient.fxml"));
+		    window.getIcons().add(new Image("/com/RIS/images/blueHeartbeat.png"));
+			Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/AddPatient.fxml"));
 		    Scene tableViewScene = new Scene(tableViewParent);
 	        window.setScene(tableViewScene);
 	        window.show();
@@ -170,14 +170,14 @@ public class DoctorPageController {
         }
         
         //Changes Panels and Passes USER ID for Query
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/InsulinPump/view/UserData.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/UserData.fxml"));
 		Parent root = (Parent) loader.load();
 		
 		UserDataController controllers = loader.getController();
 		controllers.setID(getID());
 		Stage stage = new Stage();
 		stage.setTitle("Insulin Pump");
-		stage.getIcons().add(new Image("/com/InsulinPump/images/blueHeartbeat.png"));
+		stage.getIcons().add(new Image("/com/RIS/images/blueHeartbeat.png"));
 		stage.setScene(new Scene(root));
 		stage.show();
 	}

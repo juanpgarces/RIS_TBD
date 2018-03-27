@@ -67,13 +67,13 @@ public class LoginPageController implements Initializable {
         	    //If the result set found a match, continues
         	    if(rs.next()) {
         	    	
-        	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/InsulinPump/view/PatientMainMenu.fxml"));
+        	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/PatientMainMenu.fxml"));
         	    	Parent root = (Parent) loader.load();
         	        PatientMainMenuController controller = loader.getController();
         	        controller.setID(IDPatient.getText());
         	        Stage stage = new Stage();
         	        stage.setTitle("Insulin Pump");
-        		    stage.getIcons().add(new Image("/com/InsulinPump/images/blueHeartbeat.png"));
+        		    stage.getIcons().add(new Image("/com/RIS/images/blueHeartbeat.png"));
         	        stage.setScene(new Scene (root));
         		    stage.setResizable(false);
         	        stage.show();
@@ -101,11 +101,11 @@ public class LoginPageController implements Initializable {
     	String password = "1234";
 
     	if(TextUsername.getText().equals(username) && TextPassword.getText().equals(password)) {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/InsulinPump/view/DoctorPage.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/DoctorPage.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setTitle("Insulin Pump");
-	    window.getIcons().add(new Image("/com/InsulinPump/images/blueHeartbeat.png"));
+	    window.getIcons().add(new Image("/com/RIS/images/blueHeartbeat.png"));
         window.setScene(tableViewScene);
         window.show();
     	}
