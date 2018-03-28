@@ -14,14 +14,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class AddPatientController {
 
 
-	  @FXML private TextField txtPatientId, txtPatientFirstName, txtPatientLastName, txtPatientAddress, txtPatientBloodT , txtPatientPhoneNumber, txtPatientAge, txtPatientGender, txtPatientHeight, txtPatientWeight, txtPatientInsulinType, txtDoctorId;
+	  @FXML private TextField txtPatientId, txtPatientFirstName, txtPatientLastName, txtPatientAddress, txtPatientPhoneNumber, txtPatientAge, txtPatientHeight, txtPatientWeight, txtInsuranceType;
+	  @FXML private TextArea txtPatientNotes;
 	  @FXML private Button btnAddNewPatient, btndoctorHomeButton;
+	  @FXML private ComboBox<String> txtPatientBloodType, txtPatientGender;
 
     public void newPatient(ActionEvent event) throws IOException{
     	
@@ -29,14 +33,14 @@ public class AddPatientController {
     								txtPatientFirstName.getText(),
     								txtPatientLastName.getText(),
     								txtPatientAddress.getText(),
-    								txtPatientBloodT.getText(),
+    								txtPatientBloodType.getPromptText(),
     								txtPatientAge.getText(),
-    								txtPatientGender.getText(),
+    								txtPatientGender.getPromptText(),
     								txtPatientHeight.getText(),
     								txtPatientWeight.getText(),
-    								txtPatientInsulinType.getText(),
+    								txtInsuranceType.getText(),
     								txtPatientPhoneNumber.getText(),
-    								txtDoctorId.getText());
+    								txtPatientNotes.getText());
     	    	
     	String query = "insert into patient " + "(idPatient, firstName, lastName, address, bloodType, age, gender, height, weight, insulinType, phone, idDoctor) " + "values(?,?,?,?,?,?,?,?,?,?,?,?)";
     	
