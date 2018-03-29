@@ -28,7 +28,7 @@
                   </Text>
                   <TextField fx:id="TextUsername" layoutX="23.0" layoutY="353.0" prefHeight="31.0" prefWidth="218.0" promptText="Username" />
                   <PasswordField fx:id="TextPassword" layoutX="23.0" layoutY="400.0" prefHeight="31.0" prefWidth="218.0" promptText="Password" />
-                  <Button layoutX="87.0" layoutY="466.0" mnemonicParsing="false" onAction="#changeSceneToDoctorPage" prefHeight="31.0" prefWidth="89.0" text="Login" />
+                  <Button layoutX="88.0" layoutY="476.0" mnemonicParsing="false" onAction="#changeSceneToDoctorPage" prefHeight="31.0" prefWidth="89.0" text="Login" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="700.0" prefWidth="450.0" style="-fx-background-color: #000099;">
