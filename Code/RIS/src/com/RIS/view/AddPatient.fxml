@@ -54,12 +54,12 @@
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="55.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DOB:" underline="true">
+      <Text layoutX="42.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DOB:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="46.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" underline="true">
+      <Text layoutX="42.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
@@ -74,7 +74,7 @@
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="36.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Blood Type:" underline="true">
+      <Text layoutX="39.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
@@ -99,7 +99,6 @@
          </font>
       </Button>
       <ComboBox fx:id="txtPatientGender" layoutX="220.0" layoutY="391.0" prefHeight="31.0" prefWidth="231.0" promptText="Select Gender Type" />
-      <ComboBox fx:id="txtPatientBloodType" layoutX="220.0" layoutY="429.0" prefHeight="31.0" prefWidth="231.0" promptText="Select Blood Type" />
       <TextArea fx:id="txtPatientNotes" layoutX="635.0" layoutY="186.0" prefHeight="128.0" prefWidth="410.0" promptText="Notes" />
       <Text layoutX="543.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance:" underline="true">
          <font>
@@ -107,5 +106,6 @@
          </font>
       </Text>
       <TextField fx:id="txtInsuranceType" layoutX="635.0" layoutY="138.0" prefHeight="31.0" prefWidth="231.0" promptText="Insurance" />
+      <TextField fx:id="txtPatientEmail" layoutX="220.0" layoutY="428.0" prefHeight="31.0" prefWidth="231.0" promptText="Email" />
    </children>
 </AnchorPane>

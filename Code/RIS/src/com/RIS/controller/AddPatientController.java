@@ -22,10 +22,10 @@ import javafx.stage.Stage;
 public class AddPatientController {
 
 
-	  @FXML private TextField txtPatientId, txtPatientFirstName, txtPatientLastName, txtPatientAddress, txtPatientPhoneNumber, txtPatientAge, txtPatientHeight, txtPatientWeight, txtInsuranceType;
+	  @FXML private TextField txtPatientId, txtPatientFirstName, txtPatientLastName, txtPatientAddress, txtPatientPhoneNumber, txtPatientAge, txtPatientHeight, txtPatientWeight, txtInsuranceType, txtPatientEmail;
 	  @FXML private TextArea txtPatientNotes;
 	  @FXML private Button btnAddNewPatient, btndoctorHomeButton;
-	  @FXML private ComboBox<String> txtPatientBloodType, txtPatientGender;
+	  @FXML private ComboBox<String> txtPatientGender;
 
     public void newPatient(ActionEvent event) throws IOException{
     	
@@ -33,7 +33,7 @@ public class AddPatientController {
     								txtPatientFirstName.getText(),
     								txtPatientLastName.getText(),
     								txtPatientAddress.getText(),
-    								txtPatientBloodType.getPromptText(),
+    								txtPatientEmail.getPromptText(),
     								txtPatientAge.getText(),
     								txtPatientGender.getPromptText(),
     								txtPatientHeight.getText(),
