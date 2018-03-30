@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema PopupDB
+-- Schema RISDB
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema PopupDB
+-- Schema RISDB
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `PopupDB` DEFAULT CHARACTER SET utf8 ;
-USE `PopupDB` ;
+CREATE SCHEMA IF NOT EXISTS `RISDB` DEFAULT CHARACTER SET utf8 ;
+USE `RISDB` ;
 
 -- -----------------------------------------------------
--- Table `PopupDB`.`USER`
+-- Table `RISDB`.`USER`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PopupDB`.`USER` (
+CREATE TABLE IF NOT EXISTS `RISDB`.`USER` (
   `userID` INT(9) NOT NULL,
   `userType` INT NOT NULL,
   `firstName` VARCHAR(45) NOT NULL,
@@ -33,9 +33,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PopupDB`.`PATIENT`
+-- Table `RISDB`.`PATIENT`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PopupDB`.`PATIENT` (
+CREATE TABLE IF NOT EXISTS `RISDB`.`PATIENT` (
   `patientID` INT(9) NOT NULL,
   `firstName` VARCHAR(45) NOT NULL,
   `lastName` VARCHAR(45) NOT NULL,
@@ -51,9 +51,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PopupDB`.`MODALITY`
+-- Table `RISDB`.`MODALITY`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PopupDB`.`MODALITY` (
+CREATE TABLE IF NOT EXISTS `RISDB`.`MODALITY` (
   `modID` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `cost` DOUBLE NOT NULL,
@@ -64,9 +64,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PopupDB`.`APPOINTMENT`
+-- Table `RISDB`.`APPOINTMENT`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PopupDB`.`APPOINTMENT` (
+CREATE TABLE IF NOT EXISTS `RISDB`.`APPOINTMENT` (
   `appID` INT NOT NULL AUTO_INCREMENT,
   `userID` INT(9) NOT NULL,
   `patientID` INT(9) NOT NULL,
@@ -79,26 +79,26 @@ CREATE TABLE IF NOT EXISTS `PopupDB`.`APPOINTMENT` (
   INDEX `mod1_idx` (`modalityID` ASC),
   CONSTRAINT `physicianID`
     FOREIGN KEY (`userID`)
-    REFERENCES `PopupDB`.`USER` (`userID`)
+    REFERENCES `RISDB`.`USER` (`userID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `patientID`
     FOREIGN KEY (`patientID`)
-    REFERENCES `PopupDB`.`PATIENT` (`patientID`)
+    REFERENCES `RISDB`.`PATIENT` (`patientID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `mod1`
     FOREIGN KEY (`modalityID`)
-    REFERENCES `PopupDB`.`MODALITY` (`modID`)
+    REFERENCES `RISDB`.`MODALITY` (`modID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PopupDB`.`PACS`
+-- Table `RISDB`.`PACS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PopupDB`.`PACS` (
+CREATE TABLE IF NOT EXISTS `RISDB`.`PACS` (
   `imageID` INT NOT NULL AUTO_INCREMENT,
   `image` VARCHAR(100) NOT NULL,
   `transcript` VARCHAR(300) NULL,
@@ -111,21 +111,21 @@ CREATE TABLE IF NOT EXISTS `PopupDB`.`PACS` (
   INDEX `fk_PACS_PATIENT1_idx` (`patientID` ASC),
   CONSTRAINT `appID`
     FOREIGN KEY (`apppintmentID`)
-    REFERENCES `PopupDB`.`APPOINTMENT` (`appID`)
+    REFERENCES `RISDB`.`APPOINTMENT` (`appID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PACS_PATIENT1`
     FOREIGN KEY (`patientID`)
-    REFERENCES `PopupDB`.`PATIENT` (`patientID`)
+    REFERENCES `RISDB`.`PATIENT` (`patientID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PopupDB`.`ORDER`
+-- Table `RISDB`.`ORDER`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PopupDB`.`ORDER` (
+CREATE TABLE IF NOT EXISTS `RISDB`.`ORDER` (
   `orderID` INT NOT NULL AUTO_INCREMENT,
   `emergencyLevel` VARCHAR(45) NULL,
   `userID` INT(9) NOT NULL,
@@ -138,26 +138,26 @@ CREATE TABLE IF NOT EXISTS `PopupDB`.`ORDER` (
   INDEX `fk_ORDER_MODALITY1_idx` (`modalityID` ASC),
   CONSTRAINT `physicianSSN`
     FOREIGN KEY (`userID`)
-    REFERENCES `PopupDB`.`USER` (`userID`)
+    REFERENCES `RISDB`.`USER` (`userID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `patientSSN`
     FOREIGN KEY (`patientID`)
-    REFERENCES `PopupDB`.`PATIENT` (`patientID`)
+    REFERENCES `RISDB`.`PATIENT` (`patientID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ORDER_MODALITY1`
     FOREIGN KEY (`modalityID`)
-    REFERENCES `PopupDB`.`MODALITY` (`modID`)
+    REFERENCES `RISDB`.`MODALITY` (`modID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PopupDB`.`BILLLING`
+-- Table `RISDB`.`BILLLING`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PopupDB`.`BILLLING` (
+CREATE TABLE IF NOT EXISTS `RISDB`.`BILLLING` (
   `billID` INT NOT NULL,
   `Cost` VARCHAR(45) NULL,
   `APPOINTMENT_appID` INT NOT NULL,
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `PopupDB`.`BILLLING` (
   INDEX `fk_BILLLING_APPOINTMENT1_idx` (`APPOINTMENT_appID` ASC, `APPOINTMENT_userID` ASC, `APPOINTMENT_patientID` ASC, `APPOINTMENT_modalityID` ASC),
   CONSTRAINT `fk_BILLLING_APPOINTMENT1`
     FOREIGN KEY (`APPOINTMENT_appID` , `APPOINTMENT_userID` , `APPOINTMENT_patientID` , `APPOINTMENT_modalityID`)
-    REFERENCES `PopupDB`.`APPOINTMENT` (`appID` , `userID` , `patientID` , `modalityID`)
+    REFERENCES `RISDB`.`APPOINTMENT` (`appID` , `userID` , `patientID` , `modalityID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
