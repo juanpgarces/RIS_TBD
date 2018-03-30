@@ -1,12 +1,12 @@
 package com.RIS.model;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Doctor {
+public class User {
 
 	private SimpleStringProperty firstName, middleInitial, lastName, phone;
 	
 	/*Constructor for Doctor*/
-	public Doctor(String firstName, String middleInitial, String lastName, String phone) {
+	public User(String firstName, String middleInitial, String lastName, String phone) {
 		this.firstName = new SimpleStringProperty(firstName);
 		this.middleInitial = new SimpleStringProperty(middleInitial);
 		this.lastName = new SimpleStringProperty(lastName);

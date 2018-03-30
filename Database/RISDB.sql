@@ -26,8 +26,8 @@ DROP TABLE IF EXISTS `appointment`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `appointment` (
   `appID` int(11) NOT NULL AUTO_INCREMENT,
-  `userID` int(9) NOT NULL,
-  `patientID` int(9) NOT NULL,
+  `userID` varchar(9) NOT NULL,
+  `patientID` varchar(9) NOT NULL,
   `modalityID` int(11) NOT NULL,
   `dateTime` datetime NOT NULL,
   PRIMARY KEY (`appID`,`userID`,`patientID`,`modalityID`),
@@ -58,11 +58,11 @@ DROP TABLE IF EXISTS `billling`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `billling` (
-  `billID` int(11) NOT NULL,
-  `Cost` varchar(45) DEFAULT NULL,
+  `billID` int(11) NOT NULL AUTO_INCREMENT,
+  `Cost` int(11) DEFAULT NULL,
   `APPOINTMENT_appID` int(11) NOT NULL,
-  `APPOINTMENT_userID` int(9) NOT NULL,
-  `APPOINTMENT_patientID` int(9) NOT NULL,
+  `APPOINTMENT_userID` varchar(9) NOT NULL,
+  `APPOINTMENT_patientID` varchar(9) NOT NULL,
   `APPOINTMENT_modalityID` int(11) NOT NULL,
   PRIMARY KEY (`billID`,`APPOINTMENT_appID`,`APPOINTMENT_userID`,`APPOINTMENT_patientID`,`APPOINTMENT_modalityID`),
   KEY `fk_BILLLING_APPOINTMENT1_idx` (`APPOINTMENT_appID`,`APPOINTMENT_userID`,`APPOINTMENT_patientID`,`APPOINTMENT_modalityID`),
@@ -115,8 +115,8 @@ DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
   `orderID` int(11) NOT NULL AUTO_INCREMENT,
   `emergencyLevel` varchar(45) DEFAULT NULL,
-  `userID` int(9) NOT NULL,
-  `patientID` int(9) NOT NULL,
+  `userID` varchar(9) NOT NULL,
+  `patientID` varchar(9) NOT NULL,
   `modalityID` int(11) NOT NULL,
   PRIMARY KEY (`orderID`,`userID`,`patientID`,`modalityID`),
   UNIQUE KEY `orderID_UNIQUE` (`orderID`),
@@ -175,7 +175,7 @@ DROP TABLE IF EXISTS `patient`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patient` (
-  `patientID` int(9) NOT NULL,
+  `patientID` varchar(9) NOT NULL,
   `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
   `gender` varchar(45) NOT NULL,
@@ -206,8 +206,8 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `userID` int(9) NOT NULL,
-  `userType` int(11) NOT NULL,
+  `userID` varchar(9) NOT NULL,
+  `userType` varchar(9) NOT NULL,
   `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
   `gender` varchar(45) DEFAULT NULL,
@@ -235,4 +235,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-30 12:29:47
+-- Dump completed on 2018-03-30 12:53:25
