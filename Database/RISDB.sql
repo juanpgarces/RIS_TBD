@@ -59,7 +59,7 @@ DROP TABLE IF EXISTS `billling`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `billling` (
   `billID` int(11) NOT NULL AUTO_INCREMENT,
-  `Cost` int(11) DEFAULT NULL,
+  `Cost` double DEFAULT '0',
   `APPOINTMENT_appID` int(11) NOT NULL,
   `APPOINTMENT_userID` varchar(9) NOT NULL,
   `APPOINTMENT_patientID` varchar(9) NOT NULL,
@@ -149,12 +149,12 @@ CREATE TABLE `pacs` (
   `imageID` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(100) NOT NULL,
   `transcript` varchar(300) DEFAULT NULL,
-  `apppintmentID` int(11) NOT NULL,
-  PRIMARY KEY (`imageID`,`apppintmentID`),
+  `appointmentID` int(11) NOT NULL,
+  PRIMARY KEY (`imageID`,`appointmentID`),
   UNIQUE KEY `imageID_UNIQUE` (`imageID`),
   UNIQUE KEY `image_UNIQUE` (`image`),
-  KEY `appID_idx` (`apppintmentID`),
-  CONSTRAINT `appID` FOREIGN KEY (`apppintmentID`) REFERENCES `appointment` (`appID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `appID_idx` (`appointmentID`),
+  CONSTRAINT `appID` FOREIGN KEY (`appointmentID`) REFERENCES `appointment` (`appID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -236,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-30 12:58:33
+-- Dump completed on 2018-03-30 17:58:27
