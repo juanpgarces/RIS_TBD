@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.RIS.model.Record;
+import com.RIS.model.Order;
 
 import application.RISDbConfig;
 import javafx.collections.FXCollections;
@@ -26,21 +26,21 @@ import javafx.scene.control.TableColumn;
 public class UserDataController {
 	
 	@FXML private AnchorPane paneUserData;
-	@FXML private TableView<Record> tblPatientData;
-	@FXML private TableColumn<Record, String> clnRecordId;
-	@FXML private TableColumn<Record, String> clnReadingTime;
-	@FXML private TableColumn<Record, String> clnGlucoseLevel;
-	@FXML private TableColumn<Record, String> clnInsulinAdmin;
-	@FXML private TableColumn<Record, String> clnStatus;
+	@FXML private TableView<Order> tblPatientData;
+	@FXML private TableColumn<Order, String> clnRecordId;
+	@FXML private TableColumn<Order, String> clnReadingTime;
+	@FXML private TableColumn<Order, String> clnGlucoseLevel;
+	@FXML private TableColumn<Order, String> clnInsulinAdmin;
+	@FXML private TableColumn<Order, String> clnStatus;
 	@FXML private Button btnPatientMainMenu;
 	String IDP;
 	
    
  // ObservableList: A list that enables listeners to track changes when they occur
     // The following  method will return an ObservableList of  object
-    public ObservableList<Record>  getRecordList(){
+    public ObservableList<Order>  getRecordList(){
     	
-    	ObservableList<Record> record = FXCollections.observableArrayList();
+    	ObservableList<Order> record = FXCollections.observableArrayList();
         String SQLQuery = "SELECT * FROM records WHERE idPatient = ? ORDER BY idRecords DESC;"; //ADD WHERE idPatient = ''
        	ResultSet rs = null;
 
@@ -52,7 +52,7 @@ public class UserDataController {
        		rs = displayprofile.executeQuery();
        		// check to see if receiving any data
        		while (rs.next()){
-       			record.add(new Record(rs.getString("idRecords").toString(),rs.getString("dateTime").toString(),rs.getString("glucoseReading").toString(),rs.getString("insulinAmount").toString(),
+       			record.add(new Order(rs.getString("idRecords").toString(),rs.getString("dateTime").toString(),rs.getString("glucoseReading").toString(),rs.getString("insulinAmount").toString(),
        					rs.getString("status").toString(),rs.getString("idPatient").toString(),rs.getString("idDoctor").toString()));
        		}
        	}catch(SQLException ex){
@@ -79,11 +79,11 @@ public class UserDataController {
 		IDP = setID;
 		
         //set up the columns in the table
-		clnRecordId.setCellValueFactory(new PropertyValueFactory<Record, String>("idRecords"));
-		clnReadingTime.setCellValueFactory(new PropertyValueFactory<Record, String>("dateTime"));
-		clnGlucoseLevel.setCellValueFactory(new PropertyValueFactory<Record, String>("glucoseReading"));
-		clnInsulinAdmin.setCellValueFactory(new PropertyValueFactory<Record, String>("InsulinAmount"));
-		clnStatus.setCellValueFactory(new PropertyValueFactory<Record, String>("Status"));	
+		clnRecordId.setCellValueFactory(new PropertyValueFactory<Order, String>("idRecords"));
+		clnReadingTime.setCellValueFactory(new PropertyValueFactory<Order, String>("dateTime"));
+		clnGlucoseLevel.setCellValueFactory(new PropertyValueFactory<Order, String>("glucoseReading"));
+		clnInsulinAdmin.setCellValueFactory(new PropertyValueFactory<Order, String>("InsulinAmount"));
+		clnStatus.setCellValueFactory(new PropertyValueFactory<Order, String>("Status"));	
 		tblPatientData.setItems(getRecordList());
 		
 		tblPatientData.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
