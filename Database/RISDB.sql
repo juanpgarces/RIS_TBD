@@ -182,6 +182,7 @@ CREATE TABLE `patient` (
   `DOB` date NOT NULL,
   `insurance` varchar(45) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
+  `phone` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `notes` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`patientID`),
@@ -235,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-30 12:53:25
+-- Dump completed on 2018-03-30 12:58:33
