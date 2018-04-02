@@ -27,53 +27,49 @@ import javafx.stage.Stage;
 
 public class LoginPageController implements Initializable {
 
-	@FXML
-	private Button btn_patient1, btn_physician1;	
-	@FXML
-	private AnchorPane pn_patient1, pn_physician1;	
-	@FXML
-	private TextField TextUsername, IDPatient;
-	@FXML
-	private PasswordField TextPassword;
-	//SAMPLE ID 23415689
-	
-	@FXML
-	private void handleUserChange(ActionEvent event) {
-		if (event.getSource() == btn_patient1)
-		{
-			pn_patient1.toFront();
-		}
-		else
-			if(event.getSource() == btn_physician1)
-			{
-				pn_physician1.toFront();
-			}
-	}
+	@FXML private Button btn_patient1;	
+	@FXML private TextField TextUsername;
+	@FXML private PasswordField TextPassword;
 	
 	// This method will redirect the scene into the patient TableView
-    public void changeSceneToPatientMainMenu(ActionEvent event) throws IOException
+    public void LoginTrigger(ActionEvent event) throws IOException
     {
    	
     	ResultSet rs = null;
-    	String SQLQuery = "SELECT * FROM patient WHERE idPatient = ?;";
+    	String SQLQuery = "SELECT userType FROM User WHERE userID = ? AND userPwd = ?;";
     	
     	try(
         	    Connection conn = RISDbConfig.getConnection();
-        	    PreparedStatement displayid = conn.prepareStatement(SQLQuery);
+        	    PreparedStatement loggin = conn.prepareStatement(SQLQuery);
         	){	
-    			displayid.setString(1, IDPatient.getText());
-        	    rs = displayid.executeQuery();
+    			loggin.setString(1, TextUsername.getText());
+        	    rs = loggin.executeQuery();
         	    
         	    //If the result set found a match, continues
         	    if(rs.next()) {
         	    	
         	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/PatientMainMenu.fxml"));
+        	    	
+        	    	switch(rs.getString(0)) {
+        	    		case "Technician": loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/TechnicianView.fxml"));
+        	    		break;
+        	    		case "Physician": loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/ReferringPhysicianView.fxml"));
+        	    		break;
+        	    		case "Radiologist": loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/RadiologistPage.fxml"));
+        	    		break;
+        	    		case "Receptionist": loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/ReceptionistPage.fxml"));
+        	    		break;
+        	    		case "Administrator": loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/AddUser.fxml"));
+        	    		break;
+        	    		default:
+        	    	}
+        	    	
         	    	Parent root = (Parent) loader.load();
         	        PatientMainMenuController controller = loader.getController();
-        	        controller.setID(IDPatient.getText());
+        	        controller.setID(TextUsername.getText());
         	        Stage stage = new Stage();
-        	        stage.setTitle("Insulin Pump");
-        		    stage.getIcons().add(new Image("/com/RIS/images/blueHeartbeat.png"));
+        	        stage.setTitle("RIS");
+        		    //stage.getIcons().add(new Image("/com/RIS/images/blueHeartbeat.png"));
         	        stage.setScene(new Scene (root));
         		    stage.setResizable(false);
         	        stage.show();
@@ -82,9 +78,9 @@ public class LoginPageController implements Initializable {
         	    //If not shows error
         	    else {
         	    		Alert alert = new Alert(AlertType.ERROR);
-        	    		alert.setTitle("Invalid Patient");
-        	    		alert.setHeaderText("Patient is Invalid");
-        	    		alert.setContentText("The Patient ID entered is not present in our current system, please enter a valid Patient ID");
+        	    		alert.setTitle("Invalid Username/Password");
+        	    		alert.setHeaderText("User is Invalid");
+        	    		alert.setContentText("The Username/Password entered is not present in our current system, please enter a valid Patient ID or Contact and Administrator");
         	    		alert.showAndWait();
         	    }
         	    

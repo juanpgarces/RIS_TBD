@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import com.RIS.model.*;
 
 import application.RISDbConfig;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +26,12 @@ public class AddPatientController {
 	  @FXML private TextField txtPatientId, txtPatientFirstName, txtPatientLastName, txtPatientAddress, txtPatientPhoneNumber, txtPatientAge, txtPatientHeight, txtPatientWeight, txtInsuranceType, txtPatientEmail;
 	  @FXML private TextArea txtPatientNotes;
 	  @FXML private Button btnAddNewPatient, btndoctorHomeButton;
-	  @FXML private ComboBox<String> txtPatientGender;
+	  @FXML private ComboBox<String> txtPatientGender = new ComboBox<String>(
+			  FXCollections.observableArrayList(
+					  "M",
+	    	          "F"
+	    	  )
+		);
 
     public void newPatient(ActionEvent event) throws IOException{
     	
@@ -33,9 +39,9 @@ public class AddPatientController {
     								txtPatientFirstName.getText(),
     								txtPatientLastName.getText(),
     								txtPatientAddress.getText(),
-    								txtPatientEmail.getPromptText(),
+    								txtPatientEmail.getText(),
     								txtPatientAge.getText(),
-    								txtPatientGender.getPromptText(),
+    								txtPatientGender.getValue(),
     								txtPatientHeight.getText(),
     								txtPatientWeight.getText(),
     								txtInsuranceType.getText(),

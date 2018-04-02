@@ -14,7 +14,7 @@
    <children>
       <AnchorPane style="-fx-background-color: #fff;">
          <children>
-            <AnchorPane fx:id="pn_physician1" layoutX="630.0" prefHeight="600.0" prefWidth="480.0" style="-fx-background-color: #fff;">
+            <AnchorPane layoutX="630.0" prefHeight="600.0" prefWidth="480.0" style="-fx-background-color: #fff;">
                <children>
                   <Text fontSmoothingType="LCD" layoutX="43.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="177.00001001358032">
                      <font>
@@ -28,7 +28,7 @@
                   </Text>
                   <TextField fx:id="TextUsername" layoutX="23.0" layoutY="353.0" prefHeight="31.0" prefWidth="218.0" promptText="Username" />
                   <PasswordField fx:id="TextPassword" layoutX="23.0" layoutY="400.0" prefHeight="31.0" prefWidth="218.0" promptText="Password" />
-                  <Button layoutX="88.0" layoutY="476.0" mnemonicParsing="false" onAction="#changeSceneToDoctorPage" prefHeight="31.0" prefWidth="89.0" text="Login" />
+                  <Button layoutX="88.0" layoutY="476.0" mnemonicParsing="false" onAction="#LoginTrigger" prefHeight="31.0" prefWidth="89.0" text="Login" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="700.0" prefWidth="450.0" style="-fx-background-color: #000099;">

@@ -8,13 +8,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RIS.controller.AddPatientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RIS.controller.AddUserController">
    <children>
       <TextField fx:id="txtUserId" layoutX="220.0" layoutY="163.0" prefHeight="31.0" prefWidth="231.0" promptText="User ID" />
       <TextField fx:id="txtUserFirstName" layoutX="220.0" layoutY="212.0" prefHeight="31.0" prefWidth="231.0" promptText="First Name" />
       <TextField fx:id="txtUserLastName" layoutX="220.0" layoutY="258.0" prefHeight="31.0" prefWidth="231.0" promptText="Last Name" />
       <TextField fx:id="txtUserPhoneNumber" layoutX="220.0" layoutY="308.0" prefHeight="31.0" prefWidth="231.0" promptText="Phone Number" />
-      <Button fx:id="btnAddNewUser" layoutX="585.0" layoutY="275.0" mnemonicParsing="false" onAction="#newPatient" prefHeight="50.0" prefWidth="250.0" text="Add New User">
+      <Button fx:id="btnAddNewUser" layoutX="585.0" layoutY="275.0" mnemonicParsing="false" onAction="#addNewUser" prefHeight="50.0" prefWidth="250.0" text="Add New User">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
@@ -49,7 +49,7 @@
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="54.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" underline="true">
+      <Text layoutX="47.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
@@ -63,12 +63,18 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="btndoctorHomeButton" layoutX="14.0" layoutY="837.0" onAction="#changeSceneToDoctorHome" style="-fx-background-color: #fff; -fx-border-color: #fff;" text="Home" textAlignment="CENTER">
+      <Button fx:id="btndoctorHomeButton" layoutX="14.0" layoutY="837.0" style="-fx-background-color: #fff; -fx-border-color: #fff;" text="Home" textAlignment="CENTER">
          <font>
             <Font name="Bell MT Italic" size="13.0" />
          </font>
       </Button>
       <ComboBox fx:id="txtUserGender" layoutX="220.0" layoutY="373.0" prefHeight="31.0" prefWidth="231.0" promptText="Select Gender Type" />
       <TextField fx:id="txtUserEmail" layoutX="220.0" layoutY="432.0" prefHeight="31.0" prefWidth="231.0" promptText="Email" />
+      <Text layoutX="43.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role:" underline="true" wrappingWidth="115.5146484375">
+         <font>
+            <Font name="Bell MT" size="18.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="txtUserType" layoutX="220.0" layoutY="490.0" prefHeight="31.0" prefWidth="231.0" promptText="Select User Type" />
    </children>
 </AnchorPane>

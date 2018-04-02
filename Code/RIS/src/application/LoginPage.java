@@ -19,11 +19,11 @@ public class LoginPage extends Application {
 	public void start(Stage stage) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("../com/RIS/view/LoginPage.fxml"));
 		stage.setTitle("RIS");
-	    stage.getIcons().add(new Image("file:blueHeartbeat.png"));
+	    //stage.getIcons().add(new Image("file:blueHeartbeat.png"));
         stage.setResizable(false);
     
 	
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+        /*root.setOnMousePressed(new EventHandler<MouseEvent>() {
         	@Override
         	public void handle (MouseEvent event) {
         		xOffset = event.getSceneX();
@@ -36,7 +36,7 @@ public class LoginPage extends Application {
         		stage.setX(event.getScreenX() - xOffset);
         		stage.setY(event.getScreenY() - yOffset);
         	}
-        });
+        });*/
         
         Scene scene = new Scene (root);
         scene.setFill(Color.TRANSPARENT);
