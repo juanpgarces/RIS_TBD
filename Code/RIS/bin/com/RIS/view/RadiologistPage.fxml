@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="689.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <MenuBar prefHeight="32.0" prefWidth="640.0" VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New" />
+            <MenuItem mnemonicParsing="false" text="Open…" />
+            <Menu mnemonicParsing="false" text="Open Recent" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" text="Revert" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="421.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+      <children>
+            <ImageView fitHeight="657.0" fitWidth="373.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="427.0" layoutY="31.0" text="Patien ID:" />
+            <Separator layoutX="380.0" layoutY="1.0" orientation="VERTICAL" prefHeight="657.0" prefWidth="6.0" />
+            <Label layoutX="421.0" layoutY="70.0" text="First Name:" />
+            <Label layoutX="421.0" layoutY="113.0" text="Last Name:" />
+            <Label layoutX="419.0" layoutY="153.0" text="Blood Type:" />
+            <Label layoutX="443.0" layoutY="189.0" text="Age:" />
+            <Label layoutX="431.0" layoutY="223.0" text="Gender:" />
+            <Label layoutX="433.0" layoutY="257.0" text="Height:" />
+            <Label layoutX="431.0" layoutY="290.0" text="Weight:" />
+            <Label layoutX="423.0" layoutY="320.0" text="Doctor ID:" />
+            <TextField layoutX="493.0" layoutY="26.0" />
+            <TextField layoutX="493.0" layoutY="65.0" />
+            <TextField layoutX="493.0" layoutY="108.0" />
+            <TextField layoutX="493.0" layoutY="148.0" />
+            <TextField layoutX="493.0" layoutY="184.0" />
+            <TextField layoutX="493.0" layoutY="218.0" />
+            <TextField layoutX="493.0" layoutY="252.0" />
+            <TextField layoutX="493.0" layoutY="285.0" />
+            <TextField layoutX="493.0" layoutY="316.0" />
+            <TextArea layoutX="409.0" layoutY="386.0" prefHeight="200.0" prefWidth="338.0" />
+            <Label layoutX="406.0" layoutY="359.0" text="Notes:" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
