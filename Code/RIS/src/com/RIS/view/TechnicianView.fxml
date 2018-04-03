@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="661.0" prefWidth="829.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1">
+<AnchorPane prefHeight="661.0" prefWidth="829.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ScrollPane layoutX="5.0" layoutY="14.0" prefHeight="200.0" prefWidth="821.0">
         <content>
@@ -64,7 +63,7 @@
       </AnchorPane>
       <AnchorPane layoutX="415.0" layoutY="231.0" prefHeight="417.0" prefWidth="395.0" style="-fx-border-color: #000000;">
          <children>
-            <TextField layoutX="12.0" layoutY="14.0" prefHeight="280.0" prefWidth="369.0" text="PHYSICIAN NOTES" />
+            <TextField layoutX="12.0" layoutY="14.0" prefHeight="280.0" prefWidth="369.0" promptText="PHYSICIAN NOTES" />
             <Button layoutX="171.0" layoutY="335.0" mnemonicParsing="false" text="UPLOAD" />
          </children>
       </AnchorPane>
