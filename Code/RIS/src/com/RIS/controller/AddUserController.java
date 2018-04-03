@@ -50,7 +50,7 @@ public class AddUserController {
     			txtUserGender.getValue(),
     			txtUserEmail.getText());
 
-		String query = "INSER INTO User " + "(userId, userType, firstName, lastName, phone, gender, email) " + "VALUES(?,?,?,?,?,?,?)";
+		String query = "INSERT INTO User " + "(userId, userType, firstName, lastName, phone, gender, email) " + "VALUES(?,?,?,?,?,?,?)";
 		
 		try (Connection conn = RISDbConfig.getConnection();
 			PreparedStatement insertprofile = conn.prepareStatement(query);) {
