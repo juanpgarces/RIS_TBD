@@ -7,6 +7,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="605.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
@@ -37,15 +38,21 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TableView layoutX="-548.0" layoutY="-197.0" prefHeight="285.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView layoutX="-548.0" layoutY="-197.0" prefHeight="444.0" prefWidth="1071.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn prefWidth="89.21638321876526" text="Patient SSN" />
                       <TableColumn prefWidth="92.82992553710938" text="First Name" />
                         <TableColumn prefWidth="92.82992553710938" text="Last Name" />
+                        <TableColumn prefWidth="83.44378662109375" text="Gender" />
+                        <TableColumn prefWidth="83.44378662109375" text="DOB" />
+                        <TableColumn prefWidth="83.44378662109375" text="Insurance" />
+                        <TableColumn prefWidth="83.44378662109375" text="Insurance" />
                         <TableColumn prefWidth="238.42556762695312" text="Address" />
-                        <TableColumn prefWidth="83.44378662109375" text="Address" />
+                        <TableColumn prefWidth="113.0" text="Phone" />
+                        <TableColumn prefWidth="113.0" text="Email" />
                     </columns>
                   </TableView>
+                  <TextArea layoutX="1071.0" layoutY="7.0" prefHeight="444.0" prefWidth="211.0" promptText="Notes" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="178.0" prefWidth="1280.0">
