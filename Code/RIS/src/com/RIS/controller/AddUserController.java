@@ -22,20 +22,8 @@ public class AddUserController {
     @FXML private TextField txtUserEmail;
     @FXML private Button btnAddNewUser;
     @FXML private Button btndoctorHomeButton;
-    @FXML private ComboBox<String> txtUserGender = new ComboBox<String>(
-    	    FXCollections.observableArrayList(
-    	            "M",
-    	            "F"
-    	        )
-    	    );
-    @FXML private ComboBox<String> txtUserType = new ComboBox<String>(
-    	    FXCollections.observableArrayList(
-    	            "Technician",
-    	            "Physician",
-    	            "Radiologist",
-    	            "Receptionist"
-    	    )
-    	);
+    @FXML private ComboBox<String> txtUserGender;
+    @FXML private ComboBox<String> txtUserType;
     
     @FXML
     void addNewUser(ActionEvent event) {
@@ -51,7 +39,7 @@ public class AddUserController {
     			txtUserGender.getValue(),
     			txtUserEmail.getText());
 
-		String query = "INSERT INTO User " + "(userId, passwd, userType, firstName, lastName, phone, gender, email) " + "VALUES(?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO user " + "(userId, passwd, userType, firstName, lastName, phone, gender, email) " + "VALUES(?,?,?,?,?,?,?,?)";
 		
 		try (Connection conn = RISDbConfig.getConnection();
 			PreparedStatement insertprofile = conn.prepareStatement(query);) {

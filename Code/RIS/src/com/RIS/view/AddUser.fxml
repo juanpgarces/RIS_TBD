@@ -11,6 +11,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RIS.controller.AddUserController">
    <children>
       <TextField fx:id="txtUserId" layoutX="220.0" layoutY="163.0" prefHeight="31.0" prefWidth="231.0" promptText="User ID" />
+      <TextField fx:id="txtPasswd" layoutX="220.0" layoutY="206.0" prefHeight="31.0" prefWidth="231.0" promptText="Password" />
       <TextField fx:id="txtUserFirstName" layoutX="220.0" layoutY="247.0" prefHeight="31.0" prefWidth="231.0" promptText="First Name" />
       <TextField fx:id="txtUserLastName" layoutX="220.0" layoutY="285.0" prefHeight="31.0" prefWidth="231.0" promptText="Last Name" />
       <TextField fx:id="txtUserPhoneNumber" layoutX="220.0" layoutY="323.0" prefHeight="31.0" prefWidth="231.0" promptText="Phone Number" />
@@ -68,15 +69,31 @@
             <Font name="Bell MT Italic" size="13.0" />
          </font>
       </Button>
-      <ComboBox fx:id="txtUserGender" layoutX="220.0" layoutY="373.0" prefHeight="31.0" prefWidth="231.0" promptText="Select Gender Type" />
+      <ComboBox fx:id="txtUserGender" layoutX="220.0" layoutY="373.0" prefHeight="31.0" prefWidth="231.0" promptText="Select Gender Type">
+      	<items>
+       		<FXCollections fx:factory="observableArrayList">
+      			<String fx:value="M" />
+      			<String fx:value="F" />
+       		</FXCollections>
+     	</items>
+  	 </ComboBox>
       <TextField fx:id="txtUserEmail" layoutX="220.0" layoutY="432.0" prefHeight="31.0" prefWidth="231.0" promptText="Email" />
       <Text layoutX="43.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role:" underline="true" wrappingWidth="115.5146484375">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <ComboBox fx:id="txtUserType" layoutX="220.0" layoutY="490.0" prefHeight="31.0" prefWidth="231.0" promptText="Select User Type" />
-      <TextField fx:id="txtPasswd" layoutX="220.0" layoutY="206.0" prefHeight="31.0" prefWidth="231.0" promptText="Password" />
+      <ComboBox fx:id="txtUserType" layoutX="220.0" layoutY="490.0" prefHeight="31.0" prefWidth="231.0" promptText="Select User Type">
+      	<items>
+       		<FXCollections fx:factory="observableArrayList">
+      			<String fx:value="Administrator" />
+      			<String fx:value="Technician" />
+      			<String fx:value="Physician" />
+      			<String fx:value="Receptionist" />
+      			<String fx:value="Radiologist" />
+       		</FXCollections>
+     	</items>
+  	 </ComboBox>
       <Text layoutX="41.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />

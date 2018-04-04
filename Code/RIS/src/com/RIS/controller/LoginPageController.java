@@ -49,7 +49,7 @@ public class LoginPageController implements Initializable {
         	    //If the result set found a match, continues
         	    if(rs.next()) {
         	    	
-        	    	Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/PatientMainMenu.fxml"));
+        	    	Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/AddUser.fxml"));
         	    	
         	    	switch(rs.getString(1)) {
         	    	
