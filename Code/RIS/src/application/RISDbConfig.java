@@ -9,9 +9,9 @@
 
 	public class RISDbConfig {
 
-		private static final String USERNAME = "root";
-		private static final String PASSWORD = "";
-		private static final String CONN_STRING = "jdbc:mysql://127.0.0.1";
+		private static final String USERNAME = "ris_app";
+		private static final String PASSWORD = "987654321ris";
+		private static final String CONN_STRING = "jdbc:mysql://ristbd.cjvk36afmzyl.us-east-2.rds.amazonaws.com:3306";
 		
 		// connection  method that connects to the MySQL database
 		public static Connection getConnection() throws SQLException{
