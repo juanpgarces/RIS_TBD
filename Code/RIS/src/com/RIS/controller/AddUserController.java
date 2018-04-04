@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class AddUserController {
 
@@ -24,6 +25,7 @@ public class AddUserController {
     @FXML private Button btndoctorHomeButton;
     @FXML private ComboBox<String> txtUserGender;
     @FXML private ComboBox<String> txtUserType;
+    @FXML private Text txtSuccess;
     
     @FXML
     void addNewUser(ActionEvent event) {
@@ -54,6 +56,7 @@ public class AddUserController {
 			insertprofile.setString(8, newUser.getEmail());
 		
 			insertprofile.execute();
+			txtSuccess.setText("Success! User Has Been Created");
 			
 		} catch (Exception e) {
 			System.out.println("Status: operation failed due to "+e);
