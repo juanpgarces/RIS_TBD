@@ -2,9 +2,9 @@ CREATE DATABASE  IF NOT EXISTS `risdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `risdb`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: risdb
+-- Host: ris2.cjvk36afmzyl.us-east-2.rds.amazonaws.com    Database: risdb
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.26-MariaDB
+-- Server version	5.6.39-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -210,9 +210,11 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `userID` varchar(9) NOT NULL,
-  `userType` varchar(9) NOT NULL,
+  `passwd` varchar(45) NOT NULL,
+  `userType` varchar(45) NOT NULL,
   `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
+  `phone` varchar(10) DEFAULT NULL,
   `gender` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`userID`),
@@ -226,6 +228,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES ('123456789','987654321','Administrator','Test','Testing',NULL,'M','Test@ung.edu'),('987654321','123456789','Receptionist','Jua','TheReceptionist','565161868','M','asdsd@sadfdf.com');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -238,4 +241,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-03 20:12:20
+-- Dump completed on 2018-04-04 14:25:25
