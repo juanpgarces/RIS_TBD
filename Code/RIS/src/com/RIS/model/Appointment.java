@@ -6,8 +6,7 @@ public class Appointment {
 	private SimpleStringProperty userId, patientId, startTime, stopTime;
 	private int appId, modalityId;
 	
-	public Appointment(int appId, String userId, String patientId, int modalityId, String startTime, String stopTime) {
-		this.appId  = appId;
+	public Appointment(String userId, String patientId, int modalityId, String startTime, String stopTime) {
 		this.userId = new SimpleStringProperty(userId);
 		this.patientId = new SimpleStringProperty(patientId);
 		this.modalityId  = modalityId;
@@ -16,14 +15,6 @@ public class Appointment {
 	}
 	
 	/* Start of GETTERS AND SETTERS */
-	public int getAppId() {
-		return appId;
-	}
-
-	public void setAppId(int appId) {
-		this.appId = appId;
-	}
-
 	public String getUserId() {
 		return userId.get();
 	}

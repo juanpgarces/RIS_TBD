@@ -16,5 +16,6 @@ public class AddNewAppointment {
     
     public void createAppointment(ActionEvent event){
     	
+    	
     }	
 }
