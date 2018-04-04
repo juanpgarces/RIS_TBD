@@ -1,5 +1,6 @@
 package com.RIS.controller;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -9,10 +10,15 @@ import application.RISDbConfig;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.scene.Node;
 
 public class AddUserController {
 
@@ -62,5 +68,15 @@ public class AddUserController {
 			System.out.println("Status: operation failed due to "+e);
 			}    	
     }
-
+    
+    public void LogOff(ActionEvent event) throws IOException
+    {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/LoginPage.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setTitle("RIS Home");
+        window.setScene(tableViewScene);
+        window.show();
+    	
+    }
 }

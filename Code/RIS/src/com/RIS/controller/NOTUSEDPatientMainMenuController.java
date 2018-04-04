@@ -21,7 +21,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
-public class PatientMainMenuController {
+public class NOTUSEDPatientMainMenuController {
 	
 	@FXML
 	Text foodLbl;

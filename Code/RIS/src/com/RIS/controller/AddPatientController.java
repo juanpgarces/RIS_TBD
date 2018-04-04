@@ -79,6 +79,16 @@ public class AddPatientController {
 	        window.show();
 			}
     }
-
+    
+    public void LogOff(ActionEvent event) throws IOException
+    {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/LoginPage.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setTitle("RIS Home");
+        window.setScene(tableViewScene);
+        window.show();
+    	
+    }
 }
 

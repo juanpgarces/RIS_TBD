@@ -21,7 +21,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 
@@ -53,13 +52,13 @@ public class LoginPageController implements Initializable {
         	    	
         	    	switch(rs.getString(1)) {
         	    	
-        	    		case "Technician": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/TechnicianView.fxml"));
+        	    		case "Technician": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/Technician.fxml"));
         	    		break;
-        	    		case "Physician": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/ReferringPhysicianView.fxml"));
+        	    		case "Physician": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/ReferringPhysicianMain.fxml"));
         	    		break;
-        	    		case "Radiologist": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/RadiologistPage.fxml"));
+        	    		case "Radiologist": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/Radiologist.fxml"));
         	    		break;
-        	    		case "Receptionist": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/ReceptionistPage.fxml"));
+        	    		case "Receptionist": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/ReceptionistMain.fxml"));
         	    		break;
         	    		case "Administrator": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/AddUser.fxml"));
         	    		break;

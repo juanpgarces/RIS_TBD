@@ -23,7 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 
-public class UserDataController {
+public class NOTUSEDUserDataController {
 	
 	@FXML private AnchorPane paneUserData;
 	@FXML private TableView<Order> tblPatientData;

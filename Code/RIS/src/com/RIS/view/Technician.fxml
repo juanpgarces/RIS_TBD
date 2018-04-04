@@ -5,11 +5,10 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="898.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane prefHeight="898.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.5" layoutX="54.0" layoutY="656.0" orientation="VERTICAL" prefHeight="898.0" prefWidth="829.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -41,16 +40,15 @@
                                     <Text layoutX="14.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason For Exam:" />
                                     <Text layoutX="14.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordering Physician:" />
                                     <Text layoutX="14.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority:" />
-                                    <TextField layoutX="128.0" layoutY="225.0" prefHeight="164.0" prefWidth="167.0" promptText="               Notes" />
+                                    <TextField layoutX="34.0" layoutY="230.0" prefHeight="167.0" prefWidth="407.0" promptText="               Notes" />
                                  </children>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="434.0" prefWidth="396.0">
                            <children>
-                              <ImageView fitHeight="167.0" fitWidth="200.0" layoutX="97.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
-                              <Button layoutX="68.0" layoutY="335.0" mnemonicParsing="false" text="Browse..." />
-                              <Button layoutX="268.0" layoutY="334.0" mnemonicParsing="false" text="Upload" />
+                              <Button layoutX="187.0" layoutY="131.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" text="Browse..." />
+                              <Button layoutX="56.0" layoutY="306.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="387.0" text="Submit" />
                            </children>
                         </AnchorPane>
                     </items>

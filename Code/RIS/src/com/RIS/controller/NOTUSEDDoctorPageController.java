@@ -28,7 +28,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
-public class DoctorPageController {
+public class NOTUSEDDoctorPageController {
 	
 	//configure the Patient table view
 		@FXML private TableView<Patient> tableViewInfo;
@@ -173,7 +173,7 @@ public class DoctorPageController {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/UserData.fxml"));
 		Parent root = (Parent) loader.load();
 		
-		UserDataController controllers = loader.getController();
+		NOTUSEDUserDataController controllers = loader.getController();
 		controllers.setID(getID());
 		Stage stage = new Stage();
 		stage.setTitle("Insulin Pump");
