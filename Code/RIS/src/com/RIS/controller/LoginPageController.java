@@ -36,43 +36,41 @@ public class LoginPageController implements Initializable {
     {
    	
     	ResultSet rs = null;
-    	String SQLQuery = "SELECT userType FROM User WHERE userID = ? AND userPwd = ?;";
+    	String SQLQuery = "SELECT userType FROM user WHERE userID = ? AND passwd = ?;";
     	
     	try(
         	    Connection conn = RISDbConfig.getConnection();
         	    PreparedStatement loggin = conn.prepareStatement(SQLQuery);
         	){	
     			loggin.setString(1, TextUsername.getText());
+    			loggin.setString(2, TextPassword.getText());
         	    rs = loggin.executeQuery();
         	    
         	    //If the result set found a match, continues
         	    if(rs.next()) {
         	    	
-        	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/PatientMainMenu.fxml"));
+        	    	Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/PatientMainMenu.fxml"));
         	    	
-        	    	switch(rs.getString(0)) {
-        	    		case "Technician": loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/TechnicianView.fxml"));
+        	    	switch(rs.getString(1)) {
+        	    	
+        	    		case "Technician": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/TechnicianView.fxml"));
         	    		break;
-        	    		case "Physician": loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/ReferringPhysicianView.fxml"));
+        	    		case "Physician": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/ReferringPhysicianView.fxml"));
         	    		break;
-        	    		case "Radiologist": loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/RadiologistPage.fxml"));
+        	    		case "Radiologist": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/RadiologistPage.fxml"));
         	    		break;
-        	    		case "Receptionist": loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/ReceptionistPage.fxml"));
+        	    		case "Receptionist": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/ReceptionistPage.fxml"));
         	    		break;
-        	    		case "Administrator": loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/AddUser.fxml"));
+        	    		case "Administrator": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/AddUser.fxml"));
         	    		break;
         	    		default:
         	    	}
         	    	
-        	    	Parent root = (Parent) loader.load();
-        	        PatientMainMenuController controller = loader.getController();
-        	        controller.setID(TextUsername.getText());
-        	        Stage stage = new Stage();
-        	        stage.setTitle("RIS");
-        		    //stage.getIcons().add(new Image("/com/RIS/images/blueHeartbeat.png"));
-        	        stage.setScene(new Scene (root));
-        		    stage.setResizable(false);
-        	        stage.show();
+        	        Scene tableViewScene = new Scene(tableViewParent);
+        	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        	        window.setTitle("RIS");
+        	        window.setScene(tableViewScene);
+        	        window.show();
         	    }
         	    
         	    //If not shows error
@@ -90,7 +88,7 @@ public class LoginPageController implements Initializable {
     		}
     }
     
-	// This method will redirect the scene into the patient TableView
+	/*// This method will redirect the scene into the patient TableView
     public void changeSceneToDoctorPage(ActionEvent event) throws IOException
     {
     	String username = "Insulinpump";
@@ -113,7 +111,7 @@ public class LoginPageController implements Initializable {
     		alert.showAndWait();
     	}
     }
-
+*/
 
 	public void initialize (URL url, ResourceBundle rb) {
 	}

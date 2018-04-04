@@ -11,9 +11,9 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RIS.controller.AddUserController">
    <children>
       <TextField fx:id="txtUserId" layoutX="220.0" layoutY="163.0" prefHeight="31.0" prefWidth="231.0" promptText="User ID" />
-      <TextField fx:id="txtUserFirstName" layoutX="220.0" layoutY="212.0" prefHeight="31.0" prefWidth="231.0" promptText="First Name" />
-      <TextField fx:id="txtUserLastName" layoutX="220.0" layoutY="258.0" prefHeight="31.0" prefWidth="231.0" promptText="Last Name" />
-      <TextField fx:id="txtUserPhoneNumber" layoutX="220.0" layoutY="308.0" prefHeight="31.0" prefWidth="231.0" promptText="Phone Number" />
+      <TextField fx:id="txtUserFirstName" layoutX="220.0" layoutY="247.0" prefHeight="31.0" prefWidth="231.0" promptText="First Name" />
+      <TextField fx:id="txtUserLastName" layoutX="220.0" layoutY="285.0" prefHeight="31.0" prefWidth="231.0" promptText="Last Name" />
+      <TextField fx:id="txtUserPhoneNumber" layoutX="220.0" layoutY="323.0" prefHeight="31.0" prefWidth="231.0" promptText="Phone Number" />
       <Button fx:id="btnAddNewUser" layoutX="585.0" layoutY="275.0" mnemonicParsing="false" onAction="#addNewUser" prefHeight="50.0" prefWidth="250.0" text="Add New User">
          <font>
             <Font name="Arial Bold" size="12.0" />
@@ -29,17 +29,17 @@
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="41.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:" underline="true">
+      <Text layoutX="41.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="43.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:" underline="true">
+      <Text layoutX="43.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="43.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" underline="true" wrappingWidth="115.5146484375">
+      <Text layoutX="43.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" underline="true" wrappingWidth="115.5146484375">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
@@ -76,5 +76,11 @@
          </font>
       </Text>
       <ComboBox fx:id="txtUserType" layoutX="220.0" layoutY="490.0" prefHeight="31.0" prefWidth="231.0" promptText="Select User Type" />
+      <TextField fx:id="txtPasswd" layoutX="220.0" layoutY="206.0" prefHeight="31.0" prefWidth="231.0" promptText="Password" />
+      <Text layoutX="41.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" underline="true">
+         <font>
+            <Font name="Bell MT" size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

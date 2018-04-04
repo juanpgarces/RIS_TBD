@@ -3,11 +3,12 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class User {
 
-	private SimpleStringProperty userId, userType, firstName, lastName, phone, gender, email;
+	private SimpleStringProperty userId, passwd, userType, firstName, lastName, phone, gender, email;
 	
 	/*Constructor for Doctor*/
-	public User(String userId, String userType, String firstName, String lastName, String phone, String gender, String email) {
+	public User(String userId, String passwd, String userType, String firstName, String lastName, String phone, String gender, String email) {
 		this.userId = new SimpleStringProperty(userId);
+		this.passwd = new SimpleStringProperty(passwd);
 		this.userType = new SimpleStringProperty(userType);
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
@@ -23,6 +24,13 @@ public class User {
 
 	public void setUserId(String userId) {
 		this.userId = new SimpleStringProperty(userId);
+	}
+	public String getPassword() {
+		return passwd.get();
+	}
+
+	public void setPassword(String passwd) {
+		this.passwd = new SimpleStringProperty(passwd);
 	}
 	public String getFirstName() {
 		return firstName.get();

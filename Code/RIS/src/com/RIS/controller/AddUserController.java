@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 
 public class AddUserController {
 
-    @FXML private TextField txtUserId;
+    @FXML private TextField txtUserId, txtPasswd;
     @FXML private TextField txtUserFirstName;
     @FXML private TextField txtUserLastName;
     @FXML private TextField txtUserPhoneNumber;
@@ -43,6 +43,7 @@ public class AddUserController {
     	//Create User Model
     	User newUser = new User(
     			txtUserId.getText(),
+    			txtPasswd.getText(),
     			txtUserType.getValue(),
     			txtUserFirstName.getText(),
     			txtUserLastName.getText(),
@@ -50,18 +51,19 @@ public class AddUserController {
     			txtUserGender.getValue(),
     			txtUserEmail.getText());
 
-		String query = "INSERT INTO User " + "(userId, userType, firstName, lastName, phone, gender, email) " + "VALUES(?,?,?,?,?,?,?)";
+		String query = "INSERT INTO User " + "(userId, passwd, userType, firstName, lastName, phone, gender, email) " + "VALUES(?,?,?,?,?,?,?,?)";
 		
 		try (Connection conn = RISDbConfig.getConnection();
 			PreparedStatement insertprofile = conn.prepareStatement(query);) {
 		
 			insertprofile.setString(1, newUser.getUserId());
-			insertprofile.setString(2, newUser.getUserType());
-			insertprofile.setString(3, newUser.getFirstName());
-			insertprofile.setString(4, newUser.getLastName());
-			insertprofile.setString(5, newUser.getPhone());
-			insertprofile.setString(6, newUser.getGender());
-			insertprofile.setString(7, newUser.getEmail());
+			insertprofile.setString(2, newUser.getPassword());
+			insertprofile.setString(3, newUser.getUserType());
+			insertprofile.setString(4, newUser.getFirstName());
+			insertprofile.setString(5, newUser.getLastName());
+			insertprofile.setString(6, newUser.getPhone());
+			insertprofile.setString(7, newUser.getGender());
+			insertprofile.setString(8, newUser.getEmail());
 		
 			insertprofile.execute();
 			
