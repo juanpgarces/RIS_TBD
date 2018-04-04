@@ -64,7 +64,7 @@ public class DoctorPageController {
 		cPhone.setCellValueFactory(new PropertyValueFactory<Patient, String>("phone"));
 		cDoctor.setCellValueFactory(new PropertyValueFactory<Patient, String>("idDoctor"));
 		
-		tableViewInfo.setItems(getPatientList());
+		//tableViewInfo.setItems(getPatientList());
 		tableViewInfo.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         this.bDeletePatient.setDisable(true);
         this.patientRecords.setDisable(true);
@@ -100,7 +100,7 @@ public class DoctorPageController {
     
  // ObservableList: A list that enables listeners to track changes when they occur
     // The following  method will return an ObservableList of  object
-    public ObservableList<Patient>  getPatientList(){
+    /*public ObservableList<Patient>  getPatientList(){
     	
     	ObservableList<Patient> patient = FXCollections.observableArrayList();
 
@@ -128,7 +128,7 @@ public class DoctorPageController {
        		}
        	}
         return patient;
-    }
+    }*/
     
     // Method used to enable the detailed view button on mouse click event
     public void mouseClickedOnTableView(){

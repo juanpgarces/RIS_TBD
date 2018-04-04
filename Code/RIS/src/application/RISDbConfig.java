@@ -1,6 +1,3 @@
-	//based on the example https://github.com/abegaz/carDealerStarterApp
-    //which is based on https://github.com/HackeaMesta/Game-Store
-
 	package application;
 
 	import java.sql.Connection;

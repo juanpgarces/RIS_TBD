@@ -21,34 +21,34 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class AddPatientController {
+	
 
 
-	  @FXML private TextField txtPatientId, txtPatientFirstName, txtPatientLastName, txtPatientAddress, txtPatientPhoneNumber, txtPatientAge, txtPatientHeight, txtPatientWeight, txtInsuranceType, txtPatientEmail;
-	  @FXML private TextArea txtPatientNotes;
-	  @FXML private Button btnAddNewPatient, btndoctorHomeButton;
-	  @FXML private ComboBox<String> txtPatientGender = new ComboBox<String>(
-			  FXCollections.observableArrayList(
+	
+	@FXML private TextField txtPatientId, txtPatientFirstName, txtPatientLastName, txtPatientPhoneNumber, txtPatientAddress, txtPatientDOB, txtInsuranceType, txtPatientEmail;
+	@FXML private Button btnAddNewPatient, btndoctorHomeButton;
+    @FXML private TextArea txtPatientNotes;
+	@FXML private ComboBox<String> txtPatientGender = new ComboBox<String>(
+			FXCollections.observableArrayList(
 					  "M",
 	    	          "F"
-	    	  )
-		);
+	    	 )
+	);
 
     public void newPatient(ActionEvent event) throws IOException{
     	
     	Patient newPatient = new Patient(txtPatientId.getText(),
     								txtPatientFirstName.getText(),
     								txtPatientLastName.getText(),
-    								txtPatientAddress.getText(),
-    								txtPatientEmail.getText(),
-    								txtPatientAge.getText(),
     								txtPatientGender.getValue(),
-    								txtPatientHeight.getText(),
-    								txtPatientWeight.getText(),
+    								txtPatientDOB.getText(),
     								txtInsuranceType.getText(),
+    								txtPatientAddress.getText(),
     								txtPatientPhoneNumber.getText(),
+    								txtPatientEmail.getText(),
     								txtPatientNotes.getText());
     	    	
-    	String query = "insert into patient " + "(idPatient, firstName, lastName, address, bloodType, age, gender, height, weight, insulinType, phone, idDoctor) " + "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+    	String query = "INSERT INTO patient " + "(patientID, firstName, lastName, gender, DOB, insurance, address, phone, email, notes) " + "values(?,?,?,?,?,?,?,?,?,?)";
     	
     	try (Connection conn = RISDbConfig.getConnection();
 				PreparedStatement insertprofile = conn.prepareStatement(query);) {
@@ -56,47 +56,29 @@ public class AddPatientController {
     		insertprofile.setString(1, newPatient.getidPatient());
 			insertprofile.setString(2, newPatient.getFirstName());
 			insertprofile.setString(3, newPatient.getLastName());
-			insertprofile.setString(4, newPatient.getAddress());
-			insertprofile.setString(5, newPatient.getBloodType());
-			insertprofile.setString(6, newPatient.getAge());
-			insertprofile.setString(7, newPatient.getGender());
-			insertprofile.setString(8, newPatient.getHeight());
-			insertprofile.setString(9, newPatient.getWeight());
-			insertprofile.setString(10, newPatient.getInsulinType());
-			insertprofile.setString(11, newPatient.getPhone());
-			insertprofile.setString(12, newPatient.getidDoctor());
+			insertprofile.setString(4, newPatient.getGender());
+			insertprofile.setString(5, newPatient.getDOB());
+			insertprofile.setString(6, newPatient.getInsurance());
+			insertprofile.setString(7, newPatient.getAddress());
+			insertprofile.setString(8, newPatient.getPhone());
+			insertprofile.setString(9, newPatient.getEmail());
+			insertprofile.setString(10, newPatient.getNotes());
     		
 			insertprofile.execute();
+			
     	} catch (Exception e) {
     		System.out.println("Status: operation failed due to "+e);
 
 		}
-    	
     	if(event.getSource() == btnAddNewPatient) {
-    	}
-			if(event.getSource() == btnAddNewPatient) {
-
-    	}
-			if(event.getSource() == btnAddNewPatient) {
 
 		    Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-			Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/DoctorPage.fxml"));
+			Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/ReferringPhysicianView.fxml"));
 		    Scene tableViewScene = new Scene(tableViewParent);
 	        window.setScene(tableViewScene);
 	        window.show();
 			}
     }
-    
-    @FXML
-	public void changeSceneToDoctorHome(ActionEvent event) throws IOException {
-			if(event.getSource() == btndoctorHomeButton) {
-		    Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-			Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/DoctorPage.fxml"));
-		    Scene tableViewScene = new Scene(tableViewParent);
-	        window.setScene(tableViewScene);
-	        window.show();
-	        	}
-	        }
 
 }
 

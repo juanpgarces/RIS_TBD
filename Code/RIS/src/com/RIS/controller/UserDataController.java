@@ -38,7 +38,7 @@ public class UserDataController {
    
  // ObservableList: A list that enables listeners to track changes when they occur
     // The following  method will return an ObservableList of  object
-    public ObservableList<Order>  getRecordList(){
+    /*public ObservableList<Order>  getRecordList(){
     	
     	ObservableList<Order> record = FXCollections.observableArrayList();
         String SQLQuery = "SELECT * FROM records WHERE idPatient = ? ORDER BY idRecords DESC;"; //ADD WHERE idPatient = ''
@@ -64,7 +64,7 @@ public class UserDataController {
        		}
        	}
         return record;
-    }
+    }*/
     
     // Method used to enable the detailed view button on mouse click event
 	@FXML
@@ -84,7 +84,7 @@ public class UserDataController {
 		clnGlucoseLevel.setCellValueFactory(new PropertyValueFactory<Order, String>("glucoseReading"));
 		clnInsulinAdmin.setCellValueFactory(new PropertyValueFactory<Order, String>("InsulinAmount"));
 		clnStatus.setCellValueFactory(new PropertyValueFactory<Order, String>("Status"));	
-		tblPatientData.setItems(getRecordList());
+		//tblPatientData.setItems(getRecordList());
 		
 		tblPatientData.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 	}	

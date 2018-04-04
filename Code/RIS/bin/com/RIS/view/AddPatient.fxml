@@ -16,10 +16,8 @@
       <TextField fx:id="txtPatientLastName" layoutX="220.0" layoutY="219.0" prefHeight="31.0" prefWidth="231.0" promptText="Last Name" />
       <TextField fx:id="txtPatientPhoneNumber" layoutX="220.0" layoutY="263.0" prefHeight="31.0" prefWidth="231.0" promptText="Phone Number" />
       <TextField fx:id="txtPatientAddress" layoutX="220.0" layoutY="304.0" prefHeight="31.0" prefWidth="231.0" promptText="Address" />
-      <TextField fx:id="txtPatientAge" layoutX="220.0" layoutY="345.0" prefHeight="31.0" prefWidth="231.0" promptText="Age" />
-      <TextField fx:id="txtPatientHeight" layoutX="220.0" layoutY="477.0" prefHeight="31.0" prefWidth="231.0" promptText="Height (Inches)" />
-      <TextField fx:id="txtPatientWeight" layoutX="220.0" layoutY="523.0" prefHeight="31.0" prefWidth="231.0" promptText="Weight (Pounds)" />
-      <Button fx:id="btnAddNewPatient" layoutX="635.0" layoutY="504.0" mnemonicParsing="false" onAction="#newPatient" prefHeight="50.0" prefWidth="250.0" text="Add New Patient">
+      <TextField fx:id="txtPatientDOB" layoutX="220.0" layoutY="345.0" prefHeight="31.0" prefWidth="231.0" promptText="Age" />
+      <Button fx:id="btnAddNewPatient" layoutX="670.0" layoutY="403.0" mnemonicParsing="false" onAction="#newPatient" prefHeight="50.0" prefWidth="250.0" text="Add New Patient">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
@@ -60,16 +58,6 @@
          </font>
       </Text>
       <Text layoutX="42.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" underline="true">
-         <font>
-            <Font name="Bell MT" size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="37.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Height (Inches):" underline="true">
-         <font>
-            <Font name="Bell MT" size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="31.0" layoutY="544.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weight (Pounds):" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
