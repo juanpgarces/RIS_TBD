@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="689.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="689.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml">
   <children>
     <MenuBar prefHeight="32.0" prefWidth="640.0" VBox.vgrow="NEVER">
       <menus>

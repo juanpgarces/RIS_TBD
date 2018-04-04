@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="304.0" prefWidth="457.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9">
+<AnchorPane prefHeight="304.0" prefWidth="457.0" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx">
    <children>
       <AnchorPane layoutX="-223.0" layoutY="-236.0" />
       <MenuBar prefHeight="14.0" prefWidth="305.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
