@@ -3,14 +3,15 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class PACS {
 
-	private SimpleStringProperty transcript, image;
+	private SimpleStringProperty transcript, image, notes;
 	private int imageId, appointmentId;
 	
-	public PACS(int imageId, String image, String transcript, int appointmentId) {
+	public PACS(int imageId, int appointmentId, String image, String transcript, String notes) {
 		this.imageId  = imageId;
+		this.appointmentId  = appointmentId;
 		this.image  = new SimpleStringProperty(image);
 		this.transcript  = new SimpleStringProperty(transcript);
-		this.appointmentId  = appointmentId;	
+		this.notes = new SimpleStringProperty(notes);
 	}
 	
 	/* Start of GETTERS AND SETTERS */
@@ -20,6 +21,14 @@ public class PACS {
 
 	public void setImageId(int imageId) {
 		this.imageId = imageId;
+	}
+		
+	public int getAppointmentId() {
+		return appointmentId;
+	}
+
+	public void setAppointmentId(int appointmentId) {
+		this.appointmentId = appointmentId;
 	}
 
 	public String getImage() {
@@ -37,13 +46,13 @@ public class PACS {
 	public void setTranscript(String transcript) {
 		this.transcript = new SimpleStringProperty(transcript);
 	}
-	
-	public int getAppointmentId() {
-		return appointmentId;
+
+	public String getNotes() {
+		return notes.get();
 	}
 
-	public void setAppointmentId(int appointmentId) {
-		this.appointmentId = appointmentId;
+	public void setNotes(String notes) {
+		this.notes = new SimpleStringProperty(notes);
 	}
 
 	@Override

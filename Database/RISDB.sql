@@ -29,7 +29,8 @@ CREATE TABLE `appointment` (
   `userID` varchar(9) NOT NULL,
   `patientID` varchar(9) NOT NULL,
   `modalityID` int(11) NOT NULL,
-  `dateTime` datetime NOT NULL,
+  `startTime` datetime NOT NULL,
+  `stopTime` datetime NOT NULL,
   PRIMARY KEY (`appID`,`userID`,`patientID`,`modalityID`),
   UNIQUE KEY `appID_UNIQUE` (`appID`),
   KEY `physicianID_idx` (`userID`),
@@ -147,9 +148,10 @@ DROP TABLE IF EXISTS `pacs`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pacs` (
   `imageID` int(11) NOT NULL AUTO_INCREMENT,
+  `appointmentID` int(11) NOT NULL,
   `image` varchar(100) NOT NULL,
   `transcript` varchar(300) DEFAULT NULL,
-  `appointmentID` int(11) NOT NULL,
+  `notes` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`imageID`,`appointmentID`),
   UNIQUE KEY `imageID_UNIQUE` (`imageID`),
   UNIQUE KEY `image_UNIQUE` (`image`),
@@ -236,4 +238,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-30 17:58:27
+-- Dump completed on 2018-04-03 20:12:20
