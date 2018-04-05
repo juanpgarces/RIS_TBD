@@ -14,15 +14,14 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TableView layoutX="409.0" layoutY="103.0" prefHeight="444.0" prefWidth="1018.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tachTable" layoutX="409.0" layoutY="103.0" onSort="#displayAppointments" prefHeight="444.0" prefWidth="1018.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Patient ID" />
-                      <TableColumn prefWidth="80.66265106201172" text="First Name" />
-                        <TableColumn minWidth="0.0" prefWidth="94.53814697265625" text="Last Name" />
-                        <TableColumn prefWidth="213.46182250976562" text="Address" />
-                        <TableColumn prefWidth="95.38565063476562" text="Modality" />
-                        <TableColumn prefWidth="224.18487548828125" text="Procedure" />
-                        <TableColumn prefWidth="236.75921630859375" text="Technician" />
+                      <TableColumn fx:id="col1" prefWidth="89.0" text="Patient ID" />
+                      <TableColumn fx:id="col2" prefWidth="120.0" text="First Name" />
+                        <TableColumn fx:id="col3" minWidth="0.0" prefWidth="137.0" text="Last Name" />
+                        <TableColumn fx:id="col4" prefWidth="182.0" text="Modality" />
+                        <TableColumn fx:id="col5" prefWidth="269.0" text="Procedure" />
+                        <TableColumn fx:id="col6" prefWidth="220.0" text="Technician" />
                     </columns>
                   </TableView>
                </children>
@@ -33,22 +32,27 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <AnchorPane layoutX="-39.0" layoutY="-64.0" prefHeight="442.0" prefWidth="422.0" style="-fx-border-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane layoutX="-3.0" prefHeight="442.0" prefWidth="422.0" style="-fx-border-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exam Date/Time:" />
-                                    <Text layoutX="14.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Procedure:" />
-                                    <Text layoutX="14.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason For Exam:" />
-                                    <Text layoutX="14.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordering Physician:" />
-                                    <Text layoutX="14.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority:" />
-                                    <TextField layoutX="34.0" layoutY="230.0" prefHeight="167.0" prefWidth="407.0" promptText="               Notes" />
+                                    <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exam Date/Time:" textAlignment="RIGHT" wrappingWidth="102.0468682050705" />
+                                    <Text layoutX="14.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Procedure:" textAlignment="RIGHT" wrappingWidth="102.0468682050705" />
+                                    <Text layoutX="14.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason For Exam:" textAlignment="RIGHT" wrappingWidth="102.0468682050705" />
+                                    <Text layoutX="12.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referring Physician:" />
+                                    <Text layoutX="14.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority:" textAlignment="RIGHT" wrappingWidth="102.0468682050705" />
+                                    <TextField fx:id="techNotesTextArea" alignment="TOP_LEFT" layoutX="33.0" layoutY="234.0" prefHeight="167.0" prefWidth="455.0" promptText="Technician Notes" />
+                                    <Text fx:id="datetimeText" layoutX="137.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="200.13671875" />
+                                    <Text fx:id="procedureText" layoutX="137.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="200.13671875" />
+                                    <Text fx:id="reasonText" layoutX="137.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="200.13671875" />
+                                    <Text fx:id="referringText" layoutX="137.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="200.13671875" />
+                                    <Text fx:id="priorityText" layoutX="137.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="200.13671875" />
                                  </children>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="434.0" prefWidth="396.0">
                            <children>
-                              <Button layoutX="187.0" layoutY="131.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="122.0" text="Browse..." />
-                              <Button layoutX="56.0" layoutY="306.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="387.0" text="Submit" />
+                              <Button layoutX="187.0" layoutY="131.0" mnemonicParsing="false" onAction="#browse" prefHeight="38.0" prefWidth="122.0" text="Browse..." />
+                              <Button layoutX="56.0" layoutY="306.0" mnemonicParsing="false" onAction="#submit" prefHeight="92.0" prefWidth="387.0" text="Submit" />
                            </children>
                         </AnchorPane>
                     </items>
