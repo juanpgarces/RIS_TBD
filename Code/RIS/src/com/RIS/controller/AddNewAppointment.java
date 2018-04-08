@@ -7,9 +7,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-package com.RIS.controller;
-
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,12 +36,24 @@ public class AddNewAppointment {
     
     
     
-//    public void initialize() {
-//        comboModality.getItems().removeAll(comboModality.getItems());
-//        comboModality.getItems().addAll("Option A", "Option B", "Option C");
-//        comboModality.getSelectionModel().select("Option B");
-//    }
-//    
+    public void initialize() {
+    	
+        comboModality.getItems().removeAll(comboModality.getItems());
+    	String query = "SELECT name FROM modality";
+    	ResultSet rs;
+    	try (Connection conn = RISDbConfig.getConnection();
+    			PreparedStatement st = conn.prepareStatement(query);) {
+    		rs = st.executeQuery(); 		
+    	    st.close();
+    	    
+            while(rs.next()) {
+            	comboModality.getItems().add(rs.getString("name"));
+            }
+    		} catch (Exception e) {
+    			System.out.println("Status: operation failed due to "+e);
+    			}
+    }
+ 
     public void createAppointment(ActionEvent event){
     	
   	
@@ -59,15 +70,25 @@ public class AddNewAppointment {
     		modID = rs.getInt("modID");
     		duration = rs.getInt("duration");
     		
-    	      st.close();
+    	    st.close();
     		
     			
-    		System.out.println("Success -> modID=" + modID + "/t duration="+duration);
+    		//System.out.println("Success -> modID=" + modID + "/t duration="+duration);
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
     			}    	
-
     	//gets userID from the order with the same patient ID and modality
+    	
+    	/* 
+    	 * 
+    	 * Getting the userID this way will only work if the patient doesn't have multiple orders
+    	 * *************JP - Why get the userID from the order table if we can just enter the Patient's SSN when creating the order. To even make it better
+    	 * 					We can have a button to create new appointment by selecting an order from the Receptionist View and 
+    	 * 					passing that ID + Modality to the New Appointment View
+    	 * for the same modality (which most likely wouldn't be necessary). I'm still looking for
+    	 * the solution online. If I can't, then it's still not essential.
+    	 * 
+    	 */
     	query = "SELECT userID FROM order WHERE patientID='" + txtId.getText() + "' AND modID='" + modID + "'";
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
@@ -82,13 +103,6 @@ public class AddNewAppointment {
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
     			}  
-    	/* 
-    	 * 
-    	 * Getting the userID this way will only work if the patient doesn't have multiple orders
-    	 * for the same modality (which most likely wouldn't be necessary). I'm still looking for
-    	 * the solution online. If I can't, then it's still not essential.
-    	 * 
-    	 */
     		
     	
     	// creates appointment object. 
@@ -97,7 +111,7 @@ public class AddNewAppointment {
     			txtId.getText(),
     			modID,
     			txtTime.getText(),
-    			//endTime,
+    			//endTime = txtTime + modality-duration,
     			);		
     	
    		//parameters-->	Appointment(String userId, String patientId, int modalityId, String startTime, String stopTime)
@@ -115,7 +129,7 @@ public class AddNewAppointment {
     					//insertprofile.setString(1, newApp.getAppId());
     					insertprofile.setString(2, newApp.getUserId());
     					insertprofile.setString(3, newApp.getPatientId());
-    					insertprofile.setString(4, newApp.getModalityId()); //error because modalityID is an int
+    					insertprofile.setString(4, ""+newApp.getModalityId()); //error because modalityID is an int
     					insertprofile.setString(5, newApp.getStartTime());
     					insertprofile.setString(6, newApp.getStopTime());
     					
