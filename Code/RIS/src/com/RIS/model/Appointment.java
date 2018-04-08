@@ -1,12 +1,16 @@
 package com.RIS.model;
+import java.util.Date;
+
 import javafx.beans.property.SimpleStringProperty;
 
 public class Appointment {
 
 	private SimpleStringProperty userId, patientId, startTime, stopTime;
 	private int appId, modalityId;
+
 	
 	public Appointment(String userId, String patientId, int modalityId, String startTime, String stopTime) {
+		
 		this.userId = new SimpleStringProperty(userId);
 		this.patientId = new SimpleStringProperty(patientId);
 		this.modalityId  = modalityId;
