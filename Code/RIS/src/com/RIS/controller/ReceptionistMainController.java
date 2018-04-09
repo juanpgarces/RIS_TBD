@@ -3,11 +3,14 @@ package com.RIS.controller;
 import com.RIS.model.Appointment;
 import com.RIS.model.Bill;
 import com.RIS.model.Order;
+import com.RIS.model.Patient;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ReceptionistMainController {
 
@@ -15,78 +18,46 @@ public class ReceptionistMainController {
 		@FXML private TableView<Order> tablieViewOrders;
 		@FXML private TableView<Appointment> tablieViewAppointment;
 		@FXML private TableView<Bill> tableViewBill;
-		
-	    @FXML
-	    private TableColumn<?, ?> colOrderId;
-
-	    @FXML
-	    private TableColumn<?, ?> colEmergency;
-
-	    @FXML
-	    private TableColumn<?, ?> colUserId;
-
-	    @FXML
-	    private TableColumn<?, ?> colPatientId;
-
-	    @FXML
-	    private TableColumn<?, ?> colModalityId;
-
-	    @FXML
-	    private TableColumn<?, ?> colStartTime;
-
-	    @FXML
-	    private TableColumn<?, ?> colModality;
-
-	    @FXML
-	    private TableColumn<?, ?> colFirstName;
-
-	    @FXML
-	    private TableColumn<?, ?> colLastName;
-
-	    @FXML
-	    private TableColumn<?, ?> ColPatientidApp;
-
-	    @FXML
-	    private TableColumn<?, ?> colNotesApp;
-
-	    @FXML
-	    private TableColumn<?, ?> billId;
-
-	    @FXML
-	    private TableColumn<?, ?> billCost;
-
-	    @FXML
-	    private TableColumn<?, ?> appIdBill;
-
-	    @FXML
-	    private TableColumn<?, ?> userIdBill;
-
-	    @FXML
-	    private TableColumn<?, ?> patientIdBill;
-
-	    @FXML
-	    private TableColumn<?, ?> modalityIdBill;
+	    @FXML private TableColumn<Order, Integer> colOrderId, colModalityId;
+	    @FXML private TableColumn<Order, String> colEmergency, colUserId, colPatientId;
+	    @FXML private TableColumn<Appointment, String> colStartTime, colStopTime, colModality, colFirstName, colLastName, ColPatientidApp, colNotesApp;
+	    @FXML private TableColumn<Bill, Integer> billId, appIdBill, modalityIdBill;
+	    @FXML private TableColumn<Bill, Double> billCost;
+	    @FXML private TableColumn<Bill, String> userIdBill, patientIdBill;
 	    
 	    @FXML
 	    void initialize() {
+	    		    	
+	        //set up the columns in the tables
+	    	//Order Table
+	    	colOrderId.setCellValueFactory(new PropertyValueFactory<Order, Integer>("orderID"));
+	    	colEmergency.setCellValueFactory(new PropertyValueFactory<Order, String>("emergencylevel"));
+	    	colUserId.setCellValueFactory(new PropertyValueFactory<Order, String>("userID"));
+	    	colPatientId.setCellValueFactory(new PropertyValueFactory<Order, String>("patientID"));
+	    	colModalityId.setCellValueFactory(new PropertyValueFactory<Order, Integer>("modalityID"));
+			
+	    	//Appointment Table
+	    	colStartTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTime"));
+	    	colStopTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("stopTime"));
+	    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modalityID"));
+	    	colFirstName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("firstName"));
+	    	colLastName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("lastName"));
+	    	ColPatientidApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("patientID"));
+	    	colNotesApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("notes"));
 	    	
-	        assert colOrderId != null : "fx:id=\"colOrderId\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert colEmergency != null : "fx:id=\"colEmergency\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert colUserId != null : "fx:id=\"colUserId\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert colPatientId != null : "fx:id=\"colPatientId\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert colModalityId != null : "fx:id=\"colModalityId\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert colStartTime != null : "fx:id=\"colStartTime\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert colModality != null : "fx:id=\"colModality\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert colFirstName != null : "fx:id=\"colFirstName\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert colLastName != null : "fx:id=\"colLastName\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert ColPatientidApp != null : "fx:id=\"ColPatientidApp\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert colNotesApp != null : "fx:id=\"colNotesApp\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert billId != null : "fx:id=\"billId\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert billCost != null : "fx:id=\"billCost\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert appIdBill != null : "fx:id=\"appIdBill\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert userIdBill != null : "fx:id=\"userIdBill\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert patientIdBill != null : "fx:id=\"patientIdBill\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
-	        assert modalityIdBill != null : "fx:id=\"modalityIdBill\" was not injected: check your FXML file 'ReceptionistMain.fxml'.";
+	    	//Billing Table
+	    	billId.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("billID"));
+	    	billCost.setCellValueFactory(new PropertyValueFactory<Bill, Double>("Cost"));
+	    	appIdBill.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("appID"));
+	    	userIdBill.setCellValueFactory(new PropertyValueFactory<Bill, String>("userID"));
+	    	patientIdBill.setCellValueFactory(new PropertyValueFactory<Bill, String>("patientID"));
+	    	modalityIdBill.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("ModalityID"));
+
+			//tableViewInfo.setItems(getPatientList());
+			tablieViewOrders.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+			tablieViewAppointment.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+			tableViewBill.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+	    	
 
 	    }
 
