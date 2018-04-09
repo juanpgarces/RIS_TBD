@@ -68,7 +68,7 @@ public class AddNewAppointment {
     		ResultSet rs = st.executeQuery();
     		
     		modID = rs.getInt("modID");
-    		duration = rs.getInt("duration");
+    		duration = rs.getInt("duration"); //obtains duration of modality from database
     		
     	    st.close();
     		
@@ -111,7 +111,7 @@ public class AddNewAppointment {
     			txtId.getText(),
     			modID,
     			txtTime.getText(),
-    			//endTime = txtTime + modality-duration,
+    			//endTime = txtTime.getText + duration,
     			);		
     	
    		//parameters-->	Appointment(String userId, String patientId, int modalityId, String startTime, String stopTime)
