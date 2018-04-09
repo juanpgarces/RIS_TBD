@@ -56,7 +56,6 @@ public class AddNewAppointment {
  
     public void createAppointment(ActionEvent event){
     	
-  	
     	int modID;
     	int userID;
     	int duration;
