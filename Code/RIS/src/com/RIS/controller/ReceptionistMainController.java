@@ -14,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ReceptionistMainController {
 
-		
 		@FXML private TableView<Order> tablieViewOrders;
 		@FXML private TableView<Appointment> tablieViewAppointment;
 		@FXML private TableView<Bill> tableViewBill;
@@ -26,8 +25,7 @@ public class ReceptionistMainController {
 	    @FXML private TableColumn<Bill, String> userIdBill, patientIdBill;
 	    
 	    @FXML
-	    void initialize() {
-	    		    	
+	    void initialize() {  	
 	        //set up the columns in the tables
 	    	//Order Table
 	    	colOrderId.setCellValueFactory(new PropertyValueFactory<Order, Integer>("orderID"));
