@@ -56,8 +56,8 @@ public class AddNewAppointment {
  
     public void createAppointment(ActionEvent event){
     	
-    	int modID;
-    	int userID;
+    	int modID = 0;
+    	String userID = null;
     	int duration;
     	
     	  //Gets modality ID and duration based on the modality selected in the comboBox
@@ -93,7 +93,7 @@ public class AddNewAppointment {
     			PreparedStatement st = conn.prepareStatement(query);) {
     		ResultSet rs = st.executeQuery();
     		
-    		userID = rs.getInt("userID");
+    		userID = rs.getString("userID");
     		
     	      st.close();
     		
@@ -110,7 +110,7 @@ public class AddNewAppointment {
     			txtId.getText(),
     			modID,
     			txtTime.getText(),
-    			//endTime = txtTime.getText + duration,
+    			"s"//endTime = txtTime.getText + duration,
     			);		
     	
    		//parameters-->	Appointment(String userId, String patientId, int modalityId, String startTime, String stopTime)

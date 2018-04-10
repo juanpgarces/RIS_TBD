@@ -4,11 +4,10 @@ import javafx.beans.property.SimpleStringProperty;
 public class Bill {
 
 	private SimpleStringProperty userId, patientId;
-	private int billId, appointmentId, modalityId;
+	private int appointmentId, modalityId;
 	private double cost;
 	
-	public Bill(int billId, double cost, int appointmentId, String userId, String patientId, int modalityId) {
-		this.billId  = billId;
+	public Bill(double cost, int appointmentId, String userId, String patientId, int modalityId) {
 		this.cost = cost;
 		this.appointmentId = appointmentId;
 		this.userId  = new SimpleStringProperty(userId);
@@ -17,13 +16,6 @@ public class Bill {
 	}
 	
 	/* Start of GETTERS AND SETTERS */
-	public int getBillId() {
-		return billId;
-	}
-
-	public void setBillId(int billId) {
-		this.billId = billId;
-	}
 
 	public double getCost() {
 		return cost;
@@ -63,7 +55,7 @@ public class Bill {
 
 	@Override
 	public String toString() {
-		return "Bill [userId=" + userId + ", patientId=" + patientId + ", billId=" + billId + ", appointmentId="
+		return "Bill [userId=" + userId + ", patientId=" + patientId + ", appointmentId="
 				+ appointmentId + ", modalityId=" + modalityId + ", cost=" + cost + "]";
 	}
 	
