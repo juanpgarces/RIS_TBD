@@ -74,7 +74,7 @@
       </Text>
       <AnchorPane prefHeight="113.0" prefWidth="1100.0" style="-fx-background-color: #000099;">
          <children>
-            <Label alignment="CENTER" layoutX="327.0" layoutY="21.0" prefHeight="71.0" prefWidth="446.0" text="Add New Patient" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="327.0" layoutY="21.0" prefHeight="113.0" prefWidth="1100.0" text="Add New Patient" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="Bell MT" size="60.0" />
                </font>
