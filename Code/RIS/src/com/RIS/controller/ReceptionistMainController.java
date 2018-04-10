@@ -70,6 +70,15 @@ public class ReceptionistMainController {
 			tableViewBill.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);*/
 
 	    }
+	    public void onSelectedApp(ActionEvent event) {
+	    	
+	    }
+	    public void onSelectedBill(ActionEvent event) {
+	    	
+	    }
+	    public void unselectedOrder(ActionEvent event) {
+	    	
+	    }
 	    // ObservableList: A list that enables listeners to track changes when they occur
 	    // The following  method will return an ObservableList of  object
 	    public ObservableList<Order>  getOrderList(){
