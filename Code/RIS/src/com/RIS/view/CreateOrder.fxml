@@ -8,8 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="304.0" prefWidth="457.0" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx">
+<AnchorPane prefHeight="304.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="-223.0" layoutY="-236.0" />
       <MenuBar prefHeight="14.0" prefWidth="305.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -31,11 +30,10 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TextField layoutX="14.0" layoutY="60.0" promptText="Order ID" />
       <TextField layoutX="14.0" layoutY="99.0" promptText="Emergency Level" />
       <TextField layoutX="14.0" layoutY="139.0" promptText="Patient ID" />
-      <TextField layoutX="14.0" layoutY="181.0" promptText="Modality" />
-      <TextArea layoutX="220.0" layoutY="39.0" prefHeight="177.0" prefWidth="200.0" promptText="Notes" />
+      <TextField layoutX="14.0" layoutY="57.0" promptText="Modality" />
+      <TextArea fx:id="notes" layoutX="220.0" layoutY="39.0" prefHeight="177.0" prefWidth="200.0" promptText="Notes" />
       <Button layoutX="291.0" layoutY="243.0" mnemonicParsing="false" text="Cancel" />
       <Button layoutX="122.0" layoutY="243.0" mnemonicParsing="false" text="Submit" />
    </children>
