@@ -18,7 +18,7 @@
 7. Ability to view and select from list of patients in order to obtain patient's information (Physicians and technicians) (3)
 10. Physician (User) should have a portal to review all necessary information from patients (Only that Physician's patients) (2)
 16. Physician should be able to see a schedule of their patients procedures (2)
-15. System should have different views depending on who is logged in. (3)
+15. System should have different views depending on who is logged in. (3) (Done)
 14. There should be a portal for registering a patient. (1)
 
 --------------------Administrative Capabilities---------------------
