@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="304.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -30,11 +31,11 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TextField layoutX="14.0" layoutY="99.0" promptText="Emergency Level" />
-      <TextField layoutX="14.0" layoutY="139.0" promptText="Patient ID" />
-      <TextField layoutX="14.0" layoutY="57.0" promptText="Modality" />
+      <TextField fx:id="emergencyLevel" alignment="CENTER" layoutX="14.0" layoutY="99.0" promptText="Emergency Level" />
+      <TextField fx:id="modalityId" alignment="CENTER" layoutX="14.0" layoutY="57.0" promptText="Modality" />
       <TextArea fx:id="notes" layoutX="220.0" layoutY="39.0" prefHeight="177.0" prefWidth="200.0" promptText="Notes" />
       <Button layoutX="291.0" layoutY="243.0" mnemonicParsing="false" text="Cancel" />
       <Button layoutX="122.0" layoutY="243.0" mnemonicParsing="false" text="Submit" />
+      <Text layoutX="14.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID" textAlignment="CENTER" wrappingWidth="166.99999511241913" />
    </children>
 </AnchorPane>

@@ -32,37 +32,37 @@
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="48.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:" underline="true">
+      <Text layoutX="41.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="50.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:" underline="true">
+      <Text layoutX="42.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="52.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" underline="true">
+      <Text layoutX="64.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="52.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" underline="true" wrappingWidth="115.5146484375">
+      <Text layoutX="5.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" underline="true" wrappingWidth="141.5146484375">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="42.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DOB:" underline="true">
+      <Text layoutX="94.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DOB:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="42.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" underline="true">
+      <Text layoutX="68.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="39.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" underline="true">
+      <Text layoutX="85.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
@@ -88,7 +88,7 @@
       </Button>
       <ComboBox fx:id="txtPatientGender" layoutX="220.0" layoutY="391.0" prefHeight="31.0" prefWidth="231.0" promptText="Select Gender Type" />
       <TextArea fx:id="txtPatientNotes" layoutX="635.0" layoutY="186.0" prefHeight="128.0" prefWidth="410.0" promptText="Notes" />
-      <Text layoutX="543.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance:" underline="true">
+      <Text layoutX="510.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
