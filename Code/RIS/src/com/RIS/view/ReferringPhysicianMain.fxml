@@ -16,16 +16,16 @@
                   <Text layoutX="61.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for Patient" textAlignment="CENTER" wrappingWidth="123.21875" />
                   <TextField fx:id="searchId" alignment="CENTER" layoutX="39.0" layoutY="86.0" promptText="Patient ID" />
                   <Button fx:id="searchIdButton" layoutX="92.0" layoutY="155.0" mnemonicParsing="false" text="Search" />
-                  <Text fx:id="returnPatientId" layoutX="364.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="123.21875989437103" />
-                  <Text fx:id="returnPatientFirstName" layoutX="364.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="123.21875989437103" />
-                  <Text fx:id="returnPatientLastName" layoutX="364.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="123.21875989437103" />
+                  <Text fx:id="returnPatientId" layoutX="364.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="123.21875989437103" />
+                  <Text fx:id="returnPatientFirstName" layoutX="364.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="123.21875989437103" />
+                  <Text fx:id="returnPatientLastName" layoutX="364.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="123.21875989437103" />
+                  <Button fx:id="newOrderButton" layoutX="383.0" layoutY="155.0" mnemonicParsing="false" text="New Order" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Button layoutX="89.0" layoutY="54.0" mnemonicParsing="false" text="New Order" />
-                  <Button layoutX="270.0" layoutY="54.0" mnemonicParsing="false" text="New Patient" />
-                  <Button layoutX="447.0" layoutY="54.0" mnemonicParsing="false" text="Log Out" />
+                  <Button fx:id="newPatientButton" layoutX="137.0" layoutY="54.0" mnemonicParsing="false" text="New Patient" />
+                  <Button fx:id="logOutButton" layoutX="396.0" layoutY="54.0" mnemonicParsing="false" text="Log Out" />
                </children>
             </AnchorPane>
         </items>
