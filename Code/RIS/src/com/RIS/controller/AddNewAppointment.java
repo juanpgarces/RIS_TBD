@@ -111,7 +111,7 @@ public class AddNewAppointment {
     	Appointment newApp = new Appointment(
     			userID,
     			txtId.getText(),
-    			modID,
+    			comboModality.getValue(),
     			txtTime.getText(),
     			//endTime = txtTime.getText + duration,
     			orderNotes

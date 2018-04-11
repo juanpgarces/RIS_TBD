@@ -27,8 +27,8 @@ public class ReceptionistMainController {
 		
 	    @FXML private TableColumn<Order, Integer> colOrderId, colModalityId;
 	    @FXML private TableColumn<Order, String> colEmergency, colUserId, colPatientId;
-	    @FXML private TableColumn<Appointment, String> colStartTime, colStopTime, colFirstName, colLastName, ColPatientidApp, colNotesApp;
-	    @FXML private TableColumn<Appointment, Integer> colModality;
+	    @FXML private TableColumn<Appointment, String> colStartTime, colStopTime, colFirstName, colLastName, colPatientidApp, colNotesApp;
+	    @FXML private TableColumn<Appointment, String> colModality;
 	    @FXML private TableColumn<Bill, Integer> billId, appIdBill, modalityIdBill;
 	    @FXML private TableColumn<Bill, Double> billCost;
 	    @FXML private TableColumn<Bill, String> userIdBill, patientIdBill;
@@ -46,10 +46,10 @@ public class ReceptionistMainController {
 	    	//Appointment Table
 	    	colStartTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTime"));
 	    	colStopTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("stopTime"));
-	    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("modalityID"));
+	    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modality"));
 	    	colFirstName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("firstName"));
 	    	colLastName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("lastName"));
-	    	ColPatientidApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("patientID"));
+	    	colPatientidApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("patientID"));
 	    	colNotesApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("notes"));
 	    	
 	    	//Billing Table

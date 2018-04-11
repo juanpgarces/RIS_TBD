@@ -5,15 +5,15 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Appointment {
 
-	private SimpleStringProperty userId, patientId, startTime, stopTime, notes;
-	private int appId, modalityId;
+	private SimpleStringProperty userId, patientId, startTime, stopTime, modality, notes;
+	private int appId;
 
 	
-	public Appointment(String userId, String patientId, int modalityId, String startTime, String stopTime, String notes) {
+	public Appointment(String userId, String patientId, String modality, String startTime, String stopTime, String notes) {
 		
 		this.userId = new SimpleStringProperty(userId);
 		this.patientId = new SimpleStringProperty(patientId);
-		this.modalityId  = modalityId;
+		this.modality  = new SimpleStringProperty(modality);
 		this.startTime  = new SimpleStringProperty(startTime);
 		this.stopTime  = new SimpleStringProperty(stopTime);
 		this.notes = new SimpleStringProperty(notes);
