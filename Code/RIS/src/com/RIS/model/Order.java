@@ -47,6 +47,7 @@ public class Order {
 	public void setModalityId(int modalityID) {
 		this.modalityID = modalityID;
 	}
+	
 	public String getNotes() {
 		return notes.get();
 	}
@@ -58,7 +59,7 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order [emergencyLevel=" + emergencyLevel + ", userID=" + userID
-				+ ", patientID=" + patientID + ", modalityID=" + modalityID + "notes=" + notes + "]";
+				+ ", patientID=" + patientID + ", modalityID=" + modalityID + ", notes=" + notes + "]";
 	}	
 	
 }

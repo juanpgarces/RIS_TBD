@@ -69,7 +69,6 @@ public class AddNewAppointment {
     		
     		modID = rs.getInt("modID");
     		duration = rs.getInt("duration"); //obtains duration of modality from database
-    		orderNotes = rs.getString("notes");
     		
     	    st.close();
     		
@@ -90,14 +89,16 @@ public class AddNewAppointment {
     	 * the solution online. If I can't, then it's still not essential.
     	 * 
     	 */
-    	query = "SELECT userID FROM order WHERE patientID='" + txtId.getText() + "' AND modID='" + modID + "'";
+    	query = "SELECT userID, notes FROM order WHERE patientID='" + txtId.getText() + "' AND modID='" + modID + "'";
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
     		ResultSet rs = st.executeQuery();
     		
     		userID = rs.getString("userID");
+    		orderNotes = rs.getString("notes");
     		
     	      st.close();
+    	      
     		
     			
     		System.out.println("Success -> userId=" + userID);
@@ -131,7 +132,7 @@ public class AddNewAppointment {
     					//insertprofile.setString(1, newApp.getAppId());
     					insertprofile.setString(2, newApp.getUserId());
     					insertprofile.setString(3, newApp.getPatientId());
-    					insertprofile.setString(4, ""+newApp.getModalityId()); //error because modalityID is an int
+    					insertprofile.setString(4, ""+newApp.getModalityId());
     					insertprofile.setString(5, newApp.getStartTime());
     					insertprofile.setString(6, newApp.getStopTime());
     					
