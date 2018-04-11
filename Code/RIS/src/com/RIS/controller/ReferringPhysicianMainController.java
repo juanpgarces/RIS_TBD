@@ -22,8 +22,7 @@ import javafx.scene.Node;
 
 public class ReferringPhysicianMainController {
 	
-	 @FXML
-	    private TableColumn<?, ?> txtId;
+	 @FXML private TableColumn<Patient , > txtId;
 
 	    @FXML
 	    private TableColumn<?, ?> txtFirstName;
