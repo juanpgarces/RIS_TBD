@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="898.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="655.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.5" layoutX="54.0" layoutY="656.0" orientation="VERTICAL" prefHeight="898.0" prefWidth="829.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -39,7 +39,7 @@
                                     <Text layoutX="14.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason For Exam:" textAlignment="RIGHT" wrappingWidth="102.0468682050705" />
                                     <Text layoutX="12.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referring Physician:" />
                                     <Text layoutX="14.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority:" textAlignment="RIGHT" wrappingWidth="102.0468682050705" />
-                                    <TextField fx:id="techNotesTextArea" alignment="TOP_LEFT" layoutX="33.0" layoutY="234.0" prefHeight="167.0" prefWidth="455.0" promptText="Technician Notes" />
+                                    <TextField fx:id="techNotesTextArea" alignment="TOP_LEFT" layoutX="28.0" layoutY="204.0" prefHeight="86.0" prefWidth="362.0" promptText="Technician Notes" />
                                     <Text fx:id="datetimeText" layoutX="137.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="200.13671875" />
                                     <Text fx:id="procedureText" layoutX="137.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="200.13671875" />
                                     <Text fx:id="reasonText" layoutX="137.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="200.13671875" />
@@ -51,8 +51,8 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="434.0" prefWidth="396.0">
                            <children>
-                              <Button layoutX="187.0" layoutY="131.0" mnemonicParsing="false" onAction="#browse" prefHeight="38.0" prefWidth="122.0" text="Browse..." />
-                              <Button layoutX="56.0" layoutY="306.0" mnemonicParsing="false" onAction="#submit" prefHeight="92.0" prefWidth="387.0" text="Submit" />
+                              <Button layoutX="137.0" layoutY="202.0" mnemonicParsing="false" onAction="#browse" prefHeight="38.0" prefWidth="122.0" text="Browse..." />
+                              <Button layoutX="137.0" layoutY="256.0" mnemonicParsing="false" onAction="#submit" prefHeight="38.0" prefWidth="122.0" text="Submit" />
                            </children>
                         </AnchorPane>
                     </items>
