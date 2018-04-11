@@ -101,7 +101,7 @@ public class AddNewAppointment {
     	      
     		
     			
-    		System.out.println("Success -> userId=" + userID);
+    		System.out.println("Success -> userId =" + userID);
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
     			}  
