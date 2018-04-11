@@ -1,51 +1,41 @@
 package com.RIS.controller;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-
-import com.RIS.model.User;
-
-import application.RISDbConfig;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.scene.Node;
+
 
 public class ReferringPhysicianMainController {
 	
-	 @FXML private TableColumn<Patient , > txtId;
+	
+ 
 
 	    @FXML
-	    private TableColumn<?, ?> txtFirstName;
+	    private TextField searchId;
 
 	    @FXML
-	    private TableColumn<?, ?> txtLastName;
+	    private Button searchIdButton;
 
 	    @FXML
-	    private TableColumn<?, ?> txtGender;
+	    private Text returnPatientId;
 
 	    @FXML
-	    private TableColumn<?, ?> txtDob;
+	    private Text returnPatientFirstName;
 
 	    @FXML
-	    private TableColumn<?, ?> modalityID;
+	    private Text returnPatientLastName;
 
 	    @FXML
-	    private Button buttonNewOrder;
+	    private Button newOrderButton;
 
 	    @FXML
-	    private Button buttonLogOut;
+	    private Button newPatientButton;
 
 	    @FXML
-	    private Button buttonNewPatient;
+	    private Button logOutButton;
 
-}
+	}
+
+
+
