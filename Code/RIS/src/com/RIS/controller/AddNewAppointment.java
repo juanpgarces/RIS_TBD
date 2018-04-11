@@ -59,15 +59,17 @@ public class AddNewAppointment {
     	int modID = 0;
     	String userID = null;
     	int duration;
+    	String orderNotes = "";
     	
     	  //Gets modality ID and duration based on the modality selected in the comboBox
-    	String query = "SELECT modID, duration FROM modality WHERE name='"+comboModality.getValue()+"'";
+    	String query = "SELECT modID, duration, notes FROM modality WHERE name='"+comboModality.getValue()+"'";
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
     		ResultSet rs = st.executeQuery();
     		
     		modID = rs.getInt("modID");
     		duration = rs.getInt("duration"); //obtains duration of modality from database
+    		orderNotes = rs.getString("notes");
     		
     	    st.close();
     		
@@ -110,7 +112,8 @@ public class AddNewAppointment {
     			txtId.getText(),
     			modID,
     			txtTime.getText(),
-    			"s"//endTime = txtTime.getText + duration,
+    			//endTime = txtTime.getText + duration,
+    			orderNotes
     			);		
     	
    		//parameters-->	Appointment(String userId, String patientId, int modalityId, String startTime, String stopTime)

@@ -3,14 +3,15 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Order {
 
-	private SimpleStringProperty emergencyLevel, userID, patientID;
+	private SimpleStringProperty emergencyLevel, userID, patientID, notes;
 	private int modalityID;
 	
-	public Order(String emergencyLevel, String userID, String patientID, int modalityID) {
+	public Order(String emergencyLevel, String userID, String patientID, int modalityID, String notes) {
 		this.emergencyLevel  = new SimpleStringProperty(emergencyLevel);
 		this.userID  = new SimpleStringProperty(userID);
 		this.patientID  = new SimpleStringProperty(patientID);
-		this.modalityID  = modalityID;	
+		this.modalityID  = modalityID;
+		this.notes = new SimpleStringProperty(notes);	
 	}
 	
 	/* Start of GETTERS AND SETTERS */
@@ -46,11 +47,18 @@ public class Order {
 	public void setModalityId(int modalityID) {
 		this.modalityID = modalityID;
 	}
+	public String getNotes() {
+		return notes.get();
+	}
+
+	public void setNotes(String notes) {
+		this.notes = new SimpleStringProperty(notes);
+	}
 
 	@Override
 	public String toString() {
 		return "Order [emergencyLevel=" + emergencyLevel + ", userID=" + userID
-				+ ", patientID=" + patientID + ", modalityID=" + modalityID + "]";
+				+ ", patientID=" + patientID + ", modalityID=" + modalityID + "notes=" + notes + "]";
 	}	
 	
 }

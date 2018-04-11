@@ -5,17 +5,18 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Appointment {
 
-	private SimpleStringProperty userId, patientId, startTime, stopTime;
+	private SimpleStringProperty userId, patientId, startTime, stopTime, notes;
 	private int appId, modalityId;
 
 	
-	public Appointment(String userId, String patientId, int modalityId, String startTime, String stopTime) {
+	public Appointment(String userId, String patientId, int modalityId, String startTime, String stopTime, String notes) {
 		
 		this.userId = new SimpleStringProperty(userId);
 		this.patientId = new SimpleStringProperty(patientId);
 		this.modalityId  = modalityId;
 		this.startTime  = new SimpleStringProperty(startTime);
-		this.stopTime  = new SimpleStringProperty(stopTime);	
+		this.stopTime  = new SimpleStringProperty(stopTime);
+		this.notes = new SimpleStringProperty(notes);
 	}
 	
 	/* Start of GETTERS AND SETTERS */
@@ -58,5 +59,12 @@ public class Appointment {
 	public void setStopTime(String stopTime) {
 		this.stopTime = new SimpleStringProperty(stopTime);
 	}
+	
+	public String getNotes() {
+		return notes.get();
+	}
+
+	public void setNotes(String notes) {
+		this.notes = new SimpleStringProperty(notes);
 	
 }
