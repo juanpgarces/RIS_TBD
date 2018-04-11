@@ -14,7 +14,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
                   <Text layoutX="61.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for Patient" textAlignment="CENTER" wrappingWidth="123.21875" />
-                  <TextField fx:id="searchId" alignment="CENTER" layoutX="39.0" layoutY="86.0" promptText="Patient ID" />
+                  <TextField fx:id="searchId" alignment="CENTER" layoutX="39.0" layoutY="100.0" promptText="Patient ID" />
                   <Button fx:id="searchIdButton" layoutX="92.0" layoutY="155.0" mnemonicParsing="false" text="Search" />
                   <Text fx:id="returnPatientId" layoutX="364.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="123.21875989437103" />
                   <Text fx:id="returnPatientFirstName" layoutX="364.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="123.21875989437103" />
