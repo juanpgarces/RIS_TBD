@@ -1,64 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="605.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="53.0" prefWidth="1280.0">
-         <children>
-            <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-         </children></AnchorPane>
-      <SplitPane dividerPositions="0.7750865051903114" layoutX="74.0" layoutY="408.0" orientation="VERTICAL" prefHeight="608.0" prefWidth="1282.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <SplitPane dividerPositions="0.6507537688442211" layoutX="209.0" layoutY="119.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TableView layoutX="-548.0" layoutY="-197.0" prefHeight="444.0" prefWidth="1071.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="0.0">
-                    <columns>
-                      <TableColumn fx:id="txtId" prefWidth="89.21638321876526" text="Patient SSN" />
-                      <TableColumn fx:id="txtFirstName" prefWidth="92.82992553710938" text="First Name" />
-                        <TableColumn fx:id="txtLastName" prefWidth="92.82992553710938" text="Last Name" />
-                        <TableColumn fx:id="txtGender" prefWidth="83.44378662109375" text="Gender" />
-                        <TableColumn fx:id="txtDob" prefWidth="83.44378662109375" text="DOB" />
-                        <TableColumn fx:id="modalityID" prefWidth="83.44378662109375" text="Modality" />
-                        <TableColumn prefWidth="238.42556762695312" text="Address" />
-                        <TableColumn prefWidth="113.0" text="Phone" />
-                        <TableColumn prefWidth="190.0" text="Email" />
-                    </columns>
-                  </TableView>
-                  <TextArea layoutX="1071.0" layoutY="7.0" prefHeight="444.0" prefWidth="211.0" promptText="Notes" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Text layoutX="61.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for Patient" textAlignment="CENTER" wrappingWidth="123.21875" />
+                  <TextField fx:id="searchId" alignment="CENTER" layoutX="39.0" layoutY="86.0" promptText="Patient ID" />
+                  <Button fx:id="searchIdButton" layoutX="92.0" layoutY="155.0" mnemonicParsing="false" text="Search" />
+                  <Text fx:id="returnPatientId" layoutX="364.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="123.21875989437103" />
+                  <Text fx:id="returnPatientFirstName" layoutX="364.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="123.21875989437103" />
+                  <Text fx:id="returnPatientLastName" layoutX="364.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="123.21875989437103" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="178.0" prefWidth="1280.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Button fx:id="buttonNewOrder" layoutX="273.0" layoutY="37.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="107.0" text="New Order" />
-                  <Button fx:id="buttonLogOut" layoutX="910.0" layoutY="33.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="107.0" text="Log Out" />
-                  <Button fx:id="buttonNewPatient" layoutX="587.0" layoutY="33.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="107.0" text="New Patient" />
+                  <Button layoutX="89.0" layoutY="54.0" mnemonicParsing="false" text="New Order" />
+                  <Button layoutX="270.0" layoutY="54.0" mnemonicParsing="false" text="New Patient" />
+                  <Button layoutX="447.0" layoutY="54.0" mnemonicParsing="false" text="Log Out" />
                </children>
             </AnchorPane>
         </items>
