@@ -50,6 +50,7 @@ public class LoginPageController implements Initializable {
         	    	//Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/AddUser.fxml"));
         	    	String temp = "Doesn't Matter";
         	    	
+        	    	//Decides which View to Load
         	    	switch(rs.getString(1)) { 	
     	    		case "Technician": temp = "../../../com/RIS/view/Technician.fxml";
     	    		break;
@@ -67,8 +68,8 @@ public class LoginPageController implements Initializable {
         	    	FXMLLoader loader = new FXMLLoader(getClass().getResource(temp));
         	    	Parent root = (Parent) loader.load();
         	    	
+        	    	//Decides Which Controller to start Running
         	    	switch(rs.getString(1)) {
-        	    	
         	    		case "Technician": TechnicianViewController tcontroller = loader.getController();
             	        //SETS ID IN OTHER CONTROLLER
             	        tcontroller.setID(TextUsername.getText());
@@ -86,11 +87,15 @@ public class LoginPageController implements Initializable {
         	    		break;
         	    		default:
         	    	}
-        	    
+        	    	//Initiates New View
         	        Stage stage = new Stage();
         	        stage.setTitle("RIS");
         	        stage.setScene(new Scene (root));
         	        stage.show();
+        	        
+        	        //Closes the Logging Window
+        	        Stage ostage = (Stage) TextUsername.getScene().getWindow();
+        	        ostage.close();
         	    }
         	    	
         	   /*     Scene tableViewScene = new Scene(tableViewParent);

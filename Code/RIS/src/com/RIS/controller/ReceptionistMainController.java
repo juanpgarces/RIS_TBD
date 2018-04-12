@@ -36,15 +36,7 @@ public class ReceptionistMainController {
 	    
 	    @FXML
 	    void initialize() {  	
-	        //set up the columns in the tables
-	    	//Order Table
-	    	//colOrderId.setCellValueFactory(new PropertyValueFactory<Order, Integer>("orderID"));
-	    	colEmergency.setCellValueFactory(new PropertyValueFactory<Order, String>("emergencyLevel"));
-	    	colUserId.setCellValueFactory(new PropertyValueFactory<Order, String>("userID"));
-	    	colPatientId.setCellValueFactory(new PropertyValueFactory<Order, String>("patientID"));
-	    	colModalityId.setCellValueFactory(new PropertyValueFactory<Order, Integer>("modalityID"));
-	    	colNotesOrder.setCellValueFactory(new PropertyValueFactory<Order, String>("notes"));
-				
+	
 			//Set Items into all tables
 	    	tableViewOrder.setItems(getOrderList());
 
@@ -53,19 +45,31 @@ public class ReceptionistMainController {
 			tableViewBill.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);*/
 
 	    }
-	    public void onSelectedApp(ActionEvent event) {
-			//tableViewAppointment.setItems(getAppointmentList()); ADD TO WHEN SELECT FUNCTION
+	    @FXML
+	    public void onSelectedApp() {
+			tableViewAppointment.setItems(getAppointmentList()); 
 
 	    }
-	    public void onSelectedBill(ActionEvent event) {
-			//tableViewBill.setItems(getBillList()); ADD TO WHEN SELECT FUNCTION
+	    @FXML
+	    public void onSelectedBill() {
+			tableViewBill.setItems(getBillList());
 	    }
-	    public void onselectedOrder(ActionEvent event) {
+	    @FXML
+	    public void onSelectedOrder() {
 	    	tableViewOrder.setItems(getOrderList());
 	    }
 	    // ObservableList: A list that enables listeners to track changes when they occur
 	    // The following  method will return an ObservableList of  object
 	    public ObservableList<Order>  getOrderList(){
+	    	
+	        //set up the columns in the tables
+	    	//Order Table
+	    	//colOrderId.setCellValueFactory(new PropertyValueFactory<Order, Integer>("orderID"));
+	    	colEmergency.setCellValueFactory(new PropertyValueFactory<Order, String>("emergencyLevel"));
+	    	colUserId.setCellValueFactory(new PropertyValueFactory<Order, String>("userId"));
+	    	colPatientId.setCellValueFactory(new PropertyValueFactory<Order, String>("patientId"));
+	    	colModalityId.setCellValueFactory(new PropertyValueFactory<Order, Integer>("modalityId"));
+	    	colNotesOrder.setCellValueFactory(new PropertyValueFactory<Order, String>("notes"));
 	    	
 	    	ObservableList<Order> order = FXCollections.observableArrayList();
 
@@ -103,7 +107,7 @@ public class ReceptionistMainController {
 	    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modality"));
 	    	colFirstName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("firstName"));
 	    	colLastName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("lastName"));
-	    	colPatientidApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("patientID"));
+	    	colPatientidApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("patientId"));
 	    	colNotesApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("notes"));
 	    	*/
 	    	
@@ -138,17 +142,16 @@ public class ReceptionistMainController {
 	    public ObservableList<Bill>  getBillList(){
 	    	
 	    	//Billing Table
-	    	/*//billId.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("billID"));
 	    	billCost.setCellValueFactory(new PropertyValueFactory<Bill, Double>("Cost"));
-	    	appIdBill.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("appID"));
-	    	userIdBill.setCellValueFactory(new PropertyValueFactory<Bill, String>("userID"));
-	    	patientIdBill.setCellValueFactory(new PropertyValueFactory<Bill, String>("patientID"));
-	    	modalityIdBill.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("ModalityID"));
-	    	*/
+	    	appIdBill.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("appId"));
+	    	userIdBill.setCellValueFactory(new PropertyValueFactory<Bill, String>("userId"));
+	    	patientIdBill.setCellValueFactory(new PropertyValueFactory<Bill, String>("patientId"));
+	    	modalityIdBill.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("ModalityId"));
+	    	
 	    	ObservableList<Bill> bill = FXCollections.observableArrayList();
 
 	    	//idPatient, firstName, lastName, Address, bloodType, age, gender, height, weight, insulinType, phone, idDoctor
-	        String SQLQuery = "SELECT * FROM billing ORDER BY billID ASC;"; //ADD WHERE idPatient == ''
+	        String SQLQuery = "SELECT * FROM bills ORDER BY billID ASC;"; //ADD WHERE idPatient == ''
 	       	ResultSet rs = null;
 
 	       	try(
