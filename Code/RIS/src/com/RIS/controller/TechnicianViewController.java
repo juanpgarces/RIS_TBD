@@ -27,7 +27,7 @@ public class TechnicianViewController {
     	String physicianName = "";
     	
     	String query = "SELECT name FROM modality WHERE";
-    	ResultSet rs;
+    	ResultSet rs=null;
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
     		modality = rs.getString("name");
@@ -35,7 +35,7 @@ public class TechnicianViewController {
     	    st.close();
     	    
             while(rs.next()) {
-            	comboModality.getItems().add(rs.getString("name"));
+            	//comboModality.getItems().add(rs.getString("name"));
             }
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);

@@ -108,7 +108,7 @@ public class AddNewAppointment {
     		
     	
     	// creates appointment object. 
-    	Appointment newApp = new Appointment(
+    	/*Appointment newApp = new Appointment(
     			userID,
     			txtId.getText(),
     			comboModality.getValue(),
@@ -129,7 +129,7 @@ public class AddNewAppointment {
     				/*
     				 *  Not sure how the appID should be inserted since it is auto generated in the database
     				 */
-    					//insertprofile.setString(1, newApp.getAppId());
+    				/*	//insertprofile.setString(1, newApp.getAppId());
     					insertprofile.setString(2, newApp.getUserId());
     					insertprofile.setString(3, newApp.getPatientId());
     					insertprofile.setString(4, ""+newApp.getModalityId());
@@ -142,6 +142,6 @@ public class AddNewAppointment {
     					
     				} catch (Exception e) {
     					System.out.println("Status: operation failed due to "+e);
-    					}    
+    					}    */
     }	
 }

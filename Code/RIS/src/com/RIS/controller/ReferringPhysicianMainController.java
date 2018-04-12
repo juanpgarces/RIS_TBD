@@ -29,7 +29,7 @@ public class ReferringPhysicianMainController {
 
 	    public void initialize()
 	    {
-	    	returnPatientId.getId().removeAll(returnPatientId.getId());
+	    	//returnPatientId.getId().removeAll(returnPatientId.getId());
 	    	String query = "SELECT idPatient FROM patient";
 	    }
 	    

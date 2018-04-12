@@ -62,7 +62,7 @@ public class CreateOrderController {
     	
     	
     	
-    	Order newOrder = new Order(
+    	/*Order newOrder = new Order(
     			emergencyLevel.getText(),
     			//userID,
     			patientId.getText(),
@@ -89,7 +89,7 @@ public class CreateOrderController {
 			
 		} catch (Exception e) {
 			System.out.println("Status: operation failed due to "+e);
-			} 
+			} */
     }
 
     @FXML

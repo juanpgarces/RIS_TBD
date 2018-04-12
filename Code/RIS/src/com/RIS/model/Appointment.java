@@ -36,12 +36,12 @@ public class Appointment {
 		this.patientId = new SimpleStringProperty(patientId);
 	}
 	
-	public int getModalityId() {
-		return modalityId;
+	public String getModality() {
+		return modality.get();
 	}
 
-	public void setModalityId(int modalityId) {
-		this.modalityId = modalityId;
+	public void setModality(String modality) {
+		this.modality = new SimpleStringProperty(modality);
 	}
 
 	public String getStartTime() {

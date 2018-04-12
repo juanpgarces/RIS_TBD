@@ -19,6 +19,7 @@
                         <TableColumn fx:id="colUserId" prefWidth="209.0" text="User ID" />
                         <TableColumn fx:id="colPatientId" prefWidth="209.0" text="Patient ID" />
                         <TableColumn fx:id="colModalityId" prefWidth="209.0" text="Modality ID" />
+                        <TableColumn fx:id="colNotesOrder" prefWidth="209.0" text="Notes" />
                      </columns>
                   </TableView>
                   <Button layoutX="462.0" layoutY="523.0" mnemonicParsing="false" onAction="#NewAppfromOrder" prefHeight="33.0" prefWidth="168.0" text="Add New Appoinrment" />
@@ -35,7 +36,7 @@
                   <Button layoutX="481.0" layoutY="528.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="130.0" text="Edit" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="481.0" AnchorPane.rightAnchor="471.0" AnchorPane.topAnchor="528.0" />
                   <Button layoutX="176.0" layoutY="528.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="130.0" text="Add" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="776.0" AnchorPane.topAnchor="528.0" />
                   <Button layoutX="792.0" layoutY="528.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Delete" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="792.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="528.0" />
-                  <TableView fx:id="tableViewSchedule" prefHeight="359.0" prefWidth="656.0" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="43.0">
+                  <TableView fx:id="tableViewAppointment" prefHeight="359.0" prefWidth="656.0" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="43.0">
                      <columns>
                         <TableColumn fx:id="colStartTime" prefWidth="75.0" text="StartTime" />
                         <TableColumn fx:id="colStopTime" prefWidth="109.0" text="StopTime" />
@@ -54,7 +55,7 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="588.0" prefWidth="1080.0">
                <children>
-                  <TableView fx:id="tableViewBilling" prefHeight="359.0" prefWidth="656.0" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="43.0">
+                  <TableView fx:id="tableViewBill" prefHeight="359.0" prefWidth="656.0" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="43.0">
                      <columns>
                         <TableColumn fx:id="billCost" prefWidth="106.0" text="Bill Cost" />
                         <TableColumn minWidth="0.0" prefWidth="0.0" text="Patient ID" />

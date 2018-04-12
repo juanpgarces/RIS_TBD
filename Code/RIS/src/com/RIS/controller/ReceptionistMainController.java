@@ -26,7 +26,7 @@ public class ReceptionistMainController {
 		@FXML private TableView<Bill> tableViewBill;
 		
 	    @FXML private TableColumn<Order, Integer> colOrderId, colModalityId;
-	    @FXML private TableColumn<Order, String> colEmergency, colUserId, colPatientId;
+	    @FXML private TableColumn<Order, String> colEmergency, colUserId, colPatientId, colNotesOrder;
 	    @FXML private TableColumn<Appointment, String> colStartTime, colStopTime, colFirstName, colLastName, colPatientidApp, colNotesApp;
 	    @FXML private TableColumn<Appointment, String> colModality;
 	    @FXML private TableColumn<Bill, Integer> billId, appIdBill, modalityIdBill;
@@ -38,28 +38,12 @@ public class ReceptionistMainController {
 	        //set up the columns in the tables
 	    	//Order Table
 	    	//colOrderId.setCellValueFactory(new PropertyValueFactory<Order, Integer>("orderID"));
-	    	colEmergency.setCellValueFactory(new PropertyValueFactory<Order, String>("emergencylevel"));
+	    	colEmergency.setCellValueFactory(new PropertyValueFactory<Order, String>("emergencyLevel"));
 	    	colUserId.setCellValueFactory(new PropertyValueFactory<Order, String>("userID"));
 	    	colPatientId.setCellValueFactory(new PropertyValueFactory<Order, String>("patientID"));
 	    	colModalityId.setCellValueFactory(new PropertyValueFactory<Order, Integer>("modalityID"));
-			
-	    	//Appointment Table
-	    	colStartTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTime"));
-	    	colStopTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("stopTime"));
-	    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modality"));
-	    	colFirstName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("firstName"));
-	    	colLastName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("lastName"));
-	    	colPatientidApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("patientID"));
-	    	colNotesApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("notes"));
-	    	
-	    	//Billing Table
-	    	//billId.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("billID"));
-	    	billCost.setCellValueFactory(new PropertyValueFactory<Bill, Double>("Cost"));
-	    	appIdBill.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("appID"));
-	    	userIdBill.setCellValueFactory(new PropertyValueFactory<Bill, String>("userID"));
-	    	patientIdBill.setCellValueFactory(new PropertyValueFactory<Bill, String>("patientID"));
-	    	modalityIdBill.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("ModalityID"));
-	    	
+	    	colNotesOrder.setCellValueFactory(new PropertyValueFactory<Order, String>("notes"));
+				
 			//Set Items into all tables
 	    	tableViewOrder.setItems(getOrderList());
 			//tableViewAppointment.setItems(getAppointmentList()); ADD TO WHEN SELECT FUNCTION
@@ -76,7 +60,7 @@ public class ReceptionistMainController {
 	    public void onSelectedBill(ActionEvent event) {
 	    	
 	    }
-	    public void unselectedOrder(ActionEvent event) {
+	    public void onselectedOrder(ActionEvent event) {
 	    	
 	    }
 	    // ObservableList: A list that enables listeners to track changes when they occur
@@ -85,7 +69,7 @@ public class ReceptionistMainController {
 	    	
 	    	ObservableList<Order> order = FXCollections.observableArrayList();
 
-	        String SQLQuery = "SELECT * FROM orders ORDER BY orderID ASC;"; //ADD WHERE idPatient == ''
+	        String SQLQuery = "SELECT * FROM orders ORDER BY emergencyLevel;"; //ADD WHERE idPatient == ''
 	       	ResultSet rs = null;
 
 	       	try(
@@ -96,7 +80,7 @@ public class ReceptionistMainController {
 	       		rs = displaybill.executeQuery();
 	       		// check to see if receiving any data
 	       		while (rs.next()){
-	       			order.add(new Order(rs.getString("emergencyLevel").toString(),rs.getString("userID").toString(),rs.getString("patientID").toString(), rs.getInt("modalityID")));
+	       			order.add(new Order(rs.getString("emergencyLevel").toString(),rs.getString("userID").toString(),rs.getString("patientID").toString(), rs.getInt("modalityID"), rs.getString("notes")));
 	       		}
 	       	}catch(SQLException ex){
 	       		RISDbConfig.displayException(ex);
@@ -113,6 +97,16 @@ public class ReceptionistMainController {
 	    // The following  method will return an ObservableList of  object
 	    public ObservableList<Appointment>  getAppointmentList(){
 	    	
+	    	//Appointment Table
+	    	/*colStartTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTime"));
+	    	colStopTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("stopTime"));
+	    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modality"));
+	    	colFirstName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("firstName"));
+	    	colLastName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("lastName"));
+	    	colPatientidApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("patientID"));
+	    	colNotesApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("notes"));
+	    	*/
+	    	
 	    	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
 
 	        String SQLQuery = "SELECT * FROM appointment ORDER BY startTime ASC;"; //ADD WHERE DATE == ''
@@ -125,9 +119,9 @@ public class ReceptionistMainController {
 	       		//displayprofile.setInt(1, cutomerId);
 	       		rs = displayappointment.executeQuery();
 	       		// check to see if receiving any data
-	       		while (rs.next()){
-	       			appointment.add(new Appointment(rs.getString("userID").toString(),rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("startTime").toString(), rs.getString("stopTime").toString()));
-	       		}
+	       		//while (rs.next()){
+	       			//appointment.add(new Appointment(rs.getString("userID").toString(),rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("startTime").toString(), rs.getString("stopTime").toString()));
+	       		//}
 	       	}catch(SQLException ex){
 	       		RISDbConfig.displayException(ex);
 	       		return null;
@@ -143,6 +137,14 @@ public class ReceptionistMainController {
 	    // The following  method will return an ObservableList of  object
 	    public ObservableList<Bill>  getBillList(){
 	    	
+	    	//Billing Table
+	    	/*//billId.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("billID"));
+	    	billCost.setCellValueFactory(new PropertyValueFactory<Bill, Double>("Cost"));
+	    	appIdBill.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("appID"));
+	    	userIdBill.setCellValueFactory(new PropertyValueFactory<Bill, String>("userID"));
+	    	patientIdBill.setCellValueFactory(new PropertyValueFactory<Bill, String>("patientID"));
+	    	modalityIdBill.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("ModalityID"));
+	    	*/
 	    	ObservableList<Bill> bill = FXCollections.observableArrayList();
 
 	    	//idPatient, firstName, lastName, Address, bloodType, age, gender, height, weight, insulinType, phone, idDoctor
