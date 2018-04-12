@@ -26,8 +26,8 @@
       <TextField fx:id="txtFirstName" layoutX="340.0" layoutY="129.0" AnchorPane.rightAnchor="160.0" />
       <Label layoutX="368.0" layoutY="170.0" text="Last Name" AnchorPane.rightAnchor="258.0" />
       <TextField fx:id="txtLastName" layoutX="340.0" layoutY="196.0" AnchorPane.rightAnchor="160.0" />
-      <Label layoutX="344.0" layoutY="297.0" text="Notes" AnchorPane.rightAnchor="273.0" />
-      <TextArea fx:id="txtNotes" layoutX="400.0" layoutY="323.0" prefHeight="62.0" prefWidth="252.0" />
+      <Label layoutX="374.0" layoutY="292.0" text="Notes" AnchorPane.rightAnchor="281.0" />
+      <TextArea fx:id="txtNotes" layoutX="370.0" layoutY="312.0" prefHeight="62.0" prefWidth="252.0" />
       <Label layoutX="371.0" layoutY="229.0" text="Patient ID" AnchorPane.rightAnchor="261.0" />
       <TextField fx:id="txtId" layoutX="368.0" layoutY="253.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.rightAnchor="157.0" />
       <ComboBox fx:id="comboModality" layoutX="34.0" layoutY="266.0" prefHeight="27.0" prefWidth="188.0" promptText="Please Select a Modality" />
