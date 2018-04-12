@@ -19,7 +19,7 @@ public class TechnicianViewController {
     @FXML private TableView<Appointment> techTable;
     @FXML private TableColumn<Appointment, Integer> colPatientID;
     @FXML private TableColumn<Appointment, String> colFirstName, colLastName, colModality, colPhys, colNotes;
-
+    private String ID;
     @FXML
     void initialize() { 
     	
@@ -78,5 +78,10 @@ public class TechnicianViewController {
     void submit(ActionEvent event) {
 
     }
+
+	public void setID(String text) {
+		// TODO Auto-generated method stub
+		this.ID = text;
+	}
 
 }

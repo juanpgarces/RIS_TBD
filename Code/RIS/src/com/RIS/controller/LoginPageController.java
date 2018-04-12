@@ -12,13 +12,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -29,7 +27,7 @@ public class LoginPageController implements Initializable {
 	@FXML private Button btn_patient1;	
 	@FXML private TextField TextUsername;
 	@FXML private PasswordField TextPassword;
-	
+	private String ID;
 	// This method will redirect the scene into the patient TableView
     public void LoginTrigger(ActionEvent event) throws IOException
     {
@@ -47,32 +45,51 @@ public class LoginPageController implements Initializable {
         	    
         	    //If the result set found a match, continues
         	    if(rs.next()) {
-        	    	
-        	    	Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/AddUser.fxml"));
+
+        	    	/**************THIS EXAMPLE PASSES THE IDS TO OTHER CONTROLLERS******************/
+        	    	//Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/AddUser.fxml"));
+        	    	String temp = "../../../com/InsulinPump/view/RepectionistMaintMain.fxml";
+        	    	FXMLLoader loader = new FXMLLoader(getClass().getResource(temp));
+        	    	Parent root = (Parent) loader.load();
         	    	
         	    	switch(rs.getString(1)) {
         	    	
-        	    		case "Technician": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/Technician.fxml"));
+        	    		case "Technician": temp = "../../../com/RIS/view/Technician.fxml";
+            	        TechnicianViewController tcontroller = loader.getController();
+            	        //SETS ID IN OTHER CONTROLLER
+            	        tcontroller.setID(TextUsername.getText());
         	    		break;
-        	    		case "Physician": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/ReferringPhysicianMain.fxml"));
+        	    		case "Physician": temp = "../../../com/RIS/view/ReferringPhysicianMain.fxml";
+            	        ReferringPhysicianMainController pcontroller = loader.getController();
+            	        pcontroller.setID(TextUsername.getText());
         	    		break;
-        	    		case "Radiologist": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/Radiologist.fxml"));
+        	    		case "Radiologist": temp = "../../../com/RIS/view/Radiologist.fxml";
+            	        RadiologistController racontroller = loader.getController();
+            	        racontroller.setID(TextUsername.getText());
         	    		break;
-        	    		case "Receptionist": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/ReceptionistMain.fxml"));
+        	    		case "Receptionist": temp = "../../../com/RIS/view/ReceptionistMain.fxml";
+            	        ReceptionistMainController rcontroller = loader.getController();
+            	        rcontroller.setID(TextUsername.getText());
         	    		break;
-        	    		case "Administrator": tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/AddUser.fxml"));
+        	    		case "Administrator": temp = "../../../com/RIS/view/AddUser.fxml";
         	    		break;
         	    		default:
         	    	}
+        	    
+        	        Stage stage = new Stage();
+        	        stage.setTitle("RIS");
+        	        stage.setScene(new Scene (root));
+        	        stage.show();
+        	    }
         	    	
-        	        Scene tableViewScene = new Scene(tableViewParent);
+        	   /*     Scene tableViewScene = new Scene(tableViewParent);
         	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         	        window.setTitle("RIS");
         	        window.setScene(tableViewScene);
         	        window.show();
-        	    }
+        	    }*/
         	    
-        	    //If not shows error
+        	    //If no error
         	    else {
         	    		Alert alert = new Alert(AlertType.ERROR);
         	    		alert.setTitle("Invalid Username/Password");
@@ -110,7 +127,14 @@ public class LoginPageController implements Initializable {
     		alert.showAndWait();
     	}
     }
-*/
+*/	
+    public void setID(String setID) {
+    	ID = setID;
+    }
+
+    public String getID() {
+    	return ID;
+    }
 
 	public void initialize (URL url, ResourceBundle rb) {
 	}

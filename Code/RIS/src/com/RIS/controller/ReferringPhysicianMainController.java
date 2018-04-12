@@ -26,6 +26,7 @@ public class ReferringPhysicianMainController {
 	    @FXML private Button newOrderButton;
 	    @FXML private Button newPatientButton;
 	    @FXML private Button logOutButton;
+	    private String ID;
 
 	    public void initialize()
 	    {
@@ -42,5 +43,10 @@ public class ReferringPhysicianMainController {
 	    {
 	    	
 	    }
+
+		public void setID(String text) {
+			// TODO Auto-generated method stub
+			this.ID = text;
+		}
 
 }

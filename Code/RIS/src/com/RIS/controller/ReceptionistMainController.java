@@ -32,6 +32,7 @@ public class ReceptionistMainController {
 	    @FXML private TableColumn<Bill, Integer> billId, appIdBill, modalityIdBill;
 	    @FXML private TableColumn<Bill, Double> billCost;
 	    @FXML private TableColumn<Bill, String> userIdBill, patientIdBill;
+	    private String ID;
 	    
 	    @FXML
 	    void initialize() {  	
@@ -46,22 +47,21 @@ public class ReceptionistMainController {
 				
 			//Set Items into all tables
 	    	tableViewOrder.setItems(getOrderList());
-			//tableViewAppointment.setItems(getAppointmentList()); ADD TO WHEN SELECT FUNCTION
-			//tableViewBill.setItems(getBillList()); ADD TO WHEN SELECT FUNCTION
-	    	
+
 			/*tableViewOrders.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 			tableViewAppointment.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 			tableViewBill.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);*/
 
 	    }
 	    public void onSelectedApp(ActionEvent event) {
-	    	
+			//tableViewAppointment.setItems(getAppointmentList()); ADD TO WHEN SELECT FUNCTION
+
 	    }
 	    public void onSelectedBill(ActionEvent event) {
-	    	
+			//tableViewBill.setItems(getBillList()); ADD TO WHEN SELECT FUNCTION
 	    }
 	    public void onselectedOrder(ActionEvent event) {
-	    	
+	    	tableViewOrder.setItems(getOrderList());
 	    }
 	    // ObservableList: A list that enables listeners to track changes when they occur
 	    // The following  method will return an ObservableList of  object
@@ -186,6 +186,10 @@ public class ReceptionistMainController {
 	    void markasReceived(ActionEvent event) {
 
 	    }
+		public void setID(String text) {
+			// TODO Auto-generated method stub
+			this.ID = text;
+		}
 
 	
 
