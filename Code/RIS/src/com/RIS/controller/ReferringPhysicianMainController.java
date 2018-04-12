@@ -29,7 +29,8 @@ public class ReferringPhysicianMainController {
 
 	    public void initialize()
 	    {
-	    	returnPatientId.getId().removeAll(returnPatientId.getId());
+	    	// How do i remove the existing information in this field?
+	    	returnPatientId.getId().???????(returnPatientId.getId());
 	    	String query = "SELECT idPatient FROM patient";
 	    }
 	    
