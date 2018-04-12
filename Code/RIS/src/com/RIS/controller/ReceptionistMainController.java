@@ -1,5 +1,6 @@
 package com.RIS.controller;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,16 +9,21 @@ import java.sql.SQLException;
 import com.RIS.model.Appointment;
 import com.RIS.model.Bill;
 import com.RIS.model.Order;
+import com.RIS.model.Patient;
 
 import application.RISDbConfig;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class ReceptionistMainController {
 
@@ -39,10 +45,6 @@ public class ReceptionistMainController {
 	
 			//Set Items into all tables
 	    	tableViewOrder.setItems(getOrderList());
-
-			/*tableViewOrders.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-			tableViewAppointment.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-			tableViewBill.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);*/
 
 	    }
 	    @FXML
@@ -71,8 +73,9 @@ public class ReceptionistMainController {
 	    	colModalityId.setCellValueFactory(new PropertyValueFactory<Order, Integer>("modalityId"));
 	    	colNotesOrder.setCellValueFactory(new PropertyValueFactory<Order, String>("notes"));
 	    	
+			tableViewOrder.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+	    	
 	    	ObservableList<Order> order = FXCollections.observableArrayList();
-
 	        String SQLQuery = "SELECT * FROM orders ORDER BY emergencyLevel;"; //ADD WHERE idPatient == ''
 	       	ResultSet rs = null;
 
@@ -109,6 +112,9 @@ public class ReceptionistMainController {
 	    	colLastName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("lastName"));
 	    	colPatientidApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("patientId"));
 	    	colNotesApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("notes"));
+	    	
+	    	tableViewAppointment.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+			
 	    	*/
 	    	
 	    	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
@@ -148,6 +154,8 @@ public class ReceptionistMainController {
 	    	patientIdBill.setCellValueFactory(new PropertyValueFactory<Bill, String>("patientId"));
 	    	modalityIdBill.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("ModalityId"));
 	    	
+	    	tableViewBill.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+	    	
 	    	ObservableList<Bill> bill = FXCollections.observableArrayList();
 
 	    	//idPatient, firstName, lastName, Address, bloodType, age, gender, height, weight, insulinType, phone, idDoctor
@@ -176,8 +184,40 @@ public class ReceptionistMainController {
 	    }
 
 	    @FXML
-	    void NewAppfromOrder(ActionEvent event) {
+	    void NewAppfromOrder(ActionEvent event) throws IOException {
+	    	
+	        ObservableList<Order> selectedRows;
 
+	        //this gives us the rows that were selected
+	        selectedRows = tableViewOrder.getSelectionModel().getSelectedItems();
+	        
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/InsulinPump/view/AddNewAppointment.fxml"));
+	    	Parent root = (Parent) loader.load();
+	        AddNewAppointmentController controller = loader.getController();
+	        controller.setID(selectedRows.get(0).getPatientId());
+	        
+	        Stage stage = new Stage();
+	        stage.setTitle("Insulin Pump");
+	        stage.setScene(new Scene (root));
+	        stage.show();
+	       
+	        
+	        /*for (Order order: selectedRows)
+	        {
+	        	allPatient.remove(patient);
+	        	String query = "DELETE FROM patient where idPatient = ?;";
+
+	        	try(
+	        	    Connection conn = RISDbConfig.getConnection();
+	        	    PreparedStatement updateprofile = conn.prepareStatement(query);
+	        	){
+	        		updateprofile.setString(1, patient.getidPatient());
+	        	    updateprofile.executeUpdate();
+	        	} catch (Exception e) {
+	    			System.out.println("Status: operation failed due to "+e);
+
+	    		}
+	        }*/
 	    }
 
 	    @FXML

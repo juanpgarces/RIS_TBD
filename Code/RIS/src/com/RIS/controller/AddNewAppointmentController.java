@@ -26,13 +26,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
-public class AddNewAppointment {
+public class AddNewAppointmentController {
 
     @FXML private DatePicker txtDate; 
     @FXML private TextField txtTime, txtFirstName, txtLastName, txtId;
     @FXML private TextArea txtNotes;
     @FXML private ComboBox<String> comboModality;
     @FXML private Text txtSuccess;
+    private String PatientID;
     
     
     
@@ -143,5 +144,10 @@ public class AddNewAppointment {
     				} catch (Exception e) {
     					System.out.println("Status: operation failed due to "+e);
     					}    */
-    }	
+    }
+
+	public void setID(String text) {
+		// TODO Auto-generated method stub
+		this.PatientID = text;
+	}	
 }
