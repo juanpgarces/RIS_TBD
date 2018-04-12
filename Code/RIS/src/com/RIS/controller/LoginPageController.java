@@ -48,30 +48,41 @@ public class LoginPageController implements Initializable {
 
         	    	/**************THIS EXAMPLE PASSES THE IDS TO OTHER CONTROLLERS******************/
         	    	//Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/AddUser.fxml"));
-        	    	String temp = "../../../com/InsulinPump/view/RepectionistMaintMain.fxml";
+        	    	String temp = "Doesn't Matter";
+        	    	
+        	    	switch(rs.getString(1)) { 	
+    	    		case "Technician": temp = "../../../com/RIS/view/Technician.fxml";
+    	    		break;
+    	    		case "Physician": temp = "../../../com/RIS/view/ReferringPhysicianMain.fxml";
+    	    		break;
+    	    		case "Radiologist": temp = "../../../com/RIS/view/Radiologist.fxml";
+    	    		break;
+    	    		case "Receptionist": temp = "../../../com/RIS/view/ReceptionistMain.fxml";
+    	    		break;
+    	    		case "Administrator": temp = "../../../com/RIS/view/AddUser.fxml";
+    	    		break;
+    	    		default:
+    	    	}
+        	    	
         	    	FXMLLoader loader = new FXMLLoader(getClass().getResource(temp));
         	    	Parent root = (Parent) loader.load();
         	    	
         	    	switch(rs.getString(1)) {
         	    	
-        	    		case "Technician": temp = "../../../com/RIS/view/Technician.fxml";
-            	        TechnicianViewController tcontroller = loader.getController();
+        	    		case "Technician": TechnicianViewController tcontroller = loader.getController();
             	        //SETS ID IN OTHER CONTROLLER
             	        tcontroller.setID(TextUsername.getText());
         	    		break;
-        	    		case "Physician": temp = "../../../com/RIS/view/ReferringPhysicianMain.fxml";
-            	        ReferringPhysicianMainController pcontroller = loader.getController();
+        	    		case "Physician": ReferringPhysicianMainController pcontroller = loader.getController();
             	        pcontroller.setID(TextUsername.getText());
         	    		break;
-        	    		case "Radiologist": temp = "../../../com/RIS/view/Radiologist.fxml";
-            	        RadiologistController racontroller = loader.getController();
+        	    		case "Radiologist": RadiologistController racontroller = loader.getController();
             	        racontroller.setID(TextUsername.getText());
         	    		break;
-        	    		case "Receptionist": temp = "../../../com/RIS/view/ReceptionistMain.fxml";
-            	        ReceptionistMainController rcontroller = loader.getController();
+        	    		case "Receptionist": ReceptionistMainController rcontroller = loader.getController();
             	        rcontroller.setID(TextUsername.getText());
         	    		break;
-        	    		case "Administrator": temp = "../../../com/RIS/view/AddUser.fxml";
+        	    		case "Administrator":
         	    		break;
         	    		default:
         	    	}

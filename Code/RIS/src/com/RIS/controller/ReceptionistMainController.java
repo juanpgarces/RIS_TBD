@@ -190,7 +190,4 @@ public class ReceptionistMainController {
 			// TODO Auto-generated method stub
 			this.ID = text;
 		}
-
-	
-
 }
