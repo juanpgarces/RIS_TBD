@@ -33,11 +33,17 @@ public class AddNewAppointmentController {
     @FXML private TextArea txtNotes;
     @FXML private ComboBox<String> comboModality;
     @FXML private Text txtSuccess;
-    private String PatientID;
-    
+    private String PatientID, Notes, UserID;
+    private String modality;
     
     
     public void initialize() {
+    	
+    	txtId.setText(PatientID);
+    	txtNotes.setText(Notes);
+    	//SET MODALITY OPTIONS
+    	//USER ID
+    	
     	
         comboModality.getItems().removeAll(comboModality.getItems());
     	String query = "SELECT name FROM modality";
@@ -146,8 +152,23 @@ public class AddNewAppointmentController {
     					}    */
     }
 
-	public void setID(String text) {
+	public void setID(String id) {
 		// TODO Auto-generated method stub
-		this.PatientID = text;
+		this.PatientID = id;
+	}
+
+	public void setNotes(String notes) {
+		// TODO Auto-generated method stub
+		this.Notes = notes;
+	}
+
+	public void setUserID(String userId) {
+		// TODO Auto-generated method stub
+		this.UserID = userId;
+	}
+
+	public void setModality(String modality) {
+		// TODO Auto-generated method stub
+		this.modality = modality;
 	}	
 }

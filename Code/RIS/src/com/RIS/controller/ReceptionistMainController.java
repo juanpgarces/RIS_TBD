@@ -195,9 +195,13 @@ public class ReceptionistMainController {
 	    	Parent root = (Parent) loader.load();
 	        AddNewAppointmentController controller = loader.getController();
 	        controller.setID(selectedRows.get(0).getPatientId());
+	        controller.setNotes(selectedRows.get(0).getNotes());
+	        controller.setUserID(selectedRows.get(0).getUserId());
+	        controller.setModality(selectedRows.get(0).getModality());
+	        
 	        
 	        Stage stage = new Stage();
-	        stage.setTitle("Insulin Pump");
+	        stage.setTitle("RIS");
 	        stage.setScene(new Scene (root));
 	        stage.show();
 	       
