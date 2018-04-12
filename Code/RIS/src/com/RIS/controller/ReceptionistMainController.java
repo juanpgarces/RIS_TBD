@@ -201,23 +201,6 @@ public class ReceptionistMainController {
 	        stage.setScene(new Scene (root));
 	        stage.show();
 	       
-	        
-	        /*for (Order order: selectedRows)
-	        {
-	        	allPatient.remove(patient);
-	        	String query = "DELETE FROM patient where idPatient = ?;";
-
-	        	try(
-	        	    Connection conn = RISDbConfig.getConnection();
-	        	    PreparedStatement updateprofile = conn.prepareStatement(query);
-	        	){
-	        		updateprofile.setString(1, patient.getidPatient());
-	        	    updateprofile.executeUpdate();
-	        	} catch (Exception e) {
-	    			System.out.println("Status: operation failed due to "+e);
-
-	    		}
-	        }*/
 	    }
 
 	    @FXML
