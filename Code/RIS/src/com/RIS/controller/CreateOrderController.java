@@ -71,17 +71,17 @@ public class CreateOrderController {
     			);
     	//public Order(String emergencyLevel, String userID, String patientID, int modalityID, String notes)
     	
-    	query = "INSERT INTO orders " + "(orderID, emergencyLevel, userID, patientID, modalityID, notes) " + "VALUES(?,?,?,?,?,?)";
+    	query = "INSERT INTO orders " + "(emergencyLevel, userID, patientID, modalityID, notes) " + "VALUES(?,?,?,?,?)";
 		
 		try (Connection conn = RISDbConfig.getConnection();
 			PreparedStatement insertprofile = conn.prepareStatement(query);) {
 			
-			//orderID?
-			insertprofile.setString(2, newOrder.getEmergencyLevel());
-			insertprofile.setString(3, newOrder.getUserId());
-			insertprofile.setString(4, newOrder.getPatientId());
-			insertprofile.setString(5, "" + newOrder.getModalityId());
-			insertprofile.setString(6, newOrder.getNotes());
+			
+			insertprofile.setString(1, newOrder.getEmergencyLevel());
+			insertprofile.setString(2, newOrder.getUserId());
+			insertprofile.setString(3, newOrder.getPatientId());
+			insertprofile.setString(4, "" + newOrder.getModalityId());
+			insertprofile.setString(5, newOrder.getNotes());
 			
 		
 			insertprofile.execute();
