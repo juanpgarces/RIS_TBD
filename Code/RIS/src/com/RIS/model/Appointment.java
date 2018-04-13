@@ -20,6 +20,16 @@ public class Appointment {
 		this.notes = new SimpleStringProperty(notes);
 	}
 	
+	public Appointment(String patientId, int modalityId, String date,int startTime, int stopTime, String notes) {
+		
+		this.patientId = new SimpleStringProperty(patientId);
+		this.modalityId  = modalityId;
+		this.date  = new SimpleStringProperty(date);
+		this.startTime  = startTime;
+		this.stopTime  = stopTime;
+		this.notes = new SimpleStringProperty(notes);
+	}
+	
 	/* Start of GETTERS AND SETTERS */
 	public String getUserId() {
 		return userId.get();

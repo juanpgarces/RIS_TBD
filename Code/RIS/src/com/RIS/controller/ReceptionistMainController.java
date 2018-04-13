@@ -33,7 +33,7 @@ public class ReceptionistMainController {
 		
 	    @FXML private TableColumn<Order, Integer> colOrderId;
 	    @FXML private TableColumn<Order, String> colEmergency, colUserId, colPatientId, colNotesOrder, colModalityorder;
-	    @FXML private TableColumn<Appointment, String> colStartTime, colStopTime, colFirstName, colLastName, colPatientidApp, colNotesApp;
+	    @FXML private TableColumn<Appointment, String> colStartTime, colStopTime, colDate, colPatientidApp, colNotesApp;
 	    @FXML private TableColumn<Appointment, String> colModality;
 	    @FXML private TableColumn<Bill, Integer> billId, appIdBill, modalityIdBill;
 	    @FXML private TableColumn<Bill, Double> billCost;
@@ -105,17 +105,14 @@ public class ReceptionistMainController {
 	    public ObservableList<Appointment>  getAppointmentList(){
 	    	
 	    	//Appointment Table
-	    	/*colStartTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTime"));
+	    	colDate.setCellValueFactory(new PropertyValueFactory<Appointment, String>("date"));
+	    	colStartTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTime"));
 	    	colStopTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("stopTime"));
 	    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modality"));
-	    	colFirstName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("firstName"));
-	    	colLastName.setCellValueFactory(new PropertyValueFactory<Appointment, String>("lastName"));
 	    	colPatientidApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("patientId"));
 	    	colNotesApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("notes"));
 	    	
 	    	tableViewAppointment.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-			
-	    	*/
 	    	
 	    	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
 
@@ -126,12 +123,10 @@ public class ReceptionistMainController {
 	       			Connection conn = RISDbConfig.getConnection();
 	       			PreparedStatement displayappointment = conn.prepareStatement(SQLQuery);
 	       	){
-	       		//displayprofile.setInt(1, cutomerId);
 	       		rs = displayappointment.executeQuery();
-	       		// check to see if receiving any data
-	       		//while (rs.next()){
-	       			//appointment.add(new Appointment(rs.getString("userID").toString(),rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("startTime").toString(), rs.getString("stopTime").toString()));
-	       		//}
+	       		while (rs.next()){
+	       			appointment.add(new Appointment(rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
+	       		}
 	       	}catch(SQLException ex){
 	       		RISDbConfig.displayException(ex);
 	       		return null;
@@ -205,16 +200,6 @@ public class ReceptionistMainController {
 	        stage.setScene(new Scene (root));
 	        stage.show();
 	       
-	    }
-
-	    @FXML
-	    void markasDenied(ActionEvent event) {
-
-	    }
-
-	    @FXML
-	    void markasReceived(ActionEvent event) {
-
 	    }
 		public void setID(String text) {
 			// TODO Auto-generated method stub
