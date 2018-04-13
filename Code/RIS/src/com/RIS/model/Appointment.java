@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Appointment {
 
-	private SimpleStringProperty userId, patientId, modality, notes, date;
+	private SimpleStringProperty userId, patientId, notes, date;
 	private int modalityId, startTime, stopTime;
 
 	
