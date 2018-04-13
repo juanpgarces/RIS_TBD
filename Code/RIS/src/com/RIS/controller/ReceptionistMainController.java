@@ -153,7 +153,6 @@ public class ReceptionistMainController {
 	    	
 	    	ObservableList<Bill> bill = FXCollections.observableArrayList();
 
-	    	//idPatient, firstName, lastName, Address, bloodType, age, gender, height, weight, insulinType, phone, idDoctor
 	        String SQLQuery = "SELECT * FROM bills ORDER BY billID ASC;"; //ADD WHERE idPatient == ''
 	       	ResultSet rs = null;
 

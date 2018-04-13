@@ -97,15 +97,6 @@ public class LoginPageController implements Initializable {
         	        Stage ostage = (Stage) TextUsername.getScene().getWindow();
         	        ostage.close();
         	    }
-        	    	
-        	   /*     Scene tableViewScene = new Scene(tableViewParent);
-        	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        	        window.setTitle("RIS");
-        	        window.setScene(tableViewScene);
-        	        window.show();
-        	    }*/
-        	    
-        	    //If no error
         	    else {
         	    		Alert alert = new Alert(AlertType.ERROR);
         	    		alert.setTitle("Invalid Username/Password");
@@ -120,30 +111,6 @@ public class LoginPageController implements Initializable {
     		}
     }
     
-	/*// This method will redirect the scene into the patient TableView
-    public void changeSceneToDoctorPage(ActionEvent event) throws IOException
-    {
-    	String username = "Insulinpump";
-    	String password = "1234";
-
-    	if(TextUsername.getText().equals(username) && TextPassword.getText().equals(password)) {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/DoctorPage.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setTitle("Insulin Pump");
-	    window.getIcons().add(new Image("/com/RIS/images/blueHeartbeat.png"));
-        window.setScene(tableViewScene);
-        window.show();
-    	}
-    	else {
-    		Alert alert = new Alert(AlertType.ERROR);
-    		alert.setTitle("Username Error");
-    		alert.setHeaderText("Username Error");
-    		alert.setContentText("The Username/Password entered is invalid, please enter a valid Username/Password");
-    		alert.showAndWait();
-    	}
-    }
-*/	
     public void setID(String setID) {
     	ID = setID;
     }

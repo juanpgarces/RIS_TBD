@@ -1,5 +1,4 @@
 package com.RIS.model;
-import java.util.Date;
 
 import javafx.beans.property.SimpleStringProperty;
 

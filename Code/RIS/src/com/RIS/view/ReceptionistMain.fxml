@@ -23,9 +23,7 @@
                      </columns>
                   </TableView>
                   <Button layoutX="462.0" layoutY="523.0" mnemonicParsing="false" onAction="#NewAppfromOrder" prefHeight="33.0" prefWidth="168.0" text="Add New Appoinrment" />
-                  <Button layoutX="932.0" layoutY="511.0" mnemonicParsing="false" onAction="#markasReceived" prefHeight="28.0" prefWidth="115.0" text="Mark as Received" />
-                  <Button layoutX="932.0" layoutY="544.0" mnemonicParsing="false" onAction="#markasDenied" prefHeight="28.0" prefWidth="115.0" text="Mark as Denied" />
-               </children>
+             </children>
             </AnchorPane>
          </content>
       </Tab>
@@ -38,13 +36,12 @@
                   <Button layoutX="792.0" layoutY="528.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Delete" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="792.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="528.0" />
                   <TableView fx:id="tableViewAppointment" prefHeight="359.0" prefWidth="656.0" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="43.0">
                      <columns>
+                     	<TableColumn fx:id="colDate" prefWidth="75.0" text="StartTime" />
                         <TableColumn fx:id="colStartTime" prefWidth="75.0" text="StartTime" />
                         <TableColumn fx:id="colStopTime" prefWidth="109.0" text="StopTime" />
                         <TableColumn fx:id="colModality" prefWidth="93.0" text="Modality" />
-                        <TableColumn fx:id="colFirstName" prefWidth="147.0" text="First Name" />
-                        <TableColumn fx:id="colLastName" prefWidth="130.0" text="Last Name" />
-                        <TableColumn fx:id="ColPatientidApp" prefWidth="121.0" text="Patient ID" />
-                        <TableColumn fx:id="colNotesApp" prefWidth="370.0" text="Notes" />
+                        <TableColumn fx:id="colPatientidApp" prefWidth="147.0" text="First Name" />
+             	        <TableColumn fx:id="colNotesApp" prefWidth="370.0" text="Notes" />
                      </columns>
                   </TableView>
                </children>
