@@ -18,7 +18,7 @@
                         <TableColumn fx:id="colEmergency" prefWidth="209.0" text="Emergency Level" />
                         <TableColumn fx:id="colUserId" prefWidth="209.0" text="User ID" />
                         <TableColumn fx:id="colPatientId" prefWidth="209.0" text="Patient ID" />
-                        <TableColumn fx:id="colModalityId" prefWidth="209.0" text="Modality ID" />
+                        <TableColumn fx:id="colModalityorder" prefWidth="209.0" text="Modality ID" />
                         <TableColumn fx:id="colNotesOrder" prefWidth="209.0" text="Notes" />
                      </columns>
                   </TableView>

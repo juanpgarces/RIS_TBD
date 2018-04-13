@@ -5,17 +5,18 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Appointment {
 
-	private SimpleStringProperty userId, patientId, startTime, stopTime, modality, notes;
-	private int appId;
+	private SimpleStringProperty userId, patientId, modality, notes, date;
+	private int modalityId, startTime, stopTime;
 
 	
-	public Appointment(String userId, String patientId, String modality, String startTime, String stopTime, String notes) {
+	public Appointment(String userId, String patientId, int modalityId, String date,int startTime, int stopTime, String notes) {
 		
 		this.userId = new SimpleStringProperty(userId);
 		this.patientId = new SimpleStringProperty(patientId);
-		this.modality  = new SimpleStringProperty(modality);
-		this.startTime  = new SimpleStringProperty(startTime);
-		this.stopTime  = new SimpleStringProperty(stopTime);
+		this.modalityId  = modalityId;
+		this.date  = new SimpleStringProperty(date);
+		this.startTime  = startTime;
+		this.stopTime  = stopTime;
 		this.notes = new SimpleStringProperty(notes);
 	}
 	
@@ -36,28 +37,36 @@ public class Appointment {
 		this.patientId = new SimpleStringProperty(patientId);
 	}
 	
-	public String getModality() {
-		return modality.get();
+	public int getModalityId() {
+		return modalityId;
 	}
 
-	public void setModality(String modality) {
-		this.modality = new SimpleStringProperty(modality);
+	public void setModalityId(int modality) {
+		this.modalityId = modality;
+	}
+	
+	public void setDate(String date) {
+		this.date = new SimpleStringProperty(date);
+	}
+	
+	public String getDate() {
+		return date.get();
 	}
 
-	public String getStartTime() {
-		return startTime.get();
+	public int getStartTime() {
+		return startTime;
 	}
 
-	public void setStartTime(String startTime) {
-		this.startTime = new SimpleStringProperty(startTime);
+	public void setStartTime(int startTime) {
+		this.startTime = startTime;
 	}
 
-	public String getStopTime() {
-		return stopTime.get();
+	public int getStopTime() {
+		return stopTime;
 	}
 
-	public void setStopTime(String stopTime) {
-		this.stopTime = new SimpleStringProperty(stopTime);
+	public void setStopTime(int stopTime) {
+		this.stopTime = stopTime;
 	}
 	
 	public String getNotes() {

@@ -3,14 +3,13 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Order {
 
-	private SimpleStringProperty emergencyLevel, userID, patientID, notes;
-	private int modalityID;
+	private SimpleStringProperty emergencyLevel, userID, patientID, notes, modality;
 	
-	public Order(String emergencyLevel, String userID, String patientID, int modalityID, String notes) {
+	public Order(String emergencyLevel, String userID, String patientID, String modality, String notes) {
 		this.emergencyLevel  = new SimpleStringProperty(emergencyLevel);
 		this.userID  = new SimpleStringProperty(userID);
 		this.patientID  = new SimpleStringProperty(patientID);
-		this.modalityID  = modalityID;
+		this.modality  = new SimpleStringProperty(modality);
 		this.notes = new SimpleStringProperty(notes);	
 	}
 	
@@ -40,12 +39,12 @@ public class Order {
 		this.patientID = new SimpleStringProperty(patientID);
 	}
 	
-	public int getModalityId(){
-		return modalityID;
+	public String getModality(){
+		return modality.get();
 	}
 	
-	public void setModalityId(int modalityID) {
-		this.modalityID = modalityID;
+	public void setModality(String modality) {
+		this.modality = new SimpleStringProperty(modality);
 	}
 	
 	public String getNotes() {
@@ -59,7 +58,7 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order [emergencyLevel=" + emergencyLevel + ", userID=" + userID
-				+ ", patientID=" + patientID + ", modalityID=" + modalityID + ", notes=" + notes + "]";
+				+ ", patientID=" + patientID + ", modalityID=" + modality + ", notes=" + notes + "]";
 	}	
 	
 }

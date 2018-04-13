@@ -31,8 +31,8 @@ public class ReceptionistMainController {
 		@FXML private TableView<Appointment> tableViewAppointment;
 		@FXML private TableView<Bill> tableViewBill;
 		
-	    @FXML private TableColumn<Order, Integer> colOrderId, colModalityId;
-	    @FXML private TableColumn<Order, String> colEmergency, colUserId, colPatientId, colNotesOrder;
+	    @FXML private TableColumn<Order, Integer> colOrderId;
+	    @FXML private TableColumn<Order, String> colEmergency, colUserId, colPatientId, colNotesOrder, colModalityorder;
 	    @FXML private TableColumn<Appointment, String> colStartTime, colStopTime, colFirstName, colLastName, colPatientidApp, colNotesApp;
 	    @FXML private TableColumn<Appointment, String> colModality;
 	    @FXML private TableColumn<Bill, Integer> billId, appIdBill, modalityIdBill;
@@ -70,7 +70,7 @@ public class ReceptionistMainController {
 	    	colEmergency.setCellValueFactory(new PropertyValueFactory<Order, String>("emergencyLevel"));
 	    	colUserId.setCellValueFactory(new PropertyValueFactory<Order, String>("userId"));
 	    	colPatientId.setCellValueFactory(new PropertyValueFactory<Order, String>("patientId"));
-	    	colModalityId.setCellValueFactory(new PropertyValueFactory<Order, Integer>("modalityId"));
+	    	colModalityorder.setCellValueFactory(new PropertyValueFactory<Order, String>("modality"));
 	    	colNotesOrder.setCellValueFactory(new PropertyValueFactory<Order, String>("notes"));
 	    	
 			tableViewOrder.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -87,7 +87,7 @@ public class ReceptionistMainController {
 	       		rs = displaybill.executeQuery();
 	       		// check to see if receiving any data
 	       		while (rs.next()){
-	       			order.add(new Order(rs.getString("emergencyLevel").toString(),rs.getString("userID").toString(),rs.getString("patientID").toString(), rs.getInt("modalityID"), rs.getString("notes")));
+	       			order.add(new Order(rs.getString("emergencyLevel").toString(),rs.getString("userID").toString(),rs.getString("patientID").toString(), rs.getString("modality"), rs.getString("notes")));
 	       		}
 	       	}catch(SQLException ex){
 	       		RISDbConfig.displayException(ex);
