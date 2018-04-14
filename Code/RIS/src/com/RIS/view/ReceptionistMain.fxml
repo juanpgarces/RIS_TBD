@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="1082.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.RIS.controller.ReceptionistMainController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="1082.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RIS.controller.ReceptionistMainController">
   <tabs>
       <Tab onSelectionChanged="#onSelectedOrder" text="Orders">
          <content>
@@ -31,9 +31,8 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="630.0" prefWidth="777.0">
                <children>
-                  <Button layoutX="481.0" layoutY="528.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="130.0" text="Edit" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="481.0" AnchorPane.rightAnchor="471.0" AnchorPane.topAnchor="528.0" />
-                  <Button layoutX="176.0" layoutY="528.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="130.0" text="Add" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="776.0" AnchorPane.topAnchor="528.0" />
-                  <Button layoutX="792.0" layoutY="528.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Delete" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="792.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="528.0" />
+                  <Button onAction="#NewAppfromOrder" layoutX="304.0" layoutY="528.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="130.0" text="Edit" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="304.0" AnchorPane.rightAnchor="648.0" AnchorPane.topAnchor="528.0" />
+                  <Button onAction="#NewAppfromOrder" layoutX="600.0" layoutY="529.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Delete" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="352.0" AnchorPane.topAnchor="529.0" />
                   <TableView fx:id="tableViewAppointment" prefHeight="359.0" prefWidth="656.0" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="43.0">
                      <columns>
                      	<TableColumn fx:id="colDate" prefWidth="75.0" text="StartTime" />

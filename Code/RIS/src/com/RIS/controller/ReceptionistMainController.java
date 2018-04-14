@@ -42,7 +42,6 @@ public class ReceptionistMainController {
 	    
 	    @FXML
 	    void initialize() {  	
-	
 			//Set Items into all tables
 	    	tableViewOrder.setItems(getOrderList());
 
@@ -176,7 +175,6 @@ public class ReceptionistMainController {
 	       	}
 	        return bill;
 	    }
-
 	    @FXML
 	    void NewAppfromOrder(ActionEvent event) throws IOException {
 	    	
@@ -193,6 +191,59 @@ public class ReceptionistMainController {
 	        controller.setUserID(selectedRows.get(0).getUserId());
 	        controller.setModality(selectedRows.get(0).getModality());
 	        
+	        
+	        Stage stage = new Stage();
+	        stage.setTitle("RIS");
+	        stage.setScene(new Scene (root));
+	        stage.show();
+	       
+	    }
+	    @FXML
+	    void deleteAppointment(ActionEvent event) throws IOException {
+	    	
+	        ObservableList<Appointment> selectedRows, appointment;
+	        appointment = tableViewAppointment.getItems();
+
+	        //this gives us the rows that were selected
+	        selectedRows = tableViewAppointment.getSelectionModel().getSelectedItems();
+
+	        //loop over the selected rows and remove the Patient objects from the table
+	        for (Appointment app: selectedRows)
+	        {
+	        	appointment.remove(app);
+	        	String query = "DELETE FROM Appointment where patientId = ?;";
+
+	        	try(
+	        	    Connection conn = RISDbConfig.getConnection();
+	        	    PreparedStatement updateprofile = conn.prepareStatement(query);
+	        	){
+	        		updateprofile.setString(1, app.getUserId());
+	        	    updateprofile.executeUpdate();
+	        	} catch (Exception e) {
+	    			System.out.println("Status: operation failed due to "+e);
+
+	    		}
+	        }
+	       
+	    }
+	    @FXML
+	    void editAppointment(ActionEvent event) throws IOException {
+	    	
+	        ObservableList<Appointment> selectedRows;
+
+	        //this gives us the rows that were selected
+	        selectedRows = tableViewAppointment.getSelectionModel().getSelectedItems();
+	        
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/InsulinPump/view/AddNewAppointment.fxml"));
+	    	Parent root = (Parent) loader.load();
+	        AddNewAppointmentController controller = loader.getController();
+	        controller.setID(selectedRows.get(0).getPatientId());
+	        controller.setNotes(selectedRows.get(0).getNotes());
+	        controller.setUserID(selectedRows.get(0).getUserId());
+	        controller.setModalityId(selectedRows.get(0).getModalityId());
+	        controller.setDate(selectedRows.get(0).getDate());
+	        controller.setStartTime(selectedRows.get(0).getStartTime());
+	        controller.setStopTime(selectedRows.get(0).getStopTime());
 	        
 	        Stage stage = new Stage();
 	        stage.setTitle("RIS");

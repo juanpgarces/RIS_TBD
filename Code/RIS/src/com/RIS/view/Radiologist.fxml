@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="689.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml">
+<VBox prefHeight="672.0" prefWidth="1262.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <MenuBar prefHeight="32.0" prefWidth="640.0" VBox.vgrow="NEVER">
+    <MenuBar prefHeight="22.0" prefWidth="760.0" VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
@@ -53,30 +57,72 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="421.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="647.0" prefWidth="1262.0" VBox.vgrow="ALWAYS">
       <children>
-            <ImageView fitHeight="657.0" fitWidth="373.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="427.0" layoutY="31.0" text="Patien ID:" />
-            <Separator layoutX="380.0" layoutY="1.0" orientation="VERTICAL" prefHeight="657.0" prefWidth="6.0" />
-            <Label layoutX="421.0" layoutY="70.0" text="First Name:" />
-            <Label layoutX="421.0" layoutY="113.0" text="Last Name:" />
-            <Label layoutX="419.0" layoutY="153.0" text="Blood Type:" />
-            <Label layoutX="443.0" layoutY="189.0" text="Age:" />
-            <Label layoutX="431.0" layoutY="223.0" text="Gender:" />
-            <Label layoutX="433.0" layoutY="257.0" text="Height:" />
-            <Label layoutX="431.0" layoutY="290.0" text="Weight:" />
-            <Label layoutX="423.0" layoutY="320.0" text="Doctor ID:" />
-            <TextField layoutX="493.0" layoutY="26.0" />
-            <TextField layoutX="493.0" layoutY="65.0" />
-            <TextField layoutX="493.0" layoutY="108.0" />
-            <TextField layoutX="493.0" layoutY="148.0" />
-            <TextField layoutX="493.0" layoutY="184.0" />
-            <TextField layoutX="493.0" layoutY="218.0" />
-            <TextField layoutX="493.0" layoutY="252.0" />
-            <TextField layoutX="493.0" layoutY="285.0" />
-            <TextField layoutX="493.0" layoutY="316.0" />
-            <TextArea layoutX="409.0" layoutY="386.0" prefHeight="200.0" prefWidth="338.0" />
-            <Label layoutX="406.0" layoutY="359.0" text="Notes:" />
+            <Label layoutX="350.0" layoutY="94.0" text="Patient ID:" />
+            <Separator layoutX="324.0" layoutY="1.0" orientation="VERTICAL" prefHeight="748.0" prefWidth="10.0" />
+            <Label layoutX="347.0" layoutY="128.0" text="First Name:" />
+            <Label layoutX="348.0" layoutY="159.0" text="Last Name:" />
+            <Label layoutX="364.0" layoutY="187.0" text="DOB:" />
+            <Label layoutX="356.0" layoutY="219.0" text="Gender:" />
+            <Label layoutX="360.0" layoutY="246.0" text="Notes:" />
+            <TreeTableView layoutX="14.0" layoutY="61.0" prefHeight="462.0" prefWidth="298.0">
+              <columns>
+                <TreeTableColumn prefWidth="75.0" text="Patient ID" />
+                <TreeTableColumn prefWidth="104.0" text="Modality" />
+                  <TreeTableColumn prefWidth="118.0" text="Date" />
+              </columns>
+            </TreeTableView>
+            <Button layoutX="96.0" layoutY="537.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" text="Load Information" />
+            <Label layoutX="424.0" layoutY="187.0" text="N/A" />
+            <Label layoutX="424.0" layoutY="159.0" text="N/A" />
+            <Label layoutX="424.0" layoutY="128.0" text="N/A" />
+            <Label layoutX="424.0" layoutY="94.0" text="N/A" />
+            <Label layoutX="424.0" layoutY="246.0" text="N/A" />
+            <Label layoutX="424.0" layoutY="219.0" text="N/A" />
+            <Button layoutX="1094.0" layoutY="478.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="107.0" text="Load Image" />
+            <Label layoutX="1115.0" layoutY="13.0" text="Images">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Separator layoutX="1031.0" layoutY="-21.0" orientation="VERTICAL" prefHeight="748.0" prefWidth="10.0" />
+            <Label layoutX="92.0" layoutY="12.0" text="Appointments">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TableView layoutX="1046.0" layoutY="61.0" prefHeight="387.0" prefWidth="202.0">
+              <columns>
+                <TableColumn prefWidth="201.0" text="Image ID" />
+              </columns>
+            </TableView>
+            <TextArea layoutX="649.0" layoutY="61.0" prefHeight="505.0" prefWidth="368.0" />
+            <Label layoutX="772.0" layoutY="13.0" text="Transcript">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="407.0" layoutY="13.0" text="Patient Info">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="388.0" layoutY="323.0" text="Appointment Details">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="371.0" layoutY="485.0" text="Notes:" />
+            <Label layoutX="370.0" layoutY="461.0" text="Stop Time:" />
+            <Label layoutX="370.0" layoutY="431.0" text="Start Time:" />
+            <Label layoutX="370.0" layoutY="375.0" text="Modality:" />
+            <Label layoutX="370.0" layoutY="403.0" text="Date:" />
+            <Label layoutX="462.0" layoutY="485.0" text="N/A" />
+            <Label layoutX="462.0" layoutY="461.0" text="N/A" />
+            <Label layoutX="462.0" layoutY="431.0" text="N/A" />
+            <Label layoutX="462.0" layoutY="403.0" text="N/A" />
+            <Label layoutX="462.0" layoutY="375.0" text="N/A" />
       </children>
     </AnchorPane>
   </children>
