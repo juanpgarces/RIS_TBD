@@ -96,7 +96,7 @@
                 <TableColumn fx:id="colImageId" prefWidth="201.0" text="Image ID" />
               </columns>
             </TableView>
-            <TextArea layoutX="649.0" layoutY="61.0" prefHeight="505.0" prefWidth="368.0" />
+            <TextArea fx:id="lblTranscript" layoutX="649.0" layoutY="61.0" prefHeight="505.0" prefWidth="368.0" />
             <Label layoutX="772.0" layoutY="13.0" text="Transcript">
                <font>
                   <Font size="20.0" />

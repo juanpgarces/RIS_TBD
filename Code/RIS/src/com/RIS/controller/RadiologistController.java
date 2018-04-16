@@ -32,7 +32,7 @@ public class RadiologistController {
     @FXML private TableColumn<Appointment, String> colDate;
     @FXML private TableColumn<Appointment, Integer> colAppId;
 
-    @FXML private Label lblDOB, lblLastName, lblFirstName, lblPatientId, lblNotesPatient, lblGender, lblNotesApp, lblStopTime, lblStartTime, lblDate, lblModality;
+    @FXML private Label lblDOB, lblLastName, lblFirstName, lblPatientId, lblNotesPatient, lblGender, lblNotesApp, lblStopTime, lblStartTime, lblDate, lblModality, lblTranscript;
     private String ID;
     
     @FXML
@@ -42,7 +42,39 @@ public class RadiologistController {
     
     @FXML
     void submitReport(ActionEvent event) {
-
+    	
+        ObservableList<Appointment> selectedRows, allApps;
+        
+        allApps = tableViewApp.getItems();
+    	
+        //this gives us the rows that were selected
+        selectedRows = tableViewApp.getSelectionModel().getSelectedItems();
+    	
+    	Transcript newTranscript = new Transcript(lblTranscript.getText(),
+						selectedRows.get(0).getAppointmentId(),
+						ID,
+						selectedRows.get(0).getPatientId(),
+						selectedRows.get(0).getModalityId());
+		
+		String query = "INSERT INTO transcripts " + "(transcript, appointment_appID, appointment_userID, appointment_patientID, appointment_modalityID) " + "values(?,?,?,?,?)";
+		
+		try (Connection conn = RISDbConfig.getConnection();
+		PreparedStatement insertTranscript = conn.prepareStatement(query);) {
+		
+		insertTranscript.setString(1, newTranscript.getTranscript());
+		insertTranscript.setInt(2, newTranscript.getAppointmentId());
+		insertTranscript.setString(3, newTranscript.getUserId());
+		insertTranscript.setString(4, newTranscript.getPatientId());
+		insertTranscript.setInt(5, newTranscript.getModalityId());
+		
+		insertTranscript.execute();
+		//Delete Appointment from the current table or mark it as complete and refresh the table.
+		//allApps.remove(Appointment);
+		
+		} catch (Exception e) {
+		System.out.println("Status: operation failed due to "+e);
+		
+		}
     }
 
     @FXML
@@ -64,7 +96,6 @@ public class RadiologistController {
        			Connection conn = RISDbConfig.getConnection();
        			PreparedStatement displayapp = conn.prepareStatement(SQLQuery);
        	){
-       		//displayprofile.setInt(1, cutomerId);
        		rs = displayapp.executeQuery();
        		// check to see if receiving any data
        		while (rs.next()){
@@ -96,14 +127,15 @@ public class RadiologistController {
         lblStopTime.setText(selectedRows.get(0).getStopTime()+"");
         lblNotesApp.setText(selectedRows.get(0).getNotes());
         
-        String SQLQuery = "SELECT * FROM Patient WHERE PatientID = "+selectedRows.get(0).getPatientId()+";";
+        String SQLQuery = "SELECT * FROM Patient WHERE PatientID = ?;";
        	ResultSet rs = null;
 
        	try(
        			Connection conn = RISDbConfig.getConnection();
        			PreparedStatement displaypatient = conn.prepareStatement(SQLQuery);
        	){
-       		//displayprofile.setInt(1, cutomerId);
+       		displaypatient.setString(1, selectedRows.get(0).getPatientId());
+       		
        		rs = displaypatient.executeQuery();
        		// check to see if receiving any data
        		Patient newPatient = new Patient(rs.getString("patientID").toString(), rs.getString("firstName").toString(),rs.getString("lastName").toString(),rs.getString("gender").toString(), rs.getString("DOB").toString(), rs.getString("insurance").toString(), rs.getString("address").toString(), rs.getString("phone").toString(), rs.getString("email").toString(), rs.getString("notes").toString());
@@ -135,13 +167,16 @@ public class RadiologistController {
     	tableViewPacs.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     	
     	ObservableList<PACS> pacs = FXCollections.observableArrayList();
-        String SQLQuery = "SELECT * FROM pacs WHERE patientID = "+patientId+" AND appointmentID = "+appointmentId+" ORDER BY imageID;";
+        String SQLQuery = "SELECT * FROM pacs WHERE patientID = ? AND appointmentID = ? ORDER BY imageID;";
        	ResultSet rs = null;
 
        	try(
        			Connection conn = RISDbConfig.getConnection();
        			PreparedStatement displayapp = conn.prepareStatement(SQLQuery);
        	){
+       		displayapp.setString(1, patientId);
+       		displayapp.setInt(2, appointmentId);
+       		
        		rs = displayapp.executeQuery();
        		// check to see if receiving any data
        		while (rs.next()){
