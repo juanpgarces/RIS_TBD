@@ -29,8 +29,10 @@ CREATE TABLE `appointment` (
   `userID` varchar(9) NOT NULL,
   `patientID` varchar(9) NOT NULL,
   `modalityID` int(11) NOT NULL,
-  `startTime` datetime NOT NULL,
-  `stopTime` datetime NOT NULL,
+  `Date` date DEFAULT NULL,
+  `startTme` time DEFAULT NULL,
+  `stopTime` time DEFAULT NULL,
+  `notes` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`appID`,`userID`,`patientID`,`modalityID`),
   UNIQUE KEY `appID_UNIQUE` (`appID`),
   KEY `physicianID_idx` (`userID`),
@@ -52,32 +54,32 @@ LOCK TABLES `appointment` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `billling`
+-- Table structure for table `bills`
 --
 
-DROP TABLE IF EXISTS `billling`;
+DROP TABLE IF EXISTS `bills`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `billling` (
+CREATE TABLE `bills` (
   `billID` int(11) NOT NULL AUTO_INCREMENT,
   `Cost` double DEFAULT '0',
-  `APPOINTMENT_appID` int(11) NOT NULL,
-  `APPOINTMENT_userID` varchar(9) NOT NULL,
-  `APPOINTMENT_patientID` varchar(9) NOT NULL,
-  `APPOINTMENT_modalityID` int(11) NOT NULL,
-  PRIMARY KEY (`billID`,`APPOINTMENT_appID`,`APPOINTMENT_userID`,`APPOINTMENT_patientID`,`APPOINTMENT_modalityID`),
-  KEY `fk_BILLLING_APPOINTMENT1_idx` (`APPOINTMENT_appID`,`APPOINTMENT_userID`,`APPOINTMENT_patientID`,`APPOINTMENT_modalityID`),
-  CONSTRAINT `fk_BILLLING_APPOINTMENT1` FOREIGN KEY (`APPOINTMENT_appID`, `APPOINTMENT_userID`, `APPOINTMENT_patientID`, `APPOINTMENT_modalityID`) REFERENCES `appointment` (`appID`, `userID`, `patientID`, `modalityID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `appID` int(11) NOT NULL,
+  `userID` varchar(9) NOT NULL,
+  `patientID` varchar(9) NOT NULL,
+  `modalityID` int(11) NOT NULL,
+  PRIMARY KEY (`billID`,`appID`,`userID`,`patientID`,`modalityID`),
+  KEY `fk_BILLLING_APPOINTMENT1_idx` (`appID`,`userID`,`patientID`,`modalityID`),
+  CONSTRAINT `fk_BILLLING_APPOINTMENT1` FOREIGN KEY (`appID`, `userID`, `patientID`, `modalityID`) REFERENCES `appointment` (`appID`, `userID`, `patientID`, `modalityID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `billling`
+-- Dumping data for table `bills`
 --
 
-LOCK TABLES `billling` WRITE;
-/*!40000 ALTER TABLE `billling` DISABLE KEYS */;
-/*!40000 ALTER TABLE `billling` ENABLE KEYS */;
+LOCK TABLES `bills` WRITE;
+/*!40000 ALTER TABLE `bills` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bills` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -94,7 +96,7 @@ CREATE TABLE `modality` (
   `duration` int(11) NOT NULL,
   PRIMARY KEY (`modID`),
   UNIQUE KEY `modID_UNIQUE` (`modID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,40 +105,41 @@ CREATE TABLE `modality` (
 
 LOCK TABLES `modality` WRITE;
 /*!40000 ALTER TABLE `modality` DISABLE KEYS */;
+INSERT INTO `modality` VALUES (1,'MRI',2000,0),(2,'CT Scan',1500,0),(3,'Ultrasound',400,0),(4,'Nuclear Machine',1100,0),(5,'Anesthesia Imaging',300,0),(6,'Radiography',450,0),(7,'Flouroscopy',800,0),(8,'Interventional Radiology',1000,0);
 /*!40000 ALTER TABLE `modality` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `order`
+-- Table structure for table `orders`
 --
 
-DROP TABLE IF EXISTS `order`;
+DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `order` (
+CREATE TABLE `orders` (
   `orderID` int(11) NOT NULL AUTO_INCREMENT,
   `emergencyLevel` varchar(45) DEFAULT NULL,
   `userID` varchar(9) NOT NULL,
   `patientID` varchar(9) NOT NULL,
-  `modalityID` int(11) NOT NULL,
-  PRIMARY KEY (`orderID`,`userID`,`patientID`,`modalityID`),
+  `modality` varchar(45) DEFAULT NULL,
+  `notes` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`orderID`,`userID`,`patientID`),
   UNIQUE KEY `orderID_UNIQUE` (`orderID`),
   KEY `patientSSN_idx` (`patientID`),
   KEY `physicianSSN_idx` (`userID`),
-  KEY `fk_ORDER_MODALITY1_idx` (`modalityID`),
-  CONSTRAINT `fk_ORDER_MODALITY1` FOREIGN KEY (`modalityID`) REFERENCES `modality` (`modID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `patientSSN` FOREIGN KEY (`patientID`) REFERENCES `patient` (`patientID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `physicianSSN` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `order`
+-- Dumping data for table `orders`
 --
 
-LOCK TABLES `order` WRITE;
-/*!40000 ALTER TABLE `order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,'2','987654321','324651782',NULL,NULL);
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -150,8 +153,6 @@ CREATE TABLE `pacs` (
   `imageID` int(11) NOT NULL AUTO_INCREMENT,
   `appointmentID` int(11) NOT NULL,
   `image` varchar(100) NOT NULL,
-  `transcript` varchar(300) DEFAULT NULL,
-  `notes` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`imageID`,`appointmentID`),
   UNIQUE KEY `imageID_UNIQUE` (`imageID`),
   UNIQUE KEY `image_UNIQUE` (`image`),
@@ -198,6 +199,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
+INSERT INTO `patient` VALUES ('324651782','Juan','ThePatient','M','0000-00-00','State','534 Butler','235428234','juanp32423@gmail.com','He is a good person');
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,7 +230,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('123456789','987654321','Administrator','Test','Testing',NULL,'M','Test@ung.edu'),('987654321','123456789','Receptionist','Jua','TheReceptionist','565161868','M','asdsd@sadfdf.com');
+INSERT INTO `user` VALUES ('123456789','987654321','Administrator','Test','Testing',NULL,'M','Test@ung.edu'),('543876148','0123456789','Referring','John','TheReferrer','2423423','M','adfd@ung.edu'),('987654321','123456789','Receptionist','Jua','TheReceptionist','565161868','M','asdsd@sadfdf.com');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -241,4 +243,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-04 14:25:25
+-- Dump completed on 2018-04-15 22:12:38

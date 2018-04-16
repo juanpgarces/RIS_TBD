@@ -3,15 +3,13 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class PACS {
 
-	private SimpleStringProperty transcript, image, notes;
+	private SimpleStringProperty image;
 	private int imageId, appointmentId;
 	
-	public PACS(int imageId, int appointmentId, String image, String transcript, String notes) {
+	public PACS(int imageId, int appointmentId, String image) {
 		this.imageId  = imageId;
 		this.appointmentId  = appointmentId;
 		this.image  = new SimpleStringProperty(image);
-		this.transcript  = new SimpleStringProperty(transcript);
-		this.notes = new SimpleStringProperty(notes);
 	}
 	
 	/* Start of GETTERS AND SETTERS */
@@ -39,25 +37,9 @@ public class PACS {
 		this.image = new SimpleStringProperty(image);
 	}
 
-	public String getTranscript() {
-		return transcript.get();
-	}
-
-	public void setTranscript(String transcript) {
-		this.transcript = new SimpleStringProperty(transcript);
-	}
-
-	public String getNotes() {
-		return notes.get();
-	}
-
-	public void setNotes(String notes) {
-		this.notes = new SimpleStringProperty(notes);
-	}
-
 	@Override
 	public String toString() {
-		return "PACS [transcript=" + transcript + ", image=" + image + ", imageId=" + imageId + ", appointmentId="
+		return "PACS [image=" + image + ", imageId=" + imageId + ", appointmentId="
 				+ appointmentId + "]";
 	}
 	

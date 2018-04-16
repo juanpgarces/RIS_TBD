@@ -10,13 +10,11 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="672.0" prefWidth="1262.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="1262.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RIS.controller.RadiologistController">
   <children>
     <MenuBar prefHeight="22.0" prefWidth="760.0" VBox.vgrow="NEVER">
       <menus>
@@ -57,44 +55,45 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="647.0" prefWidth="1262.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="602.0" prefWidth="1262.0" VBox.vgrow="ALWAYS">
       <children>
             <Label layoutX="350.0" layoutY="94.0" text="Patient ID:" />
-            <Separator layoutX="324.0" layoutY="1.0" orientation="VERTICAL" prefHeight="748.0" prefWidth="10.0" />
+            <Separator layoutX="324.0" layoutY="1.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="10.0" />
             <Label layoutX="347.0" layoutY="128.0" text="First Name:" />
             <Label layoutX="348.0" layoutY="159.0" text="Last Name:" />
             <Label layoutX="364.0" layoutY="187.0" text="DOB:" />
             <Label layoutX="356.0" layoutY="219.0" text="Gender:" />
             <Label layoutX="360.0" layoutY="246.0" text="Notes:" />
-            <TreeTableView layoutX="14.0" layoutY="61.0" prefHeight="462.0" prefWidth="298.0">
+            <TableView fx:id="tableViewApp" layoutX="14.0" layoutY="61.0" prefHeight="462.0" prefWidth="298.0">
               <columns>
-                <TreeTableColumn prefWidth="75.0" text="Patient ID" />
-                <TreeTableColumn prefWidth="104.0" text="Modality" />
-                  <TreeTableColumn prefWidth="118.0" text="Date" />
+                  <TableColumn fx:id="colAppId" prefWidth="63.0" text="App ID" />
+                <TableColumn fx:id="colPatientId" minWidth="0.0" prefWidth="91.00003051757812" text="Patient ID" />
+                  <TableColumn fx:id="colDate" prefWidth="75.99996948242188" text="Date" />
+                <TableColumn fx:id="colModality" prefWidth="69.0" text="Modality" />
               </columns>
-            </TreeTableView>
-            <Button layoutX="96.0" layoutY="537.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" text="Load Information" />
-            <Label layoutX="424.0" layoutY="187.0" text="N/A" />
-            <Label layoutX="424.0" layoutY="159.0" text="N/A" />
-            <Label layoutX="424.0" layoutY="128.0" text="N/A" />
-            <Label layoutX="424.0" layoutY="94.0" text="N/A" />
-            <Label layoutX="424.0" layoutY="246.0" text="N/A" />
-            <Label layoutX="424.0" layoutY="219.0" text="N/A" />
-            <Button layoutX="1094.0" layoutY="478.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="107.0" text="Load Image" />
+            </TableView>
+            <Button layoutX="96.0" layoutY="537.0" mnemonicParsing="false" onAction="#refreshApp" prefHeight="35.0" prefWidth="118.0" text="Refresh" />
+            <Label fx:id="lblDOB" layoutX="424.0" layoutY="187.0" text="N/A" />
+            <Label fx:id="lblLastName" layoutX="424.0" layoutY="159.0" text="N/A" />
+            <Label fx:id="lblFirstName" layoutX="424.0" layoutY="128.0" text="N/A" />
+            <Label fx:id="lblPatientId" layoutX="424.0" layoutY="94.0" text="N/A" />
+            <Label fx:id="lblNotesPatient" layoutX="424.0" layoutY="246.0" text="N/A" />
+            <Label fx:id="lblGender" layoutX="424.0" layoutY="219.0" text="N/A" />
+            <Button layoutX="1094.0" layoutY="478.0" mnemonicParsing="false" onAction="#loadImages" prefHeight="30.0" prefWidth="107.0" text="Load Image" />
             <Label layoutX="1115.0" layoutY="13.0" text="Images">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="1031.0" layoutY="-21.0" orientation="VERTICAL" prefHeight="748.0" prefWidth="10.0" />
+            <Separator layoutX="1031.0" layoutY="-21.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="10.0" />
             <Label layoutX="92.0" layoutY="12.0" text="Appointments">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TableView layoutX="1046.0" layoutY="61.0" prefHeight="387.0" prefWidth="202.0">
+            <TableView fx:id="tableViewPacs" layoutX="1046.0" layoutY="61.0" prefHeight="387.0" prefWidth="202.0">
               <columns>
-                <TableColumn prefWidth="201.0" text="Image ID" />
+                <TableColumn fx:id="colImageId" prefWidth="201.0" text="Image ID" />
               </columns>
             </TableView>
             <TextArea layoutX="649.0" layoutY="61.0" prefHeight="505.0" prefWidth="368.0" />
@@ -118,11 +117,12 @@
             <Label layoutX="370.0" layoutY="431.0" text="Start Time:" />
             <Label layoutX="370.0" layoutY="375.0" text="Modality:" />
             <Label layoutX="370.0" layoutY="403.0" text="Date:" />
-            <Label layoutX="462.0" layoutY="485.0" text="N/A" />
-            <Label layoutX="462.0" layoutY="461.0" text="N/A" />
-            <Label layoutX="462.0" layoutY="431.0" text="N/A" />
-            <Label layoutX="462.0" layoutY="403.0" text="N/A" />
-            <Label layoutX="462.0" layoutY="375.0" text="N/A" />
+            <Label fx:id="lblNotesApp" layoutX="462.0" layoutY="485.0" text="N/A" />
+            <Label fx:id="lblStopTime" layoutX="462.0" layoutY="461.0" text="N/A" />
+            <Label fx:id="lblStartTime" layoutX="462.0" layoutY="431.0" text="N/A" />
+            <Label fx:id="lblDate" layoutX="462.0" layoutY="403.0" text="N/A" />
+            <Label fx:id="lblModality" layoutX="462.0" layoutY="375.0" text="N/A" />
+            <Button layoutX="774.0" layoutY="572.0" mnemonicParsing="false" onAction="#submitReport" prefHeight="35.0" prefWidth="118.0" text="Submit" />
       </children>
     </AnchorPane>
   </children>
