@@ -72,7 +72,7 @@
                 <TableColumn fx:id="colModality" prefWidth="69.0" text="Modality" />
               </columns>
             </TableView>
-            <Button layoutX="96.0" layoutY="537.0" mnemonicParsing="false" onAction="#refreshApp" prefHeight="35.0" prefWidth="118.0" text="Refresh" />
+            <Button layoutX="65.0" layoutY="537.0" mnemonicParsing="false" onAction="#refreshApp" prefHeight="35.0" prefWidth="81.0" text="Refresh" />
             <Label fx:id="lblDOB" layoutX="424.0" layoutY="187.0" text="N/A" />
             <Label fx:id="lblLastName" layoutX="424.0" layoutY="159.0" text="N/A" />
             <Label fx:id="lblFirstName" layoutX="424.0" layoutY="128.0" text="N/A" />
@@ -123,6 +123,7 @@
             <Label fx:id="lblDate" layoutX="462.0" layoutY="403.0" text="N/A" />
             <Label fx:id="lblModality" layoutX="462.0" layoutY="375.0" text="N/A" />
             <Button layoutX="774.0" layoutY="572.0" mnemonicParsing="false" onAction="#submitReport" prefHeight="35.0" prefWidth="118.0" text="Submit" />
+            <Button layoutX="163.0" layoutY="537.0" mnemonicParsing="false" onAction="#loadData" prefHeight="35.0" prefWidth="81.0" text="Load" />
       </children>
     </AnchorPane>
   </children>

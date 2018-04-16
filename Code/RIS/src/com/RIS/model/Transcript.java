@@ -3,17 +3,35 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Transcript {
 
-	private SimpleStringProperty transcript, patientId;
-	private int transcriptId, appointmentId;
+	private SimpleStringProperty transcript, patientId, userId;
+	private int transcriptId, appointmentId, modalityId;
 	
-	public Transcript(int transcriptId, String transcript, int appointmentId, String patientId) {
+	public Transcript(int transcriptId, String transcript, int appointmentId, String patientId, String userId, int modalityId) {
 		this.transcriptId  = transcriptId;
 		this.transcript  = new SimpleStringProperty(transcript);
 		this.appointmentId  = appointmentId;
 		this.patientId  = new SimpleStringProperty(patientId);
+		this.userId = new SimpleStringProperty(userId);
+		this.modalityId = modalityId;
 	}
 	
 	/* Start of GETTERS AND SETTERS */
+	public String getUserId() {
+		return userId.get();
+	}
+
+	public void setUserId(String userId) {
+		this.userId = new SimpleStringProperty(userId);
+	}
+
+	public int getModalityId() {
+		return modalityId;
+	}
+
+	public void setModalityId(int modalityId) {
+		this.modalityId = modalityId;
+	}
+	
 	public String getTranscript() {
 		return transcript.get();
 	}
