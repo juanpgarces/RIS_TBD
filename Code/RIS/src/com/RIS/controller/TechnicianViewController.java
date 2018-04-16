@@ -4,6 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.imageio.ImageIO;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 import com.RIS.model.Appointment;
 
 import application.RISDbConfig;
@@ -13,12 +19,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 
 public class TechnicianViewController {
 
     @FXML private TableView<Appointment> techTable;
     @FXML private TableColumn<Appointment, Integer> colPatientID;
     @FXML private TableColumn<Appointment, String> colFirstName, colLastName, colModality, colPhys, colNotes;
+    File stored;
     private String ID;
     @FXML
     void initialize() { 
@@ -68,7 +76,8 @@ public class TechnicianViewController {
     void browse(ActionEvent event) {
 
     }
-
+    
+    
     @FXML
     void displayAppointments(ActionEvent event) {
 
@@ -77,6 +86,37 @@ public class TechnicianViewController {
     @FXML
     void submit(ActionEvent event) {
 
+    }
+    
+    @FXML void imageSelect(ActionEvent event) {
+    	
+    	//Select Image
+    	FileChooser fileChooser = new FileChooser();
+    	File file = fileChooser.showOpenDialog(null);
+    	stored = file;
+    }
+    
+    @FXML void imageSave(ActionEvent event) {
+    	//Save Image
+    	if (stored != null) {
+    		try {
+    			saveImage(stored);
+    		} catch (IOException ex) {
+    			ex.printStackTrace();
+    		}
+    	}   	    	
+    }
+    
+    public void saveImage(File file) throws IOException {
+    	BufferedImage bufferedImage = new BufferedImage(100, 100, 1);
+    	stored = new File("images/" + stored.getName());
+    	try {
+    		if (!stored.exists()) {
+    			ImageIO.write(bufferedImage, "png", stored);
+    		}
+    	} catch (IOException ex) {
+    		ex.printStackTrace();
+    	}   	
     }
 
 	public void setID(String text) {
