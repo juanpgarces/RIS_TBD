@@ -7,8 +7,13 @@ public class Appointment {
 	private SimpleStringProperty userId, patientId, notes, date, startTime, stopTime;
 	private int modalityId, appointmentId;
 
+<<<<<<< HEAD
 	
 	public Appointment(String userId, String patientId, int modalityId, String date,String startTime, String stopTime, String notes) {
+=======
+	/* Insert Information */
+	public Appointment(String userId, String patientId, int modalityId, String date,int startTime, int stopTime, String notes) {
+>>>>>>> bd312e524fb42db282a643de99c466b4d3056426
 		
 		this.userId = new SimpleStringProperty(userId);
 		this.patientId = new SimpleStringProperty(patientId);
@@ -19,7 +24,12 @@ public class Appointment {
 		this.notes = new SimpleStringProperty(notes);
 	}
 	
+<<<<<<< HEAD
 	public Appointment(String patientId, int modalityId, String date,String startTime, String stopTime, String notes) {
+=======
+	/* Retrieve Information */
+	public Appointment(String patientId, int modalityId, String date,int startTime, int stopTime, String notes) {
+>>>>>>> bd312e524fb42db282a643de99c466b4d3056426
 		
 		this.patientId = new SimpleStringProperty(patientId);
 		this.modalityId  = modalityId;

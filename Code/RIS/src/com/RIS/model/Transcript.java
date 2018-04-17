@@ -6,8 +6,8 @@ public class Transcript {
 	private SimpleStringProperty transcript, patientId, userId;
 	private int transcriptId, appointmentId, modalityId;
 	
-	public Transcript(int transcriptId, String transcript, int appointmentId, String patientId, String userId, int modalityId) {
-		this.transcriptId  = transcriptId;
+	/*Insert Infortmation*/
+	public Transcript(String transcript, int appointmentId, String patientId, String userId, int modalityId) {
 		this.transcript  = new SimpleStringProperty(transcript);
 		this.appointmentId  = appointmentId;
 		this.patientId  = new SimpleStringProperty(patientId);
@@ -15,7 +15,9 @@ public class Transcript {
 		this.modalityId = modalityId;
 	}
 	
-	public Transcript(String transcript, int appointmentId, String patientId, String userId, int modalityId) {
+	/* Retrive Information*/
+	public Transcript(int transcriptId, String transcript, int appointmentId, String patientId, String userId, int modalityId) {
+		this.transcriptId  = transcriptId;
 		this.transcript  = new SimpleStringProperty(transcript);
 		this.appointmentId  = appointmentId;
 		this.patientId  = new SimpleStringProperty(patientId);

@@ -109,7 +109,7 @@ public class TechnicianViewController {
     
     public void saveImage(File file) throws IOException {
     	BufferedImage bufferedImage = new BufferedImage(100, 100, 1);
-    	stored = new File("images/" + stored.getName());
+    	stored = new File("images/" + file.getName());
     	try {
     		if (!stored.exists()) {
     			ImageIO.write(bufferedImage, "png", stored);
