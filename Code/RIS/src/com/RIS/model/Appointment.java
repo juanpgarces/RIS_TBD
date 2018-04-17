@@ -7,7 +7,7 @@ public class Appointment {
 	private SimpleStringProperty userId, patientId, notes, date;
 	private int modalityId, startTime, stopTime, appointmentId;
 
-	
+	/* Insert Information */
 	public Appointment(String userId, String patientId, int modalityId, String date,int startTime, int stopTime, String notes) {
 		
 		this.userId = new SimpleStringProperty(userId);
@@ -19,6 +19,7 @@ public class Appointment {
 		this.notes = new SimpleStringProperty(notes);
 	}
 	
+	/* Retrieve Information */
 	public Appointment(String patientId, int modalityId, String date,int startTime, int stopTime, String notes) {
 		
 		this.patientId = new SimpleStringProperty(patientId);
