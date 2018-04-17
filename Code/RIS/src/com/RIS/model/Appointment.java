@@ -9,7 +9,7 @@ public class Appointment {
 
 	//status = 'new' when initially created
 	//status = 'pending' when waiting on a radiologist's transcript
-	//status = 'completed' when radiologist has added transcript.
+	//status = 'complete' when radiologist has added transcript.
 
 	public Appointment(String userId, String patientId, int modalityId, String date,String startTime, String stopTime, String notes) {
 		

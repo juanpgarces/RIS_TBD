@@ -85,6 +85,7 @@ public class TechnicianViewController {
 
     @FXML
     void submit(ActionEvent event) {
+    	//set status = "pending" in the database.
 
     }
     
