@@ -6,6 +6,7 @@ public class Appointment {
 
 	private SimpleStringProperty userId, patientId, notes, date, startTime, stopTime;
 	private int modalityId, appointmentId;
+	private boolean complete;
 
 
 	public Appointment(String userId, String patientId, int modalityId, String date,String startTime, String stopTime, String notes) {
@@ -17,6 +18,7 @@ public class Appointment {
 		this.startTime  = new SimpleStringProperty(startTime);
 		this.stopTime  = new SimpleStringProperty(stopTime);
 		this.notes = new SimpleStringProperty(notes);
+		this.complete = false;
 	}
 
 	/* Retrieve Information */
@@ -29,6 +31,7 @@ public class Appointment {
 		this.startTime  = new SimpleStringProperty(startTime);
 		this.stopTime  = new SimpleStringProperty(stopTime);
 		this.notes = new SimpleStringProperty(notes);
+		this.complete = false;
 	}
 	
 	public Appointment(int appointmentId, String patientId, int modalityId, String date,String startTime, String stopTime, String notes) {
@@ -40,6 +43,7 @@ public class Appointment {
 		this.startTime  = new SimpleStringProperty(startTime);
 		this.stopTime  = new SimpleStringProperty(stopTime);
 		this.notes = new SimpleStringProperty(notes);
+		this.complete = false;
 	}
 	
 	/* Start of GETTERS AND SETTERS */
@@ -105,5 +109,11 @@ public class Appointment {
 
 	public void setNotes(String notes) {
 		this.notes = new SimpleStringProperty(notes);
+	}
+	public boolean getComplete(){
+		return complete;
+	}
+	public void setComplete(boolean complete){
+		this.complete = complete;
 	}
 }
