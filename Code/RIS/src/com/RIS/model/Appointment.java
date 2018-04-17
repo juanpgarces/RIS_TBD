@@ -4,39 +4,39 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Appointment {
 
-	private SimpleStringProperty userId, patientId, notes, date;
-	private int modalityId, startTime, stopTime, appointmentId;
+	private SimpleStringProperty userId, patientId, notes, date, startTime, stopTime;
+	private int modalityId, appointmentId;
 
 	
-	public Appointment(String userId, String patientId, int modalityId, String date,int startTime, int stopTime, String notes) {
+	public Appointment(String userId, String patientId, int modalityId, String date,String startTime, String stopTime, String notes) {
 		
 		this.userId = new SimpleStringProperty(userId);
 		this.patientId = new SimpleStringProperty(patientId);
 		this.modalityId  = modalityId;
 		this.date  = new SimpleStringProperty(date);
-		this.startTime  = startTime;
-		this.stopTime  = stopTime;
+		this.startTime  = new SimpleStringProperty(startTime);
+		this.stopTime  = new SimpleStringProperty(stopTime);
 		this.notes = new SimpleStringProperty(notes);
 	}
 	
-	public Appointment(String patientId, int modalityId, String date,int startTime, int stopTime, String notes) {
+	public Appointment(String patientId, int modalityId, String date,String startTime, String stopTime, String notes) {
 		
 		this.patientId = new SimpleStringProperty(patientId);
 		this.modalityId  = modalityId;
 		this.date  = new SimpleStringProperty(date);
-		this.startTime  = startTime;
-		this.stopTime  = stopTime;
+		this.startTime  = new SimpleStringProperty(startTime);
+		this.stopTime  = new SimpleStringProperty(stopTime);
 		this.notes = new SimpleStringProperty(notes);
 	}
 	
-	public Appointment(int appointmentId, String patientId, int modalityId, String date,int startTime, int stopTime, String notes) {
+	public Appointment(int appointmentId, String patientId, int modalityId, String date,String startTime, String stopTime, String notes) {
 		
 		this.appointmentId = appointmentId;
 		this.patientId = new SimpleStringProperty(patientId);
 		this.modalityId  = modalityId;
 		this.date  = new SimpleStringProperty(date);
-		this.startTime  = startTime;
-		this.stopTime  = stopTime;
+		this.startTime  = new SimpleStringProperty(startTime);
+		this.stopTime  = new SimpleStringProperty(stopTime);
 		this.notes = new SimpleStringProperty(notes);
 	}
 	
@@ -81,20 +81,20 @@ public class Appointment {
 		return date.get();
 	}
 
-	public int getStartTime() {
-		return startTime;
+	public String getStartTime() {
+		return startTime.get();
 	}
 
-	public void setStartTime(int startTime) {
-		this.startTime = startTime;
+	public void setStartTime(String startTime) {
+		this.startTime = new SimpleStringProperty(startTime);
 	}
 
-	public int getStopTime() {
-		return stopTime;
+	public String getStopTime() {
+		return stopTime.get();
 	}
 
-	public void setStopTime(int stopTime) {
-		this.stopTime = stopTime;
+	public void setStopTime(String stopTime) {
+		this.stopTime = new SimpleStringProperty(stopTime);
 	}
 	
 	public String getNotes() {
