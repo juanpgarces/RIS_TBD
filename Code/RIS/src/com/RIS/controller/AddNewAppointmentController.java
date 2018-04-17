@@ -131,19 +131,21 @@ public class AddNewAppointmentController {
     			
     			
     		/// insert appointment into database
-    			query = "INSERT INTO appointment " + "(appID, userID, patientID, modalityID, startTime, stopTime) " + "VALUES(?,?,?,?,?,?)";
+    			query = "INSERT INTO appointment " + "(userID, patientID, modalityID, startTime, stopTime, notes, status) " + "VALUES(?,?,?,?,?,?,?)";
     			try (Connection conn = RISDbConfig.getConnection();
     					PreparedStatement insertprofile = conn.prepareStatement(query);) {
     				
     				/*
     				 *  Not sure how the appID should be inserted since it is auto generated in the database
     				 */
-    					//insertprofile.setString(1, newApp.getAppId());
-    					insertprofile.setString(2, newApp.getUserId());
-    					insertprofile.setString(3, newApp.getPatientId());
-    					insertprofile.setString(4, ""+newApp.getModalityId());
-    					insertprofile.setString(5, ""+newApp.getStartTime());
-    					insertprofile.setString(6, ""+newApp.getStopTime());
+    					
+    					insertprofile.setString(1, newApp.getUserId());
+    					insertprofile.setString(2, newApp.getPatientId());
+    					insertprofile.setString(3, ""+newApp.getModalityId());
+    					insertprofile.setString(4, newApp.getStartTime());
+    					insertprofile.setString(5, newApp.getStopTime());
+    					insertprofile.setString(6, newApp.getNotes());
+    					insertprofile.setString(7, newApp.getStatus());
     					
     				
     					insertprofile.execute();
