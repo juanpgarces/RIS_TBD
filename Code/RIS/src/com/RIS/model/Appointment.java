@@ -18,8 +18,6 @@ public class Appointment {
 		this.stopTime  = new SimpleStringProperty(stopTime);
 		this.notes = new SimpleStringProperty(notes);
 	}
-	
-	public Appointment(String patientId, int modalityId, String date,String startTime, String stopTime, String notes) {
 
 	/* Retrieve Information */
 	public Appointment(String patientId, int modalityId, String date,String startTime, String stopTime, String notes) {

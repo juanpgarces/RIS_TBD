@@ -33,8 +33,8 @@ public class AddNewAppointmentController {
     @FXML private TextArea txtNotes;
     @FXML private ComboBox<String> comboModality;
     @FXML private Text txtSuccess;
-    private String PatientID, Notes, UserID, date, modality;
-	private int setModalityId, startTime, stopTime;
+    private String PatientID, Notes, UserID, date, modality, startTime, stopTime;
+	private int setModalityId;
     
     public void initialize() {
     	
@@ -178,11 +178,11 @@ public class AddNewAppointmentController {
 		this.date = date;
 	}
 
-	public void setStartTime(int startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-	public void setStopTime(int stopTime) {
+	public void setStopTime(String stopTime) {
 		this.stopTime = stopTime;
 	}	
 }
