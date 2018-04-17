@@ -4,10 +4,12 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Appointment {
 
-	private SimpleStringProperty userId, patientId, notes, date, startTime, stopTime;
+	private SimpleStringProperty userId, patientId, notes, date, startTime, stopTime, status;
 	private int modalityId, appointmentId;
-	private boolean complete;
 
+	//status = 'new' when initially created
+	//status = 'pending' when waiting on a radiologist's transcript
+	//status = 'completed' when radiologist has added transcript.
 
 	public Appointment(String userId, String patientId, int modalityId, String date,String startTime, String stopTime, String notes) {
 		
@@ -18,7 +20,7 @@ public class Appointment {
 		this.startTime  = new SimpleStringProperty(startTime);
 		this.stopTime  = new SimpleStringProperty(stopTime);
 		this.notes = new SimpleStringProperty(notes);
-		this.complete = false;
+		this.status = new SimpleStringProperty("new") ;
 	}
 
 	/* Retrieve Information */
@@ -31,7 +33,7 @@ public class Appointment {
 		this.startTime  = new SimpleStringProperty(startTime);
 		this.stopTime  = new SimpleStringProperty(stopTime);
 		this.notes = new SimpleStringProperty(notes);
-		this.complete = false;
+		this.status = new SimpleStringProperty("new");
 	}
 	
 	public Appointment(int appointmentId, String patientId, int modalityId, String date,String startTime, String stopTime, String notes) {
@@ -43,7 +45,7 @@ public class Appointment {
 		this.startTime  = new SimpleStringProperty(startTime);
 		this.stopTime  = new SimpleStringProperty(stopTime);
 		this.notes = new SimpleStringProperty(notes);
-		this.complete = false;
+		this.status = new SimpleStringProperty("new");
 	}
 	
 	/* Start of GETTERS AND SETTERS */
@@ -110,10 +112,10 @@ public class Appointment {
 	public void setNotes(String notes) {
 		this.notes = new SimpleStringProperty(notes);
 	}
-	public boolean getComplete(){
-		return complete;
+	public String getStatus(){
+		return status.get();
 	}
-	public void setComplete(boolean complete){
-		this.complete = complete;
+	public void setStatus(String status){
+		this.status = new SimpleStringProperty(status);
 	}
 }
