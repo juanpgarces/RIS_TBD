@@ -116,12 +116,13 @@ public class AddNewAppointmentController {
     		
     	
     	// creates appointment object. 
-    	/*Appointment newApp = new Appointment(
+    	Appointment newApp = new Appointment(
     			userID,
     			txtId.getText(),
-    			comboModality.getValue(),
+    			modID,
+    			txtDate.getValue().toString(),
     			txtTime.getText(),
-    			//endTime = txtTime.getText + duration,
+    			txtTime.getText(), //endTime = txtTime.getText + duration,
     			orderNotes
     			);		
     	
@@ -137,12 +138,12 @@ public class AddNewAppointmentController {
     				/*
     				 *  Not sure how the appID should be inserted since it is auto generated in the database
     				 */
-    				/*	//insertprofile.setString(1, newApp.getAppId());
+    					//insertprofile.setString(1, newApp.getAppId());
     					insertprofile.setString(2, newApp.getUserId());
     					insertprofile.setString(3, newApp.getPatientId());
     					insertprofile.setString(4, ""+newApp.getModalityId());
-    					insertprofile.setString(5, newApp.getStartTime());
-    					insertprofile.setString(6, newApp.getStopTime());
+    					insertprofile.setString(5, ""+newApp.getStartTime());
+    					insertprofile.setString(6, ""+newApp.getStopTime());
     					
     				
     					insertprofile.execute();
@@ -150,7 +151,7 @@ public class AddNewAppointmentController {
     					
     				} catch (Exception e) {
     					System.out.println("Status: operation failed due to "+e);
-    					}    */
+    					}    
     }
 
 	public void setID(String id) {
