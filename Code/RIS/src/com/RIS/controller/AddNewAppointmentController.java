@@ -29,12 +29,13 @@ import javafx.scene.Node;
 public class AddNewAppointmentController {
 
     @FXML private DatePicker txtDate; 
-    @FXML private TextField txtTime, txtFirstName, txtLastName, txtId;
+    @FXML private TextField txtFirstName, txtLastName, txtId;
     @FXML private TextArea txtNotes;
     @FXML private ComboBox<String> comboModality;
+    @FXML private ComboBox<Integer> comboHour, comboMinute;
     @FXML private Text txtSuccess;
-    private String PatientID, Notes, UserID, date, modality, startTime, stopTime;
-	private int setModalityId;
+    private String PatientID, Notes, UserID, date, modality;
+	private int setModalityId, startTime, stopTime;
     
     public void initialize() {
     	
@@ -60,17 +61,29 @@ public class AddNewAppointmentController {
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
     			}
+    	comboHour.getItems().removeAll(comboHour.getItems());
+    	comboMinute.getItems().removeAll(comboMinute.getItems());
+    	for(int hour=8; hour<=12; hour++)
+    		comboHour.getItems().add(hour);
+    	for(int hour=1; hour<=4; hour++)
+    		comboHour.getItems().add(hour);
+    	comboMinute.getItems().add(00);
+    	comboMinute.getItems().add(15);
+    	comboMinute.getItems().add(30);
+    	comboMinute.getItems().add(45);
     }
  
     public void createAppointment(ActionEvent event){
     	
     	int modID = 0;
     	String userID = null;
-    	int duration;
+    	int duration = 0;
     	String orderNotes = "";
     	
+    	
     	  //Gets modality ID and duration based on the modality selected in the comboBox
-    	String query = "SELECT modID, duration, notes FROM modality WHERE name='"+comboModality.getValue()+"'";
+    	String query = "SELECT modID, duration FROM modality WHERE name='"+comboModality.getValue()+"'"
+    			+ " AND NOT EXISTS(SELECT modID FROM appointment WHERE modID=modality.modID);";
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
     		ResultSet rs = st.executeQuery();
@@ -113,7 +126,14 @@ public class AddNewAppointmentController {
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
     			}  
-    		
+    	
+    	//converts time to decimal
+    	if (comboHour.getValue() <=12) //accounts for AM or PM
+    		startTime = (comboHour.getValue()+12)*100 + comboMinute.getValue()*(5/3);
+    	else
+    		startTime = comboHour.getValue()*100 + comboMinute.getValue()*(5/3);
+    	
+    	stopTime = startTime + duration*(5/3);
     	
     	// creates appointment object. 
     	Appointment newApp = new Appointment(
@@ -121,8 +141,8 @@ public class AddNewAppointmentController {
     			txtId.getText(),
     			modID,
     			txtDate.getValue().toString(),
-    			txtTime.getText(),
-    			txtTime.getText(), //endTime = txtTime.getText + duration,
+    			startTime,
+    			stopTime, //endTime = txtTime.getText + duration,
     			orderNotes
     			);		
     	
@@ -142,8 +162,8 @@ public class AddNewAppointmentController {
     					insertprofile.setString(1, newApp.getUserId());
     					insertprofile.setString(2, newApp.getPatientId());
     					insertprofile.setString(3, ""+newApp.getModalityId());
-    					insertprofile.setString(4, newApp.getStartTime());
-    					insertprofile.setString(5, newApp.getStopTime());
+    					insertprofile.setString(4, ""+newApp.getStartTime());
+    					insertprofile.setString(5, ""+newApp.getStopTime());
     					insertprofile.setString(6, newApp.getNotes());
     					insertprofile.setString(7, newApp.getStatus());
     					
@@ -180,11 +200,11 @@ public class AddNewAppointmentController {
 		this.date = date;
 	}
 
-	public void setStartTime(String startTime) {
+	public void setStartTime(int startTime) {
 		this.startTime = startTime;
 	}
 
-	public void setStopTime(String stopTime) {
+	public void setStopTime(int stopTime) {
 		this.stopTime = stopTime;
 	}	
 }
