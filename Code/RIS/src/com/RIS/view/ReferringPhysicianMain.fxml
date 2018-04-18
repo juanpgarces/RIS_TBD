@@ -10,59 +10,68 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"  fx:controller="com.RIS.controller.ReferringPhysicianMainController">
    <children>
-      <Button layoutX="752.0" layoutY="301.0" mnemonicParsing="false" onAction="#newPatient" prefHeight="59.0" prefWidth="112.0" text="Submit Patient" />
-      <TextField fx:id="txtSearch" alignment="CENTER" layoutX="49.0" layoutY="96.0" prefHeight="35.0" prefWidth="177.0" promptText="Patient ID" />
+   	<TextField fx:id="txtSearch" alignment="CENTER" layoutX="49.0" layoutY="96.0" prefHeight="35.0" prefWidth="177.0" promptText="Patient ID" />
       <Button layoutX="48.0" layoutY="154.0" mnemonicParsing="false" onAction="#searchPatient" prefHeight="52.0" prefWidth="177.0" text="Search" />
-      <Button layoutX="1095.0" layoutY="655.0" mnemonicParsing="false" onAction="#Logout" text="Log Out" />
       <Label layoutX="55.0" layoutY="33.0" prefHeight="30.0" prefWidth="164.0" text="Search for Patient">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboModality" layoutX="934.0" layoutY="116.0" prefHeight="30.0" prefWidth="220.0" promptText="Please Select a Modality" />
+      <Button layoutX="752.0" layoutY="301.0" mnemonicParsing="false" onAction="#newPatient" prefHeight="59.0" prefWidth="112.0" text="Submit Patient" />     
+      <ComboBox fx:id="txtModality" layoutX="934.0" layoutY="116.0" prefHeight="30.0" prefWidth="220.0" promptText="Please Select a Modality" />
       <TextArea fx:id="txtOrderNotes" layoutX="934.0" layoutY="217.0" prefHeight="177.0" prefWidth="220.0" promptText="Notes" />
       <Button layoutX="934.0" layoutY="422.0" mnemonicParsing="false" onAction="#submitOrder" prefHeight="84.0" prefWidth="220.0" text="Submit Order" />
-      <ComboBox fx:id="comboModality1" layoutX="934.0" layoutY="165.0" prefHeight="30.0" prefWidth="220.0" promptText="Please Select Emergency Level" />
+      <ComboBox fx:id="txtEmergencyLevel" layoutX="934.0" layoutY="165.0" prefHeight="30.0" prefWidth="220.0" promptText="Please Select Emergency Level" />
       <Text layoutX="347.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID:" underline="true">
          <font>
-            <Font name="Bell MT" size="18.0" />
+            <Font  size="18.0" />
          </font>
       </Text>
       <Text layoutX="338.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:" underline="true">
          <font>
-            <Font name="Bell MT" size="18.0" />
+            <Font  size="18.0" />
          </font>
       </Text>
       <Text layoutX="340.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:" underline="true">
          <font>
-            <Font name="Bell MT" size="18.0" />
+            <Font  size="18.0" />
          </font>
       </Text>
       <Text layoutX="294.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" underline="true" wrappingWidth="141.5146484375">
          <font>
-            <Font name="Bell MT" size="18.0" />
+            <Font  size="18.0" />
          </font>
       </Text>
       <Text layoutX="333.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" underline="true">
          <font>
-            <Font name="Bell MT" size="18.0" />
+            <Font  size="18.0" />
          </font>
       </Text>
       <Text layoutX="344.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DOB:" underline="true">
          <font>
-            <Font name="Bell MT" size="18.0" />
+            <Font  size="18.0" />
          </font>
       </Text>
       <Text layoutX="342.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" underline="true">
          <font>
-            <Font name="Bell MT" size="18.0" />
+            <Font  size="18.0" />
          </font>
       </Text>
       <Text layoutX="341.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" underline="true">
          <font>
-            <Font name="Bell MT" size="18.0" />
+            <Font  size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="334.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance:" underline="true">
+         <font>
+            <Font  size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="341.0" layoutY="556.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes:" underline="true">
+         <font>
+            <Font  size="18.0" />
          </font>
       </Text>
       <ComboBox fx:id="txtPatientGender" layoutX="467.0" layoutY="246.0" prefHeight="31.0" prefWidth="231.0" promptText="Select Gender Type" />
@@ -74,19 +83,10 @@
       <TextField fx:id="txtPatientDOB" layoutX="467.0" layoutY="305.0" prefHeight="31.0" prefWidth="231.0" promptText="DOB" />
       <TextField fx:id="txtPatientEmail" layoutX="467.0" layoutY="496.0" prefHeight="31.0" prefWidth="231.0" promptText="Email" />
       <TextField fx:id="txtInsuranceType" layoutX="467.0" layoutY="354.0" prefHeight="31.0" prefWidth="231.0" promptText="Insurance" />
-      <Text layoutX="334.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance:" underline="true">
-         <font>
-            <Font name="Bell MT" size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="341.0" layoutY="556.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes:" underline="true">
-         <font>
-            <Font name="Bell MT" size="18.0" />
-         </font>
-      </Text>
       <TextArea fx:id="txtPatientNotes" layoutX="467.0" layoutY="551.0" prefHeight="112.0" prefWidth="231.0" promptText="Notes" />
+      
       <Separator layoutX="269.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="6.0" />
-      <Separator layoutX="909.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="6.0" />
+      <Separator layoutX="891.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="6.0" />
       <Label layoutX="988.0" layoutY="48.0" prefHeight="35.0" prefWidth="112.0" text="New Orders">
          <font>
             <Font size="20.0" />
@@ -97,5 +97,6 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <Button layoutX="1095.0" layoutY="655.0" mnemonicParsing="false" onAction="#Logout" text="Log Out" />
    </children>
 </AnchorPane>

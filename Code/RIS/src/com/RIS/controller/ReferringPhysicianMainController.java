@@ -17,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.RIS.model.Order;
 import com.RIS.model.Patient;
 
 import application.RISDbConfig;
@@ -94,55 +95,54 @@ public class ReferringPhysicianMainController {
 			}
 	    }
 	    @FXML
-	    void submitOrder(ActionEvent event) {
-	    	int modID = 0;
+	    void submitOrder(ActionEvent event) {	    	
 	    	
-	    	String query = "SELECT modID FROM modality WHERE name='"+txtModality.getValue()+"';";
-	    	try (Connection conn = RISDbConfig.getConnection();
-	    			PreparedStatement st = conn.prepareStatement(query);) {
-	    		ResultSet rs = st.executeQuery();
-	    		
-	    		modID = rs.getInt("modID");
-	    		
-	    	    st.close();
-	    		
-	    			
-	    		//System.out.println("Success -> modID=" + modID + "/t duration="+duration);
-	    		} catch (Exception e) {
-	    			System.out.println("Status: operation failed due to "+e);
-	    			}  
-	  
-	    	
-	    	
-	    	
-	    	/*Order newOrder = new Order(
-	    			emergencyLevel.getText(),
-	    			//userID,
-	    			patientId.getText(),
-	    			modID,
-	    			notes.getText()
+	    	Order newOrder = new Order(
+	    			txtEmergencyLevel.getValue(),
+	    			ID,
+	    			txtPatientId.getText(),
+	    			txtModality.getValue(),
+	    			txtOrderNotes.getText()
 	    			);
-	    	//public Order(String emergencyLevel, String userID, String patientID, int modalityID, String notes)
 	    	
-	    	query = "INSERT INTO orders " + "(emergencyLevel, userID, patientID, modalityID, notes) " + "VALUES(?,?,?,?,?)";
+	    	String query = "INSERT INTO orders " + "(emergencyLevel, userID, patientID, modality, notes) " + "VALUES(?,?,?,?,?)";
 			
 			try (Connection conn = RISDbConfig.getConnection();
 				PreparedStatement insertprofile = conn.prepareStatement(query);) {
 				
-				
 				insertprofile.setString(1, newOrder.getEmergencyLevel());
 				insertprofile.setString(2, newOrder.getUserId());
 				insertprofile.setString(3, newOrder.getPatientId());
-				insertprofile.setString(4, "" + newOrder.getModalityId());
+				insertprofile.setString(4, newOrder.getModality());
 				insertprofile.setString(5, newOrder.getNotes());
-				
 			
 				insertprofile.execute();
-				//txtSuccess.setText("Success! User Has Been Created");
+				//message to successfull
+       			Alert alert = new Alert(AlertType.ERROR);
+	    		alert.setTitle("Order Created");
+	    		alert.setHeaderText("Order Created");
+	    		alert.setContentText("A new Order has been created.");
+	    		alert.showAndWait();
+	    		
+	    		//SET EVERYTHING TO BLANK
+	    		txtPatientId.setText("");
+				txtPatientFirstName.setText("");
+				txtPatientLastName.setText("");
+				txtPatientGender.setValue("");
+				txtPatientDOB.setText("");
+				txtInsuranceType.setText("");
+				txtPatientAddress.setText("");
+				txtPatientPhoneNumber.setText("");
+				txtPatientEmail.setText("");
+				txtPatientNotes.setText("");
+				txtEmergencyLevel.setValue("");
+    			txtModality.setValue("");
+    			txtOrderNotes.setText("");
+	    		
 				
 			} catch (Exception e) {
 				System.out.println("Status: operation failed due to "+e);
-				} */
+				} 
 	    }
 
 	    public void newPatient(ActionEvent event) throws IOException{
