@@ -15,8 +15,6 @@ import javafx.event.ActionEvent;
 
 public class ReferringPhysicianMainController {
 	
-	
- 
 
 	    @FXML private TextField searchId;
 	    @FXML private Button searchIdButton;

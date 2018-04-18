@@ -87,8 +87,8 @@ public class AddNewAppointmentController {
     	
     	  //Gets modality ID and duration based on the modality selected in the comboBox
     	String query = "SELECT modID, duration FROM modality WHERE name='"+comboModality.getValue()+"'"
-    			+ " AND NOT EXISTS(SELECT modID FROM appointment WHERE modID=modality.modID"
-    			+ " AND (" + startTime + " AND " + startTime+ " + duration ) >startTime AND" + startTime + "< stopTime"
+    			+ " AND NOT EXISTS(SELECT modID FROM appointment WHERE modID= modality.modID"
+    			+ " AND (" + startTime + " AND " + startTime+ " + duration ) > startTime AND" + startTime + "< stopTime"
     			+ " AND );"  ;
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
