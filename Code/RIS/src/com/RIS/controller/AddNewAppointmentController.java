@@ -79,11 +79,17 @@ public class AddNewAppointmentController {
     	String userID = null;
     	int duration = 0;
     	String orderNotes = "";
+    	if (comboHour.getValue() <=12) //accounts for AM or PM
+    		startTime = (comboHour.getValue()+12)*100 + comboMinute.getValue()*(5/3);
+    	else
+    		startTime = comboHour.getValue()*100 + comboMinute.getValue()*(5/3);
     	
     	
     	  //Gets modality ID and duration based on the modality selected in the comboBox
     	String query = "SELECT modID, duration FROM modality WHERE name='"+comboModality.getValue()+"'"
-    			+ " AND NOT EXISTS(SELECT modID FROM appointment WHERE modID=modality.modID);";
+    			+ " AND NOT EXISTS(SELECT modID FROM appointment WHERE modID=modality.modID"
+    			+ " AND (" + startTime + " AND " + startTime+ " + duration ) >s tartTime AND" + startTime + "< stopTime"
+    			+ " AND );"  ;
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
     		ResultSet rs = st.executeQuery();
@@ -128,12 +134,12 @@ public class AddNewAppointmentController {
     			}  
     	
     	//converts time to decimal
-    	if (comboHour.getValue() <=12) //accounts for AM or PM
-    		startTime = (comboHour.getValue()+12)*100 + comboMinute.getValue()*(5/3);
-    	else
-    		startTime = comboHour.getValue()*100 + comboMinute.getValue()*(5/3);
+//    	if (comboHour.getValue() <=12) //accounts for AM or PM
+//    		startTime = (comboHour.getValue()+12)*100 + comboMinute.getValue()*(5/3);
+//    	else
+//    		startTime = comboHour.getValue()*100 + comboMinute.getValue()*(5/3);
     	
-    	stopTime = startTime + duration*(5/3);
+    	stopTime = startTime + duration;
     	
     	// creates appointment object. 
     	Appointment newApp = new Appointment(
