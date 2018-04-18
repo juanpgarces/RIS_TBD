@@ -43,10 +43,8 @@ public class RadiologistController {
     @FXML
     void submitReport(ActionEvent event) {
     	
-        ObservableList<Appointment> selectedRows, allApps;
+        ObservableList<Appointment> selectedRows;
         
-        allApps = tableViewApp.getItems();
-    	
         //this gives us the rows that were selected
         selectedRows = tableViewApp.getSelectionModel().getSelectedItems();
     	
@@ -57,9 +55,10 @@ public class RadiologistController {
 						selectedRows.get(0).getModalityId());
 		
 		String query = "INSERT INTO transcripts " + "(transcript, appointment_appID, appointment_userID, appointment_patientID, appointment_modalityID) " + "values(?,?,?,?,?)";
+		String queryapp = "UPDATE appointments SET status = 'Completed' WHERE appointmentID = "+newTranscript.getAppointmentId()+" ;";
 		
 		try (Connection conn = RISDbConfig.getConnection();
-		PreparedStatement insertTranscript = conn.prepareStatement(query);) {
+		PreparedStatement insertTranscript = conn.prepareStatement(query);PreparedStatement updateApp = conn.prepareStatement(queryapp);) {
 		
 		insertTranscript.setString(1, newTranscript.getTranscript());
 		insertTranscript.setInt(2, newTranscript.getAppointmentId());
@@ -68,8 +67,8 @@ public class RadiologistController {
 		insertTranscript.setInt(5, newTranscript.getModalityId());
 		
 		insertTranscript.execute();
-		//Delete Appointment from the current table or mark it as complete and refresh the table.
-		//allApps.remove(Appointment);
+		//Changes appointment Status to Completed 
+		updateApp.execute();
 		
 		} catch (Exception e) {
 		System.out.println("Status: operation failed due to "+e);
@@ -99,7 +98,7 @@ public class RadiologistController {
        		rs = displayapp.executeQuery();
        		// check to see if receiving any data
        		while (rs.next()){
-       			appointment.add(new Appointment(rs.getInt("appointmentID"), rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date").toString(), rs.getString("startTime").toString(), rs.getString("stopTime").toString(), rs.getString("notes").toString()));
+       			appointment.add(new Appointment(rs.getInt("appointmentID"), rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date").toString(), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
        		}
        	}catch(SQLException ex){
        		RISDbConfig.displayException(ex);

@@ -5,11 +5,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import com.RIS.model.Appointment;
 import com.RIS.model.Bill;
 import com.RIS.model.Order;
-import com.RIS.model.Patient;
 
 import application.RISDbConfig;
 import javafx.collections.FXCollections;
@@ -19,6 +20,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,7 +33,6 @@ public class ReceptionistMainController {
 		@FXML private TableView<Order> tableViewOrder;
 		@FXML private TableView<Appointment> tableViewAppointment;
 		@FXML private TableView<Bill> tableViewBill;
-		
 	    @FXML private TableColumn<Order, Integer> colOrderId;
 	    @FXML private TableColumn<Order, String> colEmergency, colUserId, colPatientId, colNotesOrder, colModalityorder;
 	    @FXML private TableColumn<Appointment, String> colStartTime, colStopTime, colDate, colPatientidApp, colNotesApp;
@@ -38,6 +40,9 @@ public class ReceptionistMainController {
 	    @FXML private TableColumn<Bill, Integer> billId, appIdBill, modalityIdBill;
 	    @FXML private TableColumn<Bill, Double> billCost;
 	    @FXML private TableColumn<Bill, String> userIdBill, patientIdBill;
+	    @FXML private ComboBox<Integer> comboShift;
+	    @FXML private DatePicker datepicker;
+	    
 	    private String ID;
 	    
 	    @FXML
@@ -48,8 +53,11 @@ public class ReceptionistMainController {
 	    }
 	    @FXML
 	    public void onSelectedApp() {
-			tableViewAppointment.setItems(getAppointmentList()); 
-
+	    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    	LocalDate localDate = LocalDate.now();
+	    	
+			tableViewAppointment.setItems(getAppointmentList(dtf.format(localDate)));
+			datepicker.setValue(localDate);
 	    }
 	    @FXML
 	    public void onSelectedBill() {
@@ -58,6 +66,26 @@ public class ReceptionistMainController {
 	    @FXML
 	    public void onSelectedOrder() {
 	    	tableViewOrder.setItems(getOrderList());
+	    }
+	    @FXML
+	    public void shiftSchedule(ActionEvent event) {
+	    	comboShift.getValue();
+	    	//Query to move all appointments in that day
+	    }
+	    @FXML
+	    public void refreshApps(ActionEvent event) {
+	    	
+	    	if(datepicker.getValue() != null) {
+		    	LocalDate localdate = datepicker.getValue();
+		    	tableViewOrder.setItems(getOrderList());
+				tableViewAppointment.setItems(getAppointmentList(localdate.toString())); 
+	    	}
+	    	else {
+		    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		    	LocalDate localDate = LocalDate.now();
+		    	
+				tableViewAppointment.setItems(getAppointmentList(dtf.format(localDate)));
+	    	}
 	    }
 	    // ObservableList: A list that enables listeners to track changes when they occur
 	    // The following  method will return an ObservableList of  object
@@ -101,7 +129,7 @@ public class ReceptionistMainController {
 	    
 	    // ObservableList: A list that enables listeners to track changes when they occur
 	    // The following  method will return an ObservableList of  object
-	    public ObservableList<Appointment>  getAppointmentList(){
+	    public ObservableList<Appointment>  getAppointmentList(String date){
 	    	
 	    	//Appointment Table
 	    	colDate.setCellValueFactory(new PropertyValueFactory<Appointment, String>("date"));
@@ -115,7 +143,7 @@ public class ReceptionistMainController {
 	    	
 	    	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
 
-	        String SQLQuery = "SELECT * FROM appointment ORDER BY startTime ASC;"; //ADD WHERE DATE == ''
+	        String SQLQuery = "SELECT * FROM appointmentc WHERE date = '"+date+"' ORDER BY startTime ASC;";
 	       	ResultSet rs = null;
 
 	       	try(
