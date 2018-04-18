@@ -79,7 +79,7 @@
             <Label fx:id="lblPatientId" layoutX="424.0" layoutY="94.0" text="N/A" />
             <Label fx:id="lblNotesPatient" layoutX="424.0" layoutY="246.0" text="N/A" />
             <Label fx:id="lblGender" layoutX="424.0" layoutY="219.0" text="N/A" />
-            <Button layoutX="1094.0" layoutY="478.0" mnemonicParsing="false" onAction="#loadImages" prefHeight="30.0" prefWidth="107.0" text="Load Image" />
+            <Button layoutX="1094.0" layoutY="478.0" mnemonicParsing="false" onAction="" prefHeight="30.0" prefWidth="107.0" text="Load Image" />
             <Label layoutX="1115.0" layoutY="13.0" text="Images">
                <font>
                   <Font size="20.0" />
