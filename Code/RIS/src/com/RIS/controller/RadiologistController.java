@@ -149,7 +149,7 @@ public class RadiologistController {
             lblNotesPatient.setText(newPatient.getNotes());
             
             //Load Images
-       		tableViewPacs.setItems(loadImages(newPatient.getidPatient(), selectedRows.get(0).getAppointmentId()));
+       		tableViewPacs.setItems(LoadImages(newPatient.getidPatient(), selectedRows.get(0).getAppointmentId()));
        		
        	}catch(SQLException ex){
        		RISDbConfig.displayException(ex);
@@ -161,7 +161,7 @@ public class RadiologistController {
 		this.ID = text;	
 	}
 	
-    public ObservableList<PACS> loadImages(String patientId, int appointmentId) {
+    public ObservableList<PACS> LoadImages(String patientId, int appointmentId) {
     	
     	colImageId.setCellValueFactory(new PropertyValueFactory<PACS, Integer>("imageId"));
     	tableViewPacs.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
