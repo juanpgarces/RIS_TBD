@@ -105,8 +105,8 @@ public class ReceptionistMainController {
 	    	
 	    	//Appointment Table
 	    	colDate.setCellValueFactory(new PropertyValueFactory<Appointment, String>("date"));
-	    	colStartTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTime"));
-	    	colStopTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("stopTime"));
+	    	colStartTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTimeToString"));
+	    	colStopTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("stopTimeToString"));
 	    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modality"));
 	    	colPatientidApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("patientId"));
 	    	colNotesApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("notes"));
@@ -125,7 +125,7 @@ public class ReceptionistMainController {
 	       		rs = displayappointment.executeQuery();
 	       		while (rs.next()){
 	       			
-	       			appointment.add(new Appointment(rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getString("startTime").toString(), rs.getString("stopTime").toString(), rs.getString("notes").toString()));
+	       			appointment.add(new Appointment(rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
 	       		}
 	       	}catch(SQLException ex){
 	       		RISDbConfig.displayException(ex);
