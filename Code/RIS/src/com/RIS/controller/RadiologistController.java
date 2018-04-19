@@ -1,9 +1,13 @@
 package com.RIS.controller;
 
+import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.imageio.ImageIO;
 
 import com.RIS.model.Appointment;
 import com.RIS.model.PACS;
@@ -27,6 +31,7 @@ public class RadiologistController {
     @FXML private TableView<PACS> tableViewPacs;
 
     @FXML private TableColumn<PACS, Integer> colImageId;
+    @FXML private TableColumn<PACS, String> colImagePath;
     @FXML private TableColumn<Appointment, String> colPatientId;
     @FXML private TableColumn<Appointment, String> colModality;
     @FXML private TableColumn<Appointment, String> colDate;
@@ -38,6 +43,21 @@ public class RadiologistController {
     @FXML
     public void initialize() {
     	tableViewApp.setItems(refreshApp());
+    }
+    @FXML
+    void loadImage(ActionEvent event) {
+    	ObservableList<PACS> selectedRows;
+    	
+    	selectedRows = tableViewPacs.getSelectionModel().getSelectedItems();
+    	
+    	URL urlToImage = this.getClass().getResource(selectedRows.get(0).getImage());
+    	try {
+			ImageIO.read(urlToImage);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     @FXML
@@ -85,6 +105,7 @@ public class RadiologistController {
     	colDate.setCellValueFactory(new PropertyValueFactory<Appointment, String>("date"));
     	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modalityId"));
     	
+    	tableViewPacs.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     	tableViewApp.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     	
     	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
@@ -155,11 +176,6 @@ public class RadiologistController {
        	}
     	
     }
-
-	public void setID(String text) {
-		this.ID = text;	
-	}
-	
     public ObservableList<PACS> LoadImages(String patientId, int appointmentId) {
     	
     	colImageId.setCellValueFactory(new PropertyValueFactory<PACS, Integer>("imageId"));
@@ -191,5 +207,10 @@ public class RadiologistController {
        	}
         return pacs;
     }
+    
+	public void setID(String text) {
+		this.ID = text;	
+	}
+	
 
 }

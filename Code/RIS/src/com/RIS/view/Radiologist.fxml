@@ -93,7 +93,8 @@
             </Label>
             <TableView fx:id="tableViewPacs" layoutX="1046.0" layoutY="61.0" prefHeight="387.0" prefWidth="202.0">
               <columns>
-                <TableColumn fx:id="colImageId" prefWidth="201.0" text="Image ID" />
+                <TableColumn fx:id="colImageId" prefWidth="150.0" text="Image ID" />
+                  <TableColumn fx:id="colImagePath" minWidth="50.0" prefWidth="0.0" text="Path" />
               </columns>
             </TableView>
             <TextArea fx:id="lblTranscript" layoutX="649.0" layoutY="61.0" prefHeight="505.0" prefWidth="368.0" />

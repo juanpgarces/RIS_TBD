@@ -40,16 +40,16 @@
                   <Button layoutX="173.0" layoutY="558.0" mnemonicParsing="false" onAction="#NewAppfromOrder" prefHeight="37.0" prefWidth="116.0" text="Delete" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="911.0" AnchorPane.topAnchor="558.0" />
                   <TableView fx:id="tableViewAppointment" layoutX="18.0" layoutY="14.0" prefHeight="458.0" prefWidth="1164.0" AnchorPane.bottomAnchor="199.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="14.0">
                      <columns>
-                     	<TableColumn fx:id="colDate" prefWidth="75.0" text="StartTime" />
-                        <TableColumn fx:id="colStartTime" prefWidth="75.0" text="StartTime" />
-                        <TableColumn fx:id="colStopTime" prefWidth="109.0" text="Date" />
+                     	<TableColumn fx:id="colStartTime" prefWidth="75.0" text="StartTime" />
+                        <TableColumn fx:id="colStopTime" prefWidth="75.0" text="StopTime" />
+                        <TableColumn fx:id="colDate" prefWidth="109.0" text="Date" />
                         <TableColumn fx:id="colModality" prefWidth="93.0" text="Modality" />
                         <TableColumn fx:id="colPatientidApp" prefWidth="173.0" text="First Name" />
              	        <TableColumn fx:id="colNotesApp" prefWidth="344.0" text="Notes" />
                      </columns>
                   </TableView>
                   <Separator layoutX="844.0" layoutY="472.0" orientation="VERTICAL" prefHeight="200.0" />
-                  <ComboBox layoutX="926.0" layoutY="536.0" prefHeight="34.0" prefWidth="193.0" promptText="Please Select Amount" />
+                  <ComboBox fx:id="comboShift" layoutX="926.0" layoutY="536.0" prefHeight="34.0" prefWidth="193.0" promptText="Please Select Amount" />
                   <Separator layoutX="319.0" layoutY="470.0" orientation="VERTICAL" prefHeight="200.0" />
                   <Button layoutX="980.0" layoutY="593.0" mnemonicParsing="false" onAction="#shiftSchedule" prefHeight="29.0" prefWidth="86.0" text="Shift " />
                   <Label layoutX="960.0" layoutY="488.0" text="Shift Schedule">

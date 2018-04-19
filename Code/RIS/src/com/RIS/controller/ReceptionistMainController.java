@@ -71,6 +71,10 @@ public class ReceptionistMainController {
 	    public void shiftSchedule(ActionEvent event) {
 	    	comboShift.getValue();
 	    	//Query to move all appointments in that day
+	    	
+	    	//And Appointment are past last 
+	    	String query = "UPDATE Appointments SET startTime = startTime + "+comboShift.getValue()+",  WHERE date = '"+datepicker.getValue()+"';";
+	    	
 	    }
 	    @FXML
 	    public void refreshApps(ActionEvent event) {
