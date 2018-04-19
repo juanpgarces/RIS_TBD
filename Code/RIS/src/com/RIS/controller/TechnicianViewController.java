@@ -34,14 +34,11 @@ public class TechnicianViewController {
     	String modality = "";
     	String physicianName = "";
     	
-    	String query = "SELECT name FROM modality WHERE";
+    	String query = "";
     	ResultSet rs=null;
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
-    		modality = rs.getString("name");
-    		
-    	    st.close();
-    	    
+    		]
             while(rs.next()) {
             	//comboModality.getItems().add(rs.getString("name"));
             }
