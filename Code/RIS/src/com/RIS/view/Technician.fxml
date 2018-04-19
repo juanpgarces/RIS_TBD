@@ -43,7 +43,7 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="434.0" prefWidth="396.0">
                            <children>
-                              <Button layoutX="137.0" layoutY="202.0" mnemonicParsing="false" onAction="#browse" prefHeight="38.0" prefWidth="122.0" text="Browse..." />
+                              <Button layoutX="137.0" layoutY="202.0" mnemonicParsing="false" onAction="#imageSelect" prefHeight="38.0" prefWidth="122.0" text="Browse..." />
                               <Button layoutX="137.0" layoutY="256.0" mnemonicParsing="false" onAction="#submit" prefHeight="38.0" prefWidth="122.0" text="Submit" />
                            </children>
                         </AnchorPane>

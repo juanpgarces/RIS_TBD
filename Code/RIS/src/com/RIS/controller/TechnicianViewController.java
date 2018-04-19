@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.imageio.ImageIO;
 
@@ -39,22 +41,10 @@ public class TechnicianViewController {
     private String ID;
     @FXML
     void initialize() { 
-//    	
-//    	String modality = "";
-//    	String physicianName = "";
-//    	
-//    	String query = "";
-//    	ResultSet rs=null;
-//    	try (Connection conn = RISDbConfig.getConnection();
-//    			PreparedStatement st = conn.prepareStatement(query);) {
-//    		]
-//            while(rs.next()) {
-//            	//comboModality.getItems().add(rs.getString("name"));
-//            }
-//    		} catch (Exception e) {
-//    			System.out.println("Status: operation failed due to "+e);
-//    			}
+    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    	LocalDate localDate = LocalDate.now();
     	
+		techTable.setItems(getAppointmentList(dtf.format(localDate)));
     }
 
     public ObservableList<Appointment>  getAppointmentList(String date){
@@ -71,7 +61,7 @@ public class TechnicianViewController {
     	
     	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
 
-        String SQLQuery = "SELECT * FROM appointment WHERE date = '"+date+"' ORDER BY startTime ASC;";
+        String SQLQuery = "SELECT * FROM appointment WHERE date = '"+date+"' AND status='new' ORDER BY startTime ASC;";
        	ResultSet rs = null;
 
        	try(
@@ -95,11 +85,6 @@ public class TechnicianViewController {
     }
     
 
-
-    @FXML
-    void browse(ActionEvent event) {
-
-    }
     
     
     @FXML
