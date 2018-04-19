@@ -7,8 +7,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="655.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="655.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.5" layoutX="54.0" layoutY="656.0" orientation="VERTICAL" prefHeight="898.0" prefWidth="829.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -16,12 +17,11 @@
                <children>
                   <TableView fx:id="tachTable" layoutX="409.0" layoutY="103.0" onSort="#displayAppointments" prefHeight="444.0" prefWidth="1018.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="col1" prefWidth="89.0" text="Patient ID" />
-                      <TableColumn fx:id="col2" prefWidth="120.0" text="First Name" />
-                        <TableColumn fx:id="col3" minWidth="0.0" prefWidth="137.0" text="Last Name" />
-                        <TableColumn fx:id="col4" prefWidth="182.0" text="Modality" />
-                        <TableColumn fx:id="col5" prefWidth="269.0" text="Procedure" />
-                        <TableColumn fx:id="col6" prefWidth="220.0" text="Technician" />
+                      <TableColumn fx:id="colTime" prefWidth="89.0" text="Time" />
+                      <TableColumn fx:id="colPatientID" prefWidth="162.0" text="Patient ID" />
+                        <TableColumn fx:id="colUserID" minWidth="0.0" prefWidth="158.0" text="Physician ID" />
+                        <TableColumn fx:id="colModality" prefWidth="227.0" text="Modality" />
+                        <TableColumn fx:id="colEmergencyLevel" prefWidth="180.0" text="Emergency Level" />
                     </columns>
                   </TableView>
                </children>
@@ -34,17 +34,9 @@
                            <children>
                               <AnchorPane layoutX="-3.0" prefHeight="442.0" prefWidth="422.0" style="-fx-border-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exam Date/Time:" textAlignment="RIGHT" wrappingWidth="102.0468682050705" />
-                                    <Text layoutX="14.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Procedure:" textAlignment="RIGHT" wrappingWidth="102.0468682050705" />
-                                    <Text layoutX="14.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason For Exam:" textAlignment="RIGHT" wrappingWidth="102.0468682050705" />
-                                    <Text layoutX="12.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Referring Physician:" />
-                                    <Text layoutX="14.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority:" textAlignment="RIGHT" wrappingWidth="102.0468682050705" />
-                                    <TextField fx:id="techNotesTextArea" alignment="TOP_LEFT" layoutX="28.0" layoutY="204.0" prefHeight="86.0" prefWidth="362.0" promptText="Technician Notes" />
-                                    <Text fx:id="datetimeText" layoutX="137.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="200.13671875" />
-                                    <Text fx:id="procedureText" layoutX="137.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="200.13671875" />
-                                    <Text fx:id="reasonText" layoutX="137.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="200.13671875" />
-                                    <Text fx:id="referringText" layoutX="137.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="200.13671875" />
-                                    <Text fx:id="priorityText" layoutX="137.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" wrappingWidth="200.13671875" />
+                                    <Text layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Physician Notes" textAlignment="CENTER" wrappingWidth="418.0000002561137" />
+                                    <TextField fx:id="textAreaTechNotes" alignment="TOP_LEFT" layoutX="28.0" layoutY="204.0" prefHeight="86.0" prefWidth="362.0" promptText="Technician Notes" />
+                                    <TextFlow fx:id="txtNotes" layoutX="30.0" layoutY="31.0" prefHeight="154.0" prefWidth="362.0" />
                                  </children>
                               </AnchorPane>
                            </children>

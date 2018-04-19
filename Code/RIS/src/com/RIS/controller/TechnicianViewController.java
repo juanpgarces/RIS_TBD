@@ -3,6 +3,7 @@ package com.RIS.controller;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.imageio.ImageIO;
 
@@ -13,61 +14,87 @@ import java.io.IOException;
 import com.RIS.model.Appointment;
 
 import application.RISDbConfig;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 
 public class TechnicianViewController {
 
     @FXML private TableView<Appointment> techTable;
-    @FXML private TableColumn<Appointment, Integer> colPatientID;
-    @FXML private TableColumn<Appointment, String> colFirstName, colLastName, colModality, colPhys, colNotes;
+    @FXML private TableColumn<Appointment, Integer> colPatientID, colUserID;
+    @FXML private TableColumn<Appointment, String> colTime, colModality, colEmergencyLevel;
+    @FXML private TextField textAreaTechNotes;
+    @FXML private TextFlow txtNotes;
+    
     File stored;
     private String ID;
     @FXML
     void initialize() { 
-    	
-    	String modality = "";
-    	String physicianName = "";
-    	
-    	String query = "";
-    	ResultSet rs=null;
-    	try (Connection conn = RISDbConfig.getConnection();
-    			PreparedStatement st = conn.prepareStatement(query);) {
-    		]
-            while(rs.next()) {
-            	//comboModality.getItems().add(rs.getString("name"));
-            }
-    		} catch (Exception e) {
-    			System.out.println("Status: operation failed due to "+e);
-    			}
-    	
+//    	
+//    	String modality = "";
+//    	String physicianName = "";
+//    	
+//    	String query = "";
+//    	ResultSet rs=null;
+//    	try (Connection conn = RISDbConfig.getConnection();
+//    			PreparedStatement st = conn.prepareStatement(query);) {
+//    		]
+//            while(rs.next()) {
+//            	//comboModality.getItems().add(rs.getString("name"));
+//            }
+//    		} catch (Exception e) {
+//    			System.out.println("Status: operation failed due to "+e);
+//    			}
     	
     }
 
+    public ObservableList<Appointment>  getAppointmentList(String date){
+    	
+    	//Appointment Table
+    	colTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTimeToString"));
+    	colPatientID.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("patientId"));
+    	colUserID.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("userId"));
+    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modality"));
+    	colEmergencyLevel.setCellValueFactory(new PropertyValueFactory<Appointment, String>("emergencyLevel"));
+ 
+    	
+    	techTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    	
+    	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
 
+        String SQLQuery = "SELECT * FROM appointment WHERE date = '"+date+"' ORDER BY startTime ASC;";
+       	ResultSet rs = null;
 
-    @FXML
-    private TextField techNotesTextArea;
+       	try(
+       			Connection conn = RISDbConfig.getConnection();
+       			PreparedStatement displayappointment = conn.prepareStatement(SQLQuery);
+       	){
+       		rs = displayappointment.executeQuery();
+       		while (rs.next()){
+       			
+       			appointment.add(new Appointment(rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
+       		}
+       	}catch(SQLException ex){
+       		RISDbConfig.displayException(ex);
+       		return null;
+       	}finally{
+       		if(rs != null){
+       			//rs.close();
+       		}
+       	}
+        return appointment;
+    }
+    
 
-    @FXML
-    private Text datetimeText;
-
-    @FXML
-    private Text procedureText;
-
-    @FXML
-    private Text reasonText;
-
-    @FXML
-    private Text referringText;
-
-    @FXML
-    private Text priorityText;
 
     @FXML
     void browse(ActionEvent event) {
