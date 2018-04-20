@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.RIS.model.Appointment;
+import com.RIS.model.Bill;
 
 import application.RISDbConfig;
 import javafx.collections.FXCollections;
@@ -94,6 +95,17 @@ public class TechnicianViewController {
 
     @FXML
     void submit(ActionEvent event) {
+    	
+    	
+    	
+    	//set status = "pending" in the database.
+
+    }
+    @FXML
+    void browse(ActionEvent event) {
+    	imageSelect(event);
+    	
+    	
     	//set status = "pending" in the database.
 
     }
@@ -128,7 +140,23 @@ public class TechnicianViewController {
     		ex.printStackTrace();
     	}   	
     }
-
+  /*  
+    public Bill createBill(){
+    	double cost = 0.0;
+    	tableViewApp.
+    	
+    	Bill newBill = new Bill(
+    			//cost
+    			//appointment
+    			//userID
+    			//patientID
+    			//modID
+    			)
+    	
+    	
+    	return newBill;
+    }
+*/
 	public void setID(String text) {
 		// TODO Auto-generated method stub
 		this.ID = text;
