@@ -109,7 +109,7 @@ public class RadiologistController {
     	tableViewApp.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     	
     	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
-        String SQLQuery = "SELECT * FROM Appointment ORDER BY appointmentID;";
+        String SQLQuery = "SELECT * FROM appointment WHERE status='pending' ORDER BY appointmentID;";
        	ResultSet rs = null;
 
        	try(

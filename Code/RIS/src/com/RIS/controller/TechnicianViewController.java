@@ -9,12 +9,14 @@ import java.time.format.DateTimeFormatter;
 
 import javax.imageio.ImageIO;
 
+import java.awt.Label;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import com.RIS.model.Appointment;
 import com.RIS.model.Bill;
+import com.RIS.model.Patient;
 
 import application.RISDbConfig;
 import javafx.collections.FXCollections;
@@ -36,7 +38,7 @@ public class TechnicianViewController {
     @FXML private TableColumn<Appointment, Integer> colPatientID, colUserID;
     @FXML private TableColumn<Appointment, String> colTime, colModality, colEmergencyLevel;
     @FXML private TextField textAreaTechNotes;
-    @FXML private TextFlow txtNotes;
+    @FXML private Label txtNotes;
     
     File stored;
     private String ID;
@@ -96,10 +98,33 @@ public class TechnicianViewController {
     @FXML
     void submit(ActionEvent event) {
     	
+    	//load image into PACS
+    	//
+    	//
     	
     	
-    	//set status = "pending" in the database.
+    	
+    	// sets appointment = 'pending' and appends technician notes to physician notes	
+    	ObservableList<Appointment> selectedRows;
+    	selectedRows = techTable.getSelectionModel().getSelectedItems();
+    	
+    	String allNotes = "Physician Notes:\n" + selectedRows.get(0).getNotes()
+    			+ "\nTechnician Notes:\n" + textAreaTechNotes.getText();
+    	
+    	String query = "UPDATE appointments SET status = 'pending', notes='" + allNotes + 
+    			"' WHERE appointmentID =" + selectedRows.get(0).getAppointmentId() +";";
+		try (Connection conn = RISDbConfig.getConnection();
+		PreparedStatement updateApp = conn.prepareStatement(query);) {
+    
+    	updateApp.execute();
 
+		} catch (Exception e) {
+			System.out.println("Status: operation failed due to "+e);
+			
+			}
+		
+		
+    	createBill();
     }
     @FXML
     void browse(ActionEvent event) {
@@ -140,23 +165,52 @@ public class TechnicianViewController {
     		ex.printStackTrace();
     	}   	
     }
-  /*  
+    
+    
+    // Loads physician's notes when row is selected
+    void loadNotes(){
+    	 ObservableList<Appointment> selectedRows;
+
+         //this gives us the rows that were selected
+         selectedRows = techTable.getSelectionModel().getSelectedItems();
+         
+         txtNotes.setText(selectedRows.get(0).getNotes());
+    }
+  
+    //creates bill
     public Bill createBill(){
     	double cost = 0.0;
-    	tableViewApp.
     	
-    	Bill newBill = new Bill(
-    			//cost
-    			//appointment
-    			//userID
-    			//patientID
-    			//modID
-    			)
+    	ObservableList<Appointment> selectedRows;
     	
+    	selectedRows = techTable.getSelectionModel().getSelectedItems();
     	
-    	return newBill;
+       
+    	String query = "SELECT cost FROM modality WHERE modID =" + selectedRows.get(0).getModalityId() +";";
+    	try (Connection conn = RISDbConfig.getConnection();
+    			PreparedStatement st = conn.prepareStatement(query);) {
+    		ResultSet rs = st.executeQuery();
+		
+			cost = rs.getDouble("cost");
+		
+		} catch (Exception e) {
+		System.out.println("Status: operation failed due to "+e);
+		}
+	
+        	
+        	Bill newBill = new Bill(
+        			cost,
+        			selectedRows.get(0).getAppointmentId(),
+        			selectedRows.get(0).getUserId(),
+        			selectedRows.get(0).getPatientId(),
+        			selectedRows.get(0).getModalityId()
+        			);
+        return newBill;
+        
+
     }
-*/
+    
+
 	public void setID(String text) {
 		// TODO Auto-generated method stub
 		this.ID = text;
