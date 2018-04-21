@@ -121,28 +121,32 @@ public class Appointment {
 	public String getStartTimeToString(){
 		int hour, min;
 		String time="";
-		if (startTime >= 1200){
+		/*if (startTime >= 1200){
 			min = (startTime - 1200)*(3/5);
 			hour= ((startTime - min)/100)-12;	
 		}
 		else{
 			hour = startTime/100;
 			min = (startTime-(hour*100))*(3/5);
-		}
-		time = hour + ":" + min;
+		}*/
+		hour = (startTime *60) /3600;
+		min = (startTime *60 - hour) /60;
+		time = startTime + ":" + min;
 		return time;	
 	}
 	public String getStopTimeToString(){
 		int hour, min;
 		String time="";
-		if (stopTime >= 1200){
+		/*if (stopTime >= 1200){
 			min = (stopTime - 1200)*(3/5);
 			hour= ((stopTime - min)/100)-12;	
 		}
 		else{
 			hour = stopTime/100;
 			min = (stopTime-(hour*100))*(3/5);
-		}
+		}*/
+		hour = (stopTime *60) /3600;
+		min = (stopTime *60 - hour) /60;
 		time = hour + ":" + min;
 		return time;	
 	}

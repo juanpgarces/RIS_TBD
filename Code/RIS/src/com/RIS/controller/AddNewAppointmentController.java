@@ -29,9 +29,9 @@ import javafx.scene.Node;
 public class AddNewAppointmentController {
 
     @FXML private DatePicker txtDate; 
-    @FXML private TextField txtFirstName, txtLastName, txtId;
+    @FXML private TextField txtId;
     @FXML private TextArea txtNotes;
-    @FXML private ComboBox<String> comboModality;
+    @FXML private ComboBox<Integer> comboModality;
     @FXML private ComboBox<Integer> comboHour, comboMinute;
     @FXML private Text txtSuccess;
     private String PatientID, Notes, UserID, date, modality;
@@ -44,7 +44,7 @@ public class AddNewAppointmentController {
     	txtNotes.setText(Notes);
     	//SET MODALITY OPTIONS
     	//USER ID
-		date = txtDate.getValue().toString();
+
     	if(date != null) {
 
     		//SET ALL OTHER VARIABLES FOR APPOINTMENT EDIT
@@ -62,9 +62,10 @@ public class AddNewAppointmentController {
     	comboMinute.getItems().add(45);
     }
     public void setComboModality() {
-    	
+		
+		
         comboModality.getItems().removeAll(comboModality.getItems());
-    	String query = "SELECT modID FROM modality WHERE name = ? AND NOT IN (SELECT modID from appointment WHERE status = 'new' AND Date = ? AND startTime = ? );";
+    	String query = "SELECT modID FROM modality WHERE name = ?  AND NOT EXISTS (SELECT modID from appointment WHERE status = 'new' AND Date = ? AND startTime = ? );";
     	ResultSet rs;
     	
     	if (comboHour.getValue() <=12) //accounts for AM or PM
@@ -75,70 +76,48 @@ public class AddNewAppointmentController {
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
     		st.setString(1, modality);
-    		st.setString(2, date);
+    		st.setString(2, txtDate.getValue().toString());
     		st.setInt(3, startTime);
     		rs = st.executeQuery(); 		
-    	    st.close();
     	    
             while(rs.next()) {
-            	comboModality.getItems().add(rs.getInt("modID")+"");
+            	comboModality.getItems().add(rs.getInt("modID"));
             }
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
     			}
-
+    	//System.out.println(txtDate.getValue().toString());
     }
  
     public void createAppointment(ActionEvent event){
     	
-    	int modID = 0;
-    	String userID = null;
     	int duration = 0;
-    	String orderNotes = "";
-    	if (comboHour.getValue() <=12) //accounts for AM or PM
+    	/*if (comboHour.getValue() <=12) //accounts for AM or PM
     		startTime = (comboHour.getValue()+12)*100 + comboMinute.getValue()*(5/3);
     	else
-    		startTime = comboHour.getValue()*100 + comboMinute.getValue()*(5/3);
+    		startTime = comboHour.getValue()*100 + comboMinute.getValue()*(5/3);*/
     	
+    	startTime = (comboHour.getValue()) + (comboMinute.getValue()/60)*100; 
     	
-    	  //Gets modality ID and duration based on the modality selected in the comboBox
-    	String query = "SELECT modID, duration FROM modality WHERE name LIKE %?%"
-    			+ " AND NOT EXISTS(SELECT modID FROM appointment WHERE modID= modality.modID"
-    			+ " AND (? AND ? + duration ) > startTime AND ? < ?" + ");"  ;
+    	//Gets modality ID and duration based on the modality selected in the comboBox
+    	String query = "SELECT duration from modality WHERE modID = ?;"  ;
     	try (Connection conn = RISDbConfig.getConnection();
     		PreparedStatement st = conn.prepareStatement(query);) {
     		
-    		st.setString(1, comboModality.getValue());
-    		st.setInt(2, startTime);
-    		st.setInt(3, startTime);
-    		st.setInt(4, startTime);
-    		st.setInt(5, stopTime);
-    		
+    		st.setInt(1, comboModality.getValue());
+
     		ResultSet rs = st.executeQuery();
-    		
-    		modID = rs.getInt("modID");
     		duration = rs.getInt("duration"); //obtains duration of modality from database
     		
     	    st.close();
-    		
-    			
+	
     		//System.out.println("Success -> modID=" + modID + "/t duration="+duration);
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
-    			}    	
+    			}  	
     	//gets userID from the order with the same patient ID and modality
-    	
-    	/* 
-    	 * 
-    	 * Getting the userID this way will only work if the patient doesn't have multiple orders
-    	 * *************JP - Why get the userID from the order table if we can just enter the Patient's SSN when creating the order. To even make it better
-    	 * 					We can have a button to create new appointment by selecting an order from the Receptionist View and 
-    	 * 					passing that ID + Modality to the New Appointment View
-    	 * for the same modality (which most likely wouldn't be necessary). I'm still looking for
-    	 * the solution online. If I can't, then it's still not essential.
-    	 * 
-    	 */
-    	query = "SELECT userID, notes FROM order WHERE patientID= ? AND modID= ?";
+/*
+    	String query = "SELECT userID, notes FROM order WHERE patientID= ? AND modID= ?";
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
     		
@@ -154,7 +133,7 @@ public class AddNewAppointmentController {
     		System.out.println("Success -> userId =" + userID);
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
-    			}  
+    			}  */
     	
     	//converts time to decimal
 //    	if (comboHour.getValue() <=12) //accounts for AM or PM
@@ -162,41 +141,35 @@ public class AddNewAppointmentController {
 //    	else
 //    		startTime = comboHour.getValue()*100 + comboMinute.getValue()*(5/3);
     	
-    	stopTime = startTime + duration;
+    	stopTime = (startTime/100 + (duration/60)) *100;
     	
     	// creates appointment object. 
     	Appointment newApp = new Appointment(
-    			userID,
-    			txtId.getText(),
-    			modID,
+    			UserID,
+    			PatientID,
+    			comboModality.getValue(),
     			txtDate.getValue().toString(),
     			startTime,
     			stopTime, //endTime = txtTime.getText + duration,
-    			orderNotes
+    			Notes
     			);		
     	
    		//parameters-->	Appointment(String userId, String patientId, int modalityId, String startTime, String stopTime)
-    			
-    			
-    			
     		/// insert appointment into database
-    			query = "INSERT INTO appointment " + "(userID, patientID, modalityID, startTime, stopTime, notes, status) " + "VALUES(?,?,?,?,?,?,?)";
+    		query = "INSERT INTO appointment " + "(userID, patientID, modalityID, date, startTime, stopTime, notes, status) " + "VALUES(?,?,?,?,?,?,?,?)";
     			try (Connection conn = RISDbConfig.getConnection();
     					PreparedStatement insertprofile = conn.prepareStatement(query);) {
     				
-    				/*
-    				 *  Not sure how the appID should be inserted since it is auto generated in the database
-    				 */
-    					
+    				
     					insertprofile.setString(1, newApp.getUserId());
     					insertprofile.setString(2, newApp.getPatientId());
-    					insertprofile.setString(3, ""+newApp.getModalityId());
-    					insertprofile.setString(4, ""+newApp.getStartTime());
-    					insertprofile.setString(5, ""+newApp.getStopTime());
-    					insertprofile.setString(6, newApp.getNotes());
-    					insertprofile.setString(7, newApp.getStatus());
-    					
-    				
+    					insertprofile.setInt(3, newApp.getModalityId());
+    					insertprofile.setString(4, newApp.getDate());
+    					insertprofile.setInt(5, newApp.getStartTime());
+    					insertprofile.setInt(6, newApp.getStopTime());
+    					insertprofile.setString(7, newApp.getNotes());
+    					insertprofile.setString(8, newApp.getStatus());
+
     					insertprofile.execute();
     					txtSuccess.setText("Success! Appointment has been created.");
     					
@@ -207,10 +180,12 @@ public class AddNewAppointmentController {
 
 	public void setID(String id) {
 		this.PatientID = id;
+    	txtId.setText(id);
 	}
 
 	public void setNotes(String notes) {
 		this.Notes = notes;
+    	txtNotes.setText(notes);
 	}
 
 	public void setUserID(String userId) {

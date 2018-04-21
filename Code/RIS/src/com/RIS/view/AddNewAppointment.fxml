@@ -21,18 +21,14 @@
       <Separator layoutX="10.0" layoutY="59.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <Separator layoutX="350.0" layoutY="61.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="60.0" />
       <Label layoutX="162.0" layoutY="69.0" text="Appointment Info" />
-      <Label layoutX="496.0" layoutY="69.0" text="Patient Info" />
-      <Label layoutX="368.0" layoutY="105.0" text="First Name" AnchorPane.rightAnchor="257.0" />
-      <TextField fx:id="txtFirstName" layoutX="340.0" layoutY="129.0" AnchorPane.rightAnchor="160.0" />
-      <Label layoutX="368.0" layoutY="170.0" text="Last Name" AnchorPane.rightAnchor="258.0" />
-      <TextField fx:id="txtLastName" layoutX="340.0" layoutY="196.0" AnchorPane.rightAnchor="160.0" />
-      <Label layoutX="374.0" layoutY="292.0" text="Notes" AnchorPane.rightAnchor="281.0" />
-      <TextArea fx:id="txtNotes" layoutX="370.0" layoutY="312.0" prefHeight="62.0" prefWidth="252.0" />
-      <Label layoutX="371.0" layoutY="229.0" text="Patient ID" AnchorPane.rightAnchor="261.0" />
-      <TextField fx:id="txtId" layoutX="368.0" layoutY="253.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.rightAnchor="157.0" />
+      <Label layoutX="474.0" layoutY="69.0" text="Patient Info" />
+      <Label layoutX="380.0" layoutY="215.0" text="Notes" AnchorPane.rightAnchor="280.0" />
+      <TextArea fx:id="txtNotes" layoutX="370.0" layoutY="242.0" prefHeight="109.0" prefWidth="269.0" />
+      <Label layoutX="385.0" layoutY="133.0" text="Patient ID" AnchorPane.rightAnchor="255.0" />
+      <TextField fx:id="txtId" layoutX="380.0" layoutY="157.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.rightAnchor="145.0" />
       <ComboBox fx:id="comboModality" layoutX="34.0" layoutY="266.0" prefHeight="27.0" prefWidth="188.0" promptText="Please Select a Modality" />
-      <Button fx:id="createAppointment" layoutX="463.0" layoutY="425.0" mnemonicParsing="false" text="Add Appointment" />
-      <Text fx:id="txtSuccess" layoutX="351.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="336.13671875" />
+      <Button layoutX="449.0" layoutY="401.0" mnemonicParsing="false" onAction="#createAppointment" text="Add Appointment" />
+      <Text fx:id="txtSuccess" layoutX="356.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="336.13671875" />
       <ComboBox fx:id="comboHour" layoutX="34.0" layoutY="196.0" prefHeight="27.0" prefWidth="76.0" />
       <ComboBox fx:id="comboMinute" layoutX="130.0" layoutY="197.0" onAction="#setComboModality" prefHeight="25.0" prefWidth="87.0" />
       <Text layoutX="115.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" wrappingWidth="12.6015625">
