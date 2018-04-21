@@ -155,7 +155,7 @@ public class ReceptionistMainController {
 	    	colDate.setCellValueFactory(new PropertyValueFactory<Appointment, String>("date"));
 	    	colStartTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTimeToString"));
 	    	colStopTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("stopTimeToString"));
-	    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modality"));
+	    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modalityId"));
 	    	colPatientidApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("patientId"));
 	    	colNotesApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("notes"));
 	    	
