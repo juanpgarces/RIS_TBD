@@ -35,7 +35,8 @@ public class AddNewAppointmentController {
     @FXML private ComboBox<Integer> comboHour, comboMinute;
     @FXML private Text txtSuccess;
     private String PatientID, Notes, UserID, date, modality;
-	private int setModalityId, startTime, stopTime;
+	private int startTime, stopTime;
+	private int ModalityId;
     
     public void initialize() {
     	
@@ -43,34 +44,49 @@ public class AddNewAppointmentController {
     	txtNotes.setText(Notes);
     	//SET MODALITY OPTIONS
     	//USER ID
+		date = txtDate.getValue().toString();
     	if(date != null) {
+
     		//SET ALL OTHER VARIABLES FOR APPOINTMENT EDIT
     	}
-    	
-        comboModality.getItems().removeAll(comboModality.getItems());
-    	String query = "SELECT name FROM modality";
-    	ResultSet rs;
-    	try (Connection conn = RISDbConfig.getConnection();
-    			PreparedStatement st = conn.prepareStatement(query);) {
-    		rs = st.executeQuery(); 		
-    	    st.close();
-    	    
-            while(rs.next()) {
-            	comboModality.getItems().add(rs.getString("name"));
-            }
-    		} catch (Exception e) {
-    			System.out.println("Status: operation failed due to "+e);
-    			}
+
     	comboHour.getItems().removeAll(comboHour.getItems());
     	comboMinute.getItems().removeAll(comboMinute.getItems());
-    	for(int hour=8; hour<=12; hour++)
+    	
+    	for(int hour=1; hour<= 24; hour++)
     		comboHour.getItems().add(hour);
-    	for(int hour=1; hour<=4; hour++)
-    		comboHour.getItems().add(hour);
+    	
     	comboMinute.getItems().add(00);
     	comboMinute.getItems().add(15);
     	comboMinute.getItems().add(30);
     	comboMinute.getItems().add(45);
+    }
+    public void setComboModality() {
+    	
+        comboModality.getItems().removeAll(comboModality.getItems());
+    	String query = "SELECT modID FROM modality WHERE name = ? AND NOT IN (SELECT modID from appointment WHERE status = 'new' AND Date = ? AND startTime = ? );";
+    	ResultSet rs;
+    	
+    	if (comboHour.getValue() <=12) //accounts for AM or PM
+    		startTime = (comboHour.getValue()+12)*100 + comboMinute.getValue()*(5/3);
+    	else
+    		startTime = comboHour.getValue()*100 + comboMinute.getValue()*(5/3);
+    	
+    	try (Connection conn = RISDbConfig.getConnection();
+    			PreparedStatement st = conn.prepareStatement(query);) {
+    		st.setString(1, modality);
+    		st.setString(2, date);
+    		st.setInt(3, startTime);
+    		rs = st.executeQuery(); 		
+    	    st.close();
+    	    
+            while(rs.next()) {
+            	comboModality.getItems().add(rs.getInt("modID")+"");
+            }
+    		} catch (Exception e) {
+    			System.out.println("Status: operation failed due to "+e);
+    			}
+
     }
  
     public void createAppointment(ActionEvent event){
@@ -204,11 +220,7 @@ public class AddNewAppointmentController {
 	public void setModality(String modality) {
 		this.modality = modality;
 	}
-
-	public void setModalityId(int modalityId) {
-		this.setModalityId = modalityId;
-	}
-
+	
 	public void setDate(String date) {
 		this.date = date;
 	}
@@ -219,5 +231,8 @@ public class AddNewAppointmentController {
 
 	public void setStopTime(int stopTime) {
 		this.stopTime = stopTime;
+	}
+	public void setModalityId(int modalityId) {
+		this.ModalityId = modalityId;
 	}	
 }

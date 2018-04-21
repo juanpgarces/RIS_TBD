@@ -77,7 +77,7 @@ public class ReceptionistMainController {
 	    	//Query to move all appointments in that day
 	    	
 	    	//And Appointment are past last 
-	    	String query = "UPDATE Appointments SET startTime = startTime + ?  WHERE date LIKE %?% AND stopTime > ?;";
+	    	String query = "UPDATE Appointment SET startTime = startTime + ?  WHERE date = ?  AND stopTime > ?;";
 
         	try(
         	    Connection conn = RISDbConfig.getConnection();
@@ -114,7 +114,6 @@ public class ReceptionistMainController {
 	    	
 	        //set up the columns in the tables
 	    	//Order Table
-	    	//colOrderId.setCellValueFactory(new PropertyValueFactory<Order, Integer>("orderID"));
 	    	colEmergency.setCellValueFactory(new PropertyValueFactory<Order, String>("emergencyLevel"));
 	    	colUserId.setCellValueFactory(new PropertyValueFactory<Order, String>("userId"));
 	    	colPatientId.setCellValueFactory(new PropertyValueFactory<Order, String>("patientId"));
@@ -164,7 +163,7 @@ public class ReceptionistMainController {
 	    	
 	    	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
 
-	        String SQLQuery = "SELECT * FROM appointments WHERE date LIKE %?% ORDER BY startTime ASC;";
+	        String SQLQuery = "SELECT * FROM appointment WHERE date = ? ORDER BY startTime ASC;";
 	       	ResultSet rs = null;
 
 	       	try(
@@ -234,14 +233,13 @@ public class ReceptionistMainController {
 	        //this gives us the rows that were selected
 	        selectedRows = tableViewOrder.getSelectionModel().getSelectedItems();
 	        
-	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/InsulinPump/view/AddNewAppointment.fxml"));
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/AddNewAppointment.fxml"));
 	    	Parent root = (Parent) loader.load();
 	        AddNewAppointmentController controller = loader.getController();
 	        controller.setID(selectedRows.get(0).getPatientId());
 	        controller.setNotes(selectedRows.get(0).getNotes());
 	        controller.setUserID(selectedRows.get(0).getUserId());
 	        controller.setModality(selectedRows.get(0).getModality());
-	        
 	        
 	        Stage stage = new Stage();
 	        stage.setTitle("RIS");
@@ -285,7 +283,7 @@ public class ReceptionistMainController {
 	        //this gives us the rows that were selected
 	        selectedRows = tableViewAppointment.getSelectionModel().getSelectedItems();
 	        
-	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/InsulinPump/view/AddNewAppointment.fxml"));
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/AddNewAppointment.fxml"));
 	    	Parent root = (Parent) loader.load();
 	        AddNewAppointmentController controller = loader.getController();
 	        controller.setID(selectedRows.get(0).getPatientId());
