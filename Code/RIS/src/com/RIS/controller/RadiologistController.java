@@ -75,7 +75,7 @@ public class RadiologistController {
 						selectedRows.get(0).getModalityId());
 		
 		String query = "INSERT INTO transcripts " + "(transcript, appointment_appID, appointment_userID, appointment_patientID, appointment_modalityID) " + "values(?,?,?,?,?)";
-		String queryapp = "UPDATE appointments SET status = 'Completed' WHERE appointmentID = "+newTranscript.getAppointmentId()+" ;";
+		String queryapp = "UPDATE appointments SET status = 'completed' WHERE appointmentID = ? ;";
 		
 		try (Connection conn = RISDbConfig.getConnection();
 		PreparedStatement insertTranscript = conn.prepareStatement(query);PreparedStatement updateApp = conn.prepareStatement(queryapp);) {
@@ -86,8 +86,10 @@ public class RadiologistController {
 		insertTranscript.setString(4, newTranscript.getPatientId());
 		insertTranscript.setInt(5, newTranscript.getModalityId());
 		
-		insertTranscript.execute();
+		updateApp.setInt(1, newTranscript.getAppointmentId());
+		
 		//Changes appointment Status to Completed 
+		insertTranscript.execute();
 		updateApp.execute();
 		
 		} catch (Exception e) {

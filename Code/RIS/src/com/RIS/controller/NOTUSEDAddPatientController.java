@@ -20,7 +20,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AddPatientController {
+public class NOTUSEDAddPatientController {
 	
 	@FXML private TextField txtPatientId, txtPatientFirstName, txtPatientLastName, txtPatientPhoneNumber, txtPatientAddress, txtPatientDOB, txtInsuranceType, txtPatientEmail;
 	@FXML private Button btnAddNewPatient, btndoctorHomeButton;

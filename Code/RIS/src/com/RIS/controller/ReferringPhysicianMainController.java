@@ -38,12 +38,7 @@ public class ReferringPhysicianMainController {
 		    	          "F"
 		    	 )
 		);
-		@FXML private ComboBox<String> txtModality = new ComboBox<String>(
-				FXCollections.observableArrayList(
-						  "X-Ray",
-		    	          "Something"
-		    	 )
-		);
+		@FXML private ComboBox<String> txtModality;
 		@FXML private ComboBox<String> txtEmergencyLevel = new ComboBox<String>(
 				FXCollections.observableArrayList(
 						  "Low",
@@ -53,6 +48,21 @@ public class ReferringPhysicianMainController {
 			
 	    public void initialize()
 	    {
+	    	txtModality.getItems().removeAll(txtModality.getItems());
+	        
+	    	String query = "SELECT name FROM modality DISTINCT";
+	    	ResultSet rs;
+	    	try (Connection conn = RISDbConfig.getConnection();
+	    			PreparedStatement st = conn.prepareStatement(query);) {
+	    		rs = st.executeQuery(); 		
+	    	    st.close();
+	    	    
+	            while(rs.next()) {
+	            	txtModality.getItems().add(rs.getString("name"));
+	            }
+	    		} catch (Exception e) {
+	    			System.out.println("Status: operation failed due to "+e);
+	    			}
 
 	    }
 	    @FXML
@@ -60,12 +70,13 @@ public class ReferringPhysicianMainController {
 	    	
 	    	SimpleStringProperty patientid = new SimpleStringProperty(txtSearch.getText());
 	    	
-	    	String query = "SELECT * FROM patient WHERE patientID = '"+patientid.get()+"';";
+	    	String query = "SELECT * FROM patient WHERE patientID = ?;";
 	    	ResultSet rs = null;
 	    	
 	    	try (Connection conn = RISDbConfig.getConnection();
 					PreparedStatement getPatient = conn.prepareStatement(query);) {
 	    		
+	    		getPatient.setString(1, patientid.get());
 	    		rs = getPatient.executeQuery();
 	       		// check to see if receiving any data
 	       		if(rs != null){
@@ -159,11 +170,13 @@ public class ReferringPhysicianMainController {
 	    								txtPatientNotes.getText());
 	    	    	
 	    	String query1 = "INSERT INTO patient " + "(patientID, firstName, lastName, gender, DOB, insurance, address, phone, email, notes) " + "values(?,?,?,?,?,?,?,?,?,?);";
-	    	String query2 = "UPDATE patient SET firstName= ?,lastName= ?, gender= ?, DOB=?, insurance=?, address=? , phone=?, email=?, notes=? WHERE patientID = '"+newPatient.getidPatient()+"';";
-	    	String query = "SELECT * WHERE PatientID = '"+newPatient.getidPatient()+"';";
+	    	String query2 = "UPDATE patient SET firstName= ?,lastName= ?, gender= ?, DOB=?, insurance=?, address=? , phone=?, email=?, notes=? WHERE patientID = ?;";
+	    	String query = "SELECT * WHERE PatientID = ?;";
 	    	
 	    	try (Connection conn = RISDbConfig.getConnection();
 					PreparedStatement checkuser = conn.prepareStatement(query);) {
+	    		
+	    		checkuser.setString(1, newPatient.getidPatient());
 	    		
 	    		if(checkuser.executeQuery() != null) {
 	    			PreparedStatement updateprofile = conn.prepareStatement(query2);
@@ -177,6 +190,7 @@ public class ReferringPhysicianMainController {
 	    			updateprofile.setString(7, newPatient.getPhone());
 	    			updateprofile.setString(8, newPatient.getEmail());
 	    			updateprofile.setString(9, newPatient.getNotes());	
+	    			updateprofile.setString(10, newPatient.getidPatient());
 	    			
 	    			updateprofile.execute();
 	    		}

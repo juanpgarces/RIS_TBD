@@ -40,8 +40,12 @@ public class ReceptionistMainController {
 	    @FXML private TableColumn<Bill, Integer> billId, appIdBill, modalityIdBill;
 	    @FXML private TableColumn<Bill, Double> billCost;
 	    @FXML private TableColumn<Bill, String> userIdBill, patientIdBill;
-	    @FXML private ComboBox<Integer> comboShift;
 	    @FXML private DatePicker datepicker;
+		@FXML private ComboBox<Integer> comboShift = new ComboBox<Integer>(
+				FXCollections.observableArrayList(
+						  15, 30, 45, 60
+		    	 )
+		);
 	    
 	    private String ID;
 	    
@@ -49,7 +53,6 @@ public class ReceptionistMainController {
 	    void initialize() {  	
 			//Set Items into all tables
 	    	tableViewOrder.setItems(getOrderList());
-
 	    }
 	    @FXML
 	    public void onSelectedApp() {
@@ -70,11 +73,25 @@ public class ReceptionistMainController {
 	    @FXML
 	    public void shiftSchedule(ActionEvent event) {
 	    	comboShift.getValue();
+	    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	    	//Query to move all appointments in that day
 	    	
 	    	//And Appointment are past last 
-	    	String query = "UPDATE Appointments SET startTime = startTime + "+comboShift.getValue()+",  WHERE date = '"+datepicker.getValue()+"';";
-	    	
+	    	String query = "UPDATE Appointments SET startTime = startTime + ?  WHERE date LIKE %?% AND stopTime > ?;";
+
+        	try(
+        	    Connection conn = RISDbConfig.getConnection();
+        	    PreparedStatement updateapps = conn.prepareStatement(query);
+        	){
+        		updateapps.setString(1, comboShift.getValue()+"");
+        		updateapps.setString(2, datepicker.getValue()+"");
+        		updateapps.setString(3, "CURRENT TIME");
+        		
+        		updateapps.executeUpdate();
+        	} catch (Exception e) {
+    			System.out.println("Status: operation failed due to "+e);
+
+    		}
 	    }
 	    @FXML
 	    public void refreshApps(ActionEvent event) {
@@ -147,13 +164,14 @@ public class ReceptionistMainController {
 	    	
 	    	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
 
-	        String SQLQuery = "SELECT * FROM appointmentc WHERE date = '"+date+"' ORDER BY startTime ASC;";
+	        String SQLQuery = "SELECT * FROM appointments WHERE date LIKE %?% ORDER BY startTime ASC;";
 	       	ResultSet rs = null;
 
 	       	try(
 	       			Connection conn = RISDbConfig.getConnection();
 	       			PreparedStatement displayappointment = conn.prepareStatement(SQLQuery);
 	       	){
+	       		displayappointment.setString(1, date);
 	       		rs = displayappointment.executeQuery();
 	       		while (rs.next()){
 	       			

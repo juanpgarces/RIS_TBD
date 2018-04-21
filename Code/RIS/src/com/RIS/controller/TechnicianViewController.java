@@ -64,13 +64,14 @@ public class TechnicianViewController {
     	
     	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
 
-        String SQLQuery = "SELECT * FROM appointment WHERE date = '"+date+"' AND status='new' ORDER BY startTime ASC;";
+        String SQLQuery = "SELECT * FROM appointment WHERE date LIKE %?% AND status='new' ORDER BY startTime ASC;";
        	ResultSet rs = null;
 
        	try(
        			Connection conn = RISDbConfig.getConnection();
        			PreparedStatement displayappointment = conn.prepareStatement(SQLQuery);
        	){
+       		displayappointment.setString(1, date);
        		rs = displayappointment.executeQuery();
        		while (rs.next()){
        			
@@ -86,9 +87,6 @@ public class TechnicianViewController {
        	}
         return appointment;
     }
-    
-
-    
     
     @FXML
     void displayAppointments(ActionEvent event) {
@@ -111,12 +109,12 @@ public class TechnicianViewController {
     	String allNotes = "Physician Notes:\n" + selectedRows.get(0).getNotes()
     			+ "\nTechnician Notes:\n" + textAreaTechNotes.getText();
     	
-    	String query = "UPDATE appointments SET status = 'pending', notes='" + allNotes + 
-    			"' WHERE appointmentID =" + selectedRows.get(0).getAppointmentId() +";";
+    	String query = "UPDATE appointments SET status = 'pending', notes= ? WHERE appointmentID = ?;";
 		try (Connection conn = RISDbConfig.getConnection();
 		PreparedStatement updateApp = conn.prepareStatement(query);) {
-    
-    	updateApp.execute();
+			updateApp.setString(1, allNotes);
+			updateApp.setInt(2, selectedRows.get(0).getAppointmentId());
+			updateApp.execute();
 
 		} catch (Exception e) {
 			System.out.println("Status: operation failed due to "+e);
@@ -186,9 +184,10 @@ public class TechnicianViewController {
     	selectedRows = techTable.getSelectionModel().getSelectedItems();
     	
        
-    	String query = "SELECT cost FROM modality WHERE modID =" + selectedRows.get(0).getModalityId() +";";
+    	String query = "SELECT cost FROM modality WHERE modID = ?;";
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
+    		st.setInt(1, selectedRows.get(0).getModalityId());
     		ResultSet rs = st.executeQuery();
 		
 			cost = rs.getDouble("cost");

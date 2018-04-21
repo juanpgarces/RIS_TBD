@@ -13,7 +13,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import javafx.event.ActionEvent;
-public class CreateOrderController {
+public class NOTUSEDCreateOrderController {
 
     @FXML private ComboBox<String> comboModality;
     @FXML private TextField emergencyLevel, patientId;
@@ -43,35 +43,32 @@ public class CreateOrderController {
 
     @FXML
     void submit(ActionEvent event) {
-    	int modID = 0;
-    	String query = "SELECT modID FROM modality WHERE name='"+comboModality.getValue()+"'";
+    	/*int modID = 0;
+    	String query = "SELECT modID FROM modality WHERE name LIKE %?%";
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
+    		st.setString(1, comboModality.getValue());
     		ResultSet rs = st.executeQuery();
     		
     		modID = rs.getInt("modID");
     		
     	    st.close();
-    		
     			
     		//System.out.println("Success -> modID=" + modID + "/t duration="+duration);
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
     			}  
-  
-    	
-    	
-    	
-    	/*Order newOrder = new Order(
+   		
+    	Order newOrder = new Order(
     			emergencyLevel.getText(),
-    			//userID,
+    			userID,
     			patientId.getText(),
-    			modID,
+    			comboModality.getValue(),
     			notes.getText()
     			);
     	//public Order(String emergencyLevel, String userID, String patientID, int modalityID, String notes)
     	
-    	query = "INSERT INTO orders " + "(emergencyLevel, userID, patientID, modalityID, notes) " + "VALUES(?,?,?,?,?)";
+    	query = "INSERT INTO orders " + "(emergencyLevel, userID, patientID, modality, notes) " + "VALUES(?,?,?,?,?)";
 		
 		try (Connection conn = RISDbConfig.getConnection();
 			PreparedStatement insertprofile = conn.prepareStatement(query);) {
@@ -89,7 +86,7 @@ public class CreateOrderController {
 			
 		} catch (Exception e) {
 			System.out.println("Status: operation failed due to "+e);
-			} */
+			}*/
     }
 
     @FXML
