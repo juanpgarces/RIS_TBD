@@ -123,7 +123,7 @@ public class ReceptionistMainController {
 			tableViewOrder.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	    	
 	    	ObservableList<Order> order = FXCollections.observableArrayList();
-	        String SQLQuery = "SELECT * FROM orders ORDER BY emergencyLevel;"; //ADD WHERE idPatient == ''
+	        String SQLQuery = "SELECT * FROM orders WHERE status != 'received' ORDER BY emergencyLevel;";
 	       	ResultSet rs = null;
 
 	       	try(
@@ -134,7 +134,7 @@ public class ReceptionistMainController {
 	       		rs = displaybill.executeQuery();
 	       		// check to see if receiving any data
 	       		while (rs.next()){
-	       			order.add(new Order(rs.getString("emergencyLevel").toString(),rs.getString("userID").toString(),rs.getString("patientID").toString(), rs.getString("modality"), rs.getString("notes")));
+	       			order.add(new Order(rs.getInt("orderID"), rs.getString("emergencyLevel").toString(),rs.getString("userID").toString(),rs.getString("patientID").toString(), rs.getString("modality"), rs.getString("notes")));
 	       		}
 	       	}catch(SQLException ex){
 	       		RISDbConfig.displayException(ex);
@@ -163,7 +163,7 @@ public class ReceptionistMainController {
 	    	
 	    	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
 
-	        String SQLQuery = "SELECT * FROM appointment WHERE date = ? ORDER BY startTime ASC;";
+	        String SQLQuery = "SELECT * FROM appointment WHERE date = ? AND status != 'pending' AND status != 'completed' ORDER BY startTime ASC;";
 	       	ResultSet rs = null;
 
 	       	try(
@@ -229,9 +229,25 @@ public class ReceptionistMainController {
 	    void NewAppfromOrder(ActionEvent event) throws IOException {
 	    	
 	        ObservableList<Order> selectedRows;
-
 	        //this gives us the rows that were selected
 	        selectedRows = tableViewOrder.getSelectionModel().getSelectedItems();
+	        
+	        //Change the Status of that order to completed
+	    	String query = "UPDATE order SET status = 'received' WHERE orderId = ?;";
+
+        	try(
+        	    Connection conn = RISDbConfig.getConnection();
+        	    PreparedStatement updateapps = conn.prepareStatement(query);
+        	){
+        		updateapps.setInt(1, selectedRows.get(0).getOrderId());
+        		updateapps.setString(2, datepicker.getValue()+"");
+        		updateapps.setString(3, "CURRENT TIME");
+        		
+        		updateapps.executeUpdate();
+        	} catch (Exception e) {
+    			System.out.println("Status: operation failed due to "+e);
+
+    		}
 	        
 	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/AddNewAppointment.fxml"));
 	    	Parent root = (Parent) loader.load();

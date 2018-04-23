@@ -16,7 +16,6 @@ import java.io.IOException;
 
 import com.RIS.model.Appointment;
 import com.RIS.model.Bill;
-import com.RIS.model.Patient;
 
 import application.RISDbConfig;
 import javafx.collections.FXCollections;
@@ -28,8 +27,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 
 public class TechnicianViewController {
