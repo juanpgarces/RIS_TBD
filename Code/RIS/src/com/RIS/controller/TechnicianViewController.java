@@ -62,7 +62,7 @@ public class TechnicianViewController {
     	
     	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
 
-        String SQLQuery = "SELECT * FROM appointment WHERE date LIKE %?% AND status='new' ORDER BY startTime ASC;";
+        String SQLQuery = "SELECT * FROM appointment WHERE date LIKE '%?%' AND status='new' ORDER BY startTime ASC;";
        	ResultSet rs = null;
 
        	try(
