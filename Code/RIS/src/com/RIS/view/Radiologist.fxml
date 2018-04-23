@@ -74,7 +74,7 @@
               </columns>
             </TableView>
             <Button layoutX="65.0" layoutY="537.0" mnemonicParsing="false" onAction="#refreshApp" prefHeight="35.0" prefWidth="81.0" text="Refresh" />
-            <Button layoutX="1094.0" layoutY="478.0" mnemonicParsing="false" onAction="" prefHeight="30.0" prefWidth="107.0" text="Load Image" />
+            <Button layoutX="1094.0" layoutY="478.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="107.0" text="Load Image" />
             <Label layoutX="1115.0" layoutY="13.0" text="Images">
                <font>
                   <Font size="20.0" />

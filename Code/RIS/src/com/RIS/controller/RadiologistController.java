@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
@@ -37,8 +38,9 @@ public class RadiologistController {
     @FXML private TableColumn<Appointment, String> colModality;
     @FXML private TableColumn<Appointment, String> colDate;
     @FXML private TableColumn<Appointment, Integer> colAppId;
-
-    @FXML private Text lblDOB, lblLastName, lblFirstName, lblPatientId, lblNotesPatient, lblGender, lblNotesApp, lblStopTime, lblStartTime, lblDate, lblModality, lblTranscript;
+    
+    @FXML private TextArea lblTranscript;
+    @FXML private Text lblDOB, lblLastName, lblFirstName, lblPatientId, lblNotesPatient, lblGender, lblNotesApp, lblStopTime, lblStartTime, lblDate, lblModality;
     private String ID;
     
     @FXML
@@ -103,7 +105,7 @@ public class RadiologistController {
     public ObservableList<Appointment> refreshApp() {
     	
     	 //set up the columns in the table
-    	colAppId.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("appointmentID"));
+    	colAppId.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("appointmentId"));
     	colPatientId.setCellValueFactory(new PropertyValueFactory<Appointment, String>("patientId"));
     	colDate.setCellValueFactory(new PropertyValueFactory<Appointment, String>("date"));
     	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modalityId"));
@@ -112,7 +114,7 @@ public class RadiologistController {
     	tableViewApp.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     	
     	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
-        String SQLQuery = "SELECT * FROM appointment WHERE status='pending' ORDER BY appointmentID;";
+        String SQLQuery = "SELECT * FROM appointment WHERE status='pending' ORDER BY appID;";
        	ResultSet rs = null;
 
        	try(
@@ -122,7 +124,7 @@ public class RadiologistController {
        		rs = displayapp.executeQuery();
        		// check to see if receiving any data
        		while (rs.next()){
-       			appointment.add(new Appointment(rs.getInt("appointmentID"), rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date").toString(), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
+       			appointment.add(new Appointment(rs.getInt("appID"), rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date").toString(), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
        		}
        	}catch(SQLException ex){
        		RISDbConfig.displayException(ex);
