@@ -27,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
 public class TechnicianViewController {
@@ -35,7 +36,7 @@ public class TechnicianViewController {
     @FXML private TableColumn<Appointment, Integer> colPatientID, colUserID;
     @FXML private TableColumn<Appointment, String> colTime, colModality, colEmergencyLevel;
     @FXML private TextField textAreaTechNotes;
-    @FXML private Label txtNotes;
+    @FXML private Text txtNotes;
     
     File stored;
     private String ID;
