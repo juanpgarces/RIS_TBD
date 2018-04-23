@@ -84,7 +84,7 @@ public class ReceptionistMainController {
         	    Connection conn = RISDbConfig.getConnection();
         	    PreparedStatement updateapps = conn.prepareStatement(query);
         	){
-        		updateapps.setString(1, comboShift.getValue()+"");
+        		updateapps.setString(1, comboShift.getValue()/60*100+"");
         		updateapps.setString(2, datepicker.getValue()+"");
         		updateapps.setString(3, date.format(dtf));
         		
