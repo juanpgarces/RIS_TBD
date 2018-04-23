@@ -62,7 +62,7 @@ public class TechnicianViewController {
     	
     	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
 
-        String SQLQuery = "SELECT * FROM appointment WHERE date LIKE '%?%' AND status='new' ORDER BY startTime ASC;";
+        String SQLQuery = "SELECT * FROM appointment WHERE date = ? AND status='new' ORDER BY startTime ASC;";
        	ResultSet rs = null;
 
        	try(
@@ -71,10 +71,11 @@ public class TechnicianViewController {
        	){
        		displayappointment.setString(1, date);
        		rs = displayappointment.executeQuery();
+       		
        		while (rs.next()){
-       			
        			appointment.add(new Appointment(rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
        		}
+       			
        	}catch(SQLException ex){
        		RISDbConfig.displayException(ex);
        		return null;
