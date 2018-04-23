@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
@@ -80,7 +81,7 @@
       <TextField fx:id="txtPatientLastName" layoutX="467.0" layoutY="191.0" prefHeight="31.0" prefWidth="231.0" promptText="Last Name" />
       <TextField fx:id="txtPatientPhoneNumber" layoutX="467.0" layoutY="448.0" prefHeight="31.0" prefWidth="231.0" promptText="Phone Number" />
       <TextField fx:id="txtPatientAddress" layoutX="467.0" layoutY="399.0" prefHeight="31.0" prefWidth="231.0" promptText="Address" />
-      <TextField fx:id="txtPatientDOB" layoutX="467.0" layoutY="305.0" prefHeight="31.0" prefWidth="231.0" promptText="DOB" />
+      <TextField fx:id="txtPatientDOB" layoutX="767.0" layoutY="624.0" prefHeight="31.0" prefWidth="231.0" promptText="DOB" />
       <TextField fx:id="txtPatientEmail" layoutX="467.0" layoutY="496.0" prefHeight="31.0" prefWidth="231.0" promptText="Email" />
       <TextField fx:id="txtInsuranceType" layoutX="467.0" layoutY="354.0" prefHeight="31.0" prefWidth="231.0" promptText="Insurance" />
       <TextArea fx:id="txtPatientNotes" layoutX="467.0" layoutY="551.0" prefHeight="112.0" prefWidth="231.0" promptText="Notes" />
@@ -99,5 +100,6 @@
       </Label>
       <Button layoutX="1095.0" layoutY="655.0" mnemonicParsing="false" onAction="#Logout" text="Log Out" />
       <Text fx:id="txtSuccess" layoutX="726.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="164.00002241134644" />
+      <DatePicker fx:id="dateDOB" layoutX="467.0" layoutY="306.0" prefHeight="30.0" prefWidth="231.0" />
    </children>
 </AnchorPane>

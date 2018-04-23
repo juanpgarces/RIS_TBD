@@ -7,30 +7,32 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
-import java.awt.Label;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 import com.RIS.model.Order;
 import com.RIS.model.Patient;
 
 import application.RISDbConfig;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 
 
 public class ReferringPhysicianMainController {
-		    
-		@FXML private TextField txtSearch, txtPatientId, txtPatientFirstName, txtPatientLastName, txtPatientPhoneNumber, txtPatientAddress, txtPatientDOB, txtInsuranceType, txtPatientEmail;
+		 
+		@FXML private DatePicker dateDOB;
+		@FXML private TextField txtSearch, txtPatientId, txtPatientFirstName, txtPatientLastName, txtPatientPhoneNumber, txtPatientAddress, txtInsuranceType, txtPatientEmail;
 	    @FXML private TextArea txtPatientNotes, txtOrderNotes;
 	    @FXML private Text txtSuccess;
 	    private String ID;
@@ -74,7 +76,6 @@ public class ReferringPhysicianMainController {
 	    	
 	    	try (Connection conn = RISDbConfig.getConnection();
 					PreparedStatement getPatient = conn.prepareStatement(query);) {
-	    		
 	    		getPatient.setString(1, patientid.get());
 	    		rs = getPatient.executeQuery();
 	       		// check to see if receiving any data
@@ -85,7 +86,8 @@ public class ReferringPhysicianMainController {
 	       			txtPatientGender.setValue(rs.getString("gender"));
 	       			txtPatientPhoneNumber.setText(rs.getString("phone"));
 	       			txtPatientAddress.setText(rs.getString("address"));
-	       			txtPatientDOB.setText(rs.getDate("DOB").toString());
+	       			LocalDate localDate = rs.getDate("DOB").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	       			dateDOB.setValue(localDate);
 	       			txtInsuranceType.setText(rs.getString("insurance"));
 	       			txtPatientEmail.setText(rs.getString("email"));
 	       			txtPatientNotes.setText(rs.getString("notes"));
@@ -140,7 +142,7 @@ public class ReferringPhysicianMainController {
 				txtPatientFirstName.setText("");
 				txtPatientLastName.setText("");
 				txtPatientGender.setValue("");
-				txtPatientDOB.setText("");
+				dateDOB.setValue(null);
 				txtInsuranceType.setText("");
 				txtPatientAddress.setText("");
 				txtPatientPhoneNumber.setText("");
@@ -163,7 +165,7 @@ public class ReferringPhysicianMainController {
 	    								txtPatientFirstName.getText(),
 	    								txtPatientLastName.getText(),
 	    								txtPatientGender.getValue(),
-	    								txtPatientDOB.getText(),
+	    								dateDOB.getValue().toString(),
 	    								txtInsuranceType.getText(),
 	    								txtPatientAddress.getText(),
 	    								txtPatientPhoneNumber.getText(),
