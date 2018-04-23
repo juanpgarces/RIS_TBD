@@ -24,6 +24,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 public class RadiologistController {
 
@@ -37,7 +38,7 @@ public class RadiologistController {
     @FXML private TableColumn<Appointment, String> colDate;
     @FXML private TableColumn<Appointment, Integer> colAppId;
 
-    @FXML private Label lblDOB, lblLastName, lblFirstName, lblPatientId, lblNotesPatient, lblGender, lblNotesApp, lblStopTime, lblStartTime, lblDate, lblModality, lblTranscript;
+    @FXML private Text lblDOB, lblLastName, lblFirstName, lblPatientId, lblNotesPatient, lblGender, lblNotesApp, lblStopTime, lblStartTime, lblDate, lblModality, lblTranscript;
     private String ID;
     
     @FXML
