@@ -115,31 +115,6 @@ public class AddNewAppointmentController {
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
     			}  	
-    	//gets userID from the order with the same patient ID and modality
-/*
-    	String query = "SELECT userID, notes FROM order WHERE patientID= ? AND modID= ?";
-    	try (Connection conn = RISDbConfig.getConnection();
-    			PreparedStatement st = conn.prepareStatement(query);) {
-    		
-    		st.setString(1, txtId.getText());
-    		st.setInt(2, modID);
-    		ResultSet rs = st.executeQuery();
-    		
-    		userID = rs.getString("userID");
-    		orderNotes = rs.getString("notes");
-    		
-    		st.close();
-    	      		
-    		System.out.println("Success -> userId =" + userID);
-    		} catch (Exception e) {
-    			System.out.println("Status: operation failed due to "+e);
-    			}  */
-    	
-    	//converts time to decimal
-//    	if (comboHour.getValue() <=12) //accounts for AM or PM
-//    		startTime = (comboHour.getValue()+12)*100 + comboMinute.getValue()*(5/3);
-//    	else
-//    		startTime = comboHour.getValue()*100 + comboMinute.getValue()*(5/3);
     	
     	stopTime = (startTime/100 + (duration/60)) *100;
     	
