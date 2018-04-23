@@ -187,7 +187,7 @@ public class RadiologistController {
     	tableViewPacs.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     	
     	ObservableList<PACS> pacs = FXCollections.observableArrayList();
-        String SQLQuery = "SELECT * FROM pacs WHERE patientID = ? AND appointmentID = ? ORDER BY imageID;";
+        String SQLQuery = "SELECT * FROM pacs WHERE patientID = ? AND appID = ? ORDER BY imageID;";
        	ResultSet rs = null;
 
        	try(
