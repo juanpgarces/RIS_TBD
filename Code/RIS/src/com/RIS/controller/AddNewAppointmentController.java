@@ -85,7 +85,7 @@ public class AddNewAppointmentController {
     	ResultSet rs = null;
     	int duration = 0;
     	
-    	startTime = (comboHour.getValue()) + (comboMinute.getValue()/60)*100; 
+    	startTime = (comboHour.getValue()*100) + (comboMinute.getValue()/60)*100; 
     	
     	//Gets modality ID and duration based on the modality selected in the comboBox
     	String query = "SELECT duration from modality WHERE modID = ?;";

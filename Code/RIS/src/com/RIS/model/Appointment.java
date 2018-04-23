@@ -123,8 +123,11 @@ public class Appointment {
 		String time="";
 
 		hour = startTime/100;
-		min = ((startTime *60) %60)/100;
-		time = hour + ":" + min;
+		min = (startTime - (hour * 100))*60/100;
+		if(min==0)
+			time =  hour + ":00";
+		else
+			time = hour + ":" + min;
 		return time;	
 	}
 	public String getStopTimeToString(){
@@ -132,8 +135,11 @@ public class Appointment {
 		String time="";
 
 		hour = stopTime/100;
-		min = ((stopTime *60) %60)/100;
-		time = hour + ":" + min;
+		min = (stopTime - (hour * 100))*(60/100);
+		if(min==0)
+			time =  hour + ":00";
+		else
+			time = hour + ":" + min;
 		return time;	
 	}
 }
