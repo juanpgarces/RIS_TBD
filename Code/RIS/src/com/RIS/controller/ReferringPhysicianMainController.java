@@ -9,9 +9,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
+import java.awt.Label;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,6 +32,7 @@ public class ReferringPhysicianMainController {
 		    
 		@FXML private TextField txtSearch, txtPatientId, txtPatientFirstName, txtPatientLastName, txtPatientPhoneNumber, txtPatientAddress, txtPatientDOB, txtInsuranceType, txtPatientEmail;
 	    @FXML private TextArea txtPatientNotes, txtOrderNotes;
+	    @FXML private Text txtSuccess;
 	    private String ID;
 	    
 		@FXML private ComboBox<String> txtPatientGender;
@@ -146,6 +149,7 @@ public class ReferringPhysicianMainController {
 				txtEmergencyLevel.setValue("");
     			txtModality.setValue("");
     			txtOrderNotes.setText("");
+    			txtSuccess.setText("");
 	    		
 				
 			} catch (Exception e) {
@@ -190,6 +194,9 @@ public class ReferringPhysicianMainController {
 	    			updateprofile.setString(10, newPatient.getidPatient());
 	    			
 	    			updateprofile.execute();
+	    			
+	    			txtSuccess.setText("Updated: Patient " + txtPatientId.getText());
+	    			
 	    		}
 	    		else {
 	    			PreparedStatement insertprofile = conn.prepareStatement(query1);
@@ -206,6 +213,8 @@ public class ReferringPhysicianMainController {
 					insertprofile.setString(10, newPatient.getNotes());
 		    		
 					insertprofile.execute();
+					
+					txtSuccess.setText("Added: Patient " + txtPatientId.getText());
 	    		}		
 	    	} catch (Exception e) {
 	    		System.out.println("Status: operation failed due to "+e);
