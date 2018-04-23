@@ -62,16 +62,11 @@ public class AddNewAppointmentController {
     	comboMinute.getItems().add(45);
     }
     public void setComboModality() {
-		
-		
         comboModality.getItems().removeAll(comboModality.getItems());
     	String query = "SELECT modID FROM modality WHERE name = ?  AND NOT EXISTS (SELECT modID from appointment WHERE status = 'new' AND Date = ? AND startTime = ? );";
-    	ResultSet rs;
+    	ResultSet rs = null;
     	
-    	if (comboHour.getValue() <=12) //accounts for AM or PM
-    		startTime = (comboHour.getValue()+12)*100 + comboMinute.getValue()*(5/3);
-    	else
-    		startTime = comboHour.getValue()*100 + comboMinute.getValue()*(5/3);
+    	startTime = (comboHour.getValue()) + (comboMinute.getValue()/60)*100;
     	
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
@@ -86,37 +81,31 @@ public class AddNewAppointmentController {
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
     			}
-    	//System.out.println(txtDate.getValue().toString());
     }
  
     public void createAppointment(ActionEvent event){
-    	
+    	ResultSet rs = null;
     	int duration = 0;
-    	/*if (comboHour.getValue() <=12) //accounts for AM or PM
-    		startTime = (comboHour.getValue()+12)*100 + comboMinute.getValue()*(5/3);
-    	else
-    		startTime = comboHour.getValue()*100 + comboMinute.getValue()*(5/3);*/
     	
     	startTime = (comboHour.getValue()) + (comboMinute.getValue()/60)*100; 
     	
     	//Gets modality ID and duration based on the modality selected in the comboBox
-    	String query = "SELECT duration from modality WHERE modID = ?;"  ;
+    	String query = "SELECT duration from modality WHERE modID = ?;";
+    	
     	try (Connection conn = RISDbConfig.getConnection();
-    		PreparedStatement st = conn.prepareStatement(query);) {
+    		PreparedStatement dur = conn.prepareStatement(query);) {
     		
-    		st.setInt(1, comboModality.getValue());
+    		dur.setInt(1, comboModality.getValue());
 
-    		ResultSet rs = st.executeQuery();
-    		duration = rs.getInt("duration"); //obtains duration of modality from database
+    		rs = dur.executeQuery();
     		
-    	    st.close();
-	
-    		//System.out.println("Success -> modID=" + modID + "/t duration="+duration);
+    		duration = rs.getInt("duration");
+    		
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
     			}  	
     	
-    	stopTime = (startTime/100 + (duration/60)) *100;
+    	stopTime = ((startTime) + (duration/60)*100);
     	
     	// creates appointment object. 
     	Appointment newApp = new Appointment(
@@ -125,16 +114,15 @@ public class AddNewAppointmentController {
     			comboModality.getValue(),
     			txtDate.getValue().toString(),
     			startTime,
-    			stopTime, //endTime = txtTime.getText + duration,
+    			stopTime,
     			Notes
     			);		
     	
    		//parameters-->	Appointment(String userId, String patientId, int modalityId, String startTime, String stopTime)
     		/// insert appointment into database
-    		query = "INSERT INTO appointment " + "(userID, patientID, modalityID, date, startTime, stopTime, notes, status) " + "VALUES(?,?,?,?,?,?,?,?)";
+    		query = "INSERT INTO appointment (userID, patientID, modalityID, date, startTime, stopTime, notes, status) " + "VALUES(?,?,?,?,?,?,?,?)";
     			try (Connection conn = RISDbConfig.getConnection();
     					PreparedStatement insertprofile = conn.prepareStatement(query);) {
-    				
     				
     					insertprofile.setString(1, newApp.getUserId());
     					insertprofile.setString(2, newApp.getPatientId());

@@ -175,7 +175,7 @@ public class ReferringPhysicianMainController {
 	    		
 	    		checkuser.setString(1, newPatient.getidPatient());
 	    		
-	    		if(checkuser.executeQuery() != null) {
+	    		if(checkuser.executeQuery().next()) {
 	    			PreparedStatement updateprofile = conn.prepareStatement(query2);
 	    			
 	    			updateprofile.setString(1, newPatient.getFirstName());
