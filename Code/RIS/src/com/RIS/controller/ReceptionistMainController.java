@@ -73,7 +73,8 @@ public class ReceptionistMainController {
 	    @FXML
 	    public void shiftSchedule(ActionEvent event) {
 	    	comboShift.getValue();
-	    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    	LocalDate date = LocalDate.now();
+	    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 	    	//Query to move all appointments in that day
 	    	
 	    	//And Appointment are past last 
@@ -85,7 +86,7 @@ public class ReceptionistMainController {
         	){
         		updateapps.setString(1, comboShift.getValue()+"");
         		updateapps.setString(2, datepicker.getValue()+"");
-        		updateapps.setString(3, "CURRENT TIME");
+        		updateapps.setString(3, date.format(dtf));
         		
         		updateapps.executeUpdate();
         	} catch (Exception e) {

@@ -150,16 +150,31 @@ public class TechnicianViewController {
     }
     
     public void saveImage(File file) throws IOException {
-    	BufferedImage bufferedImage = new BufferedImage(100, 100, 1);
-    	stored = new File("images/" + file.getName());
-    	try {
-    		if (!stored.exists()) {
-    			ImageIO.write(bufferedImage, "png", stored);
-    		}
-    	} catch (IOException ex) {
-    		ex.printStackTrace();
-    	}   	
-    }
+    	
+        BufferedImage bufferedImage = new BufferedImage(500, 500, 1);
+        
+        stored = new File("images/" + stored.getName());
+        String fullpath = stored.getAbsolutePath()+""+stored.getName();
+        
+        String query = "INSERT INTO pacs (image, appointment_appID, appointment_userID, appointment_patientID, appointment_modalityID)" + "VALUES (?,?,?,?,?)";
+        
+        try (Connection conn = RISDbConfig.getConnection();
+	       			PreparedStatement st = conn.prepareStatement(query);){
+         if (!stored.exists()) {
+        	 st.setString(1, fullpath);
+        	 st.setString(2, "");
+        	 st.setString(3, "");
+        	 st.setString(4, "");
+        	 st.setString(5, "");
+        	 
+	         ImageIO.write(bufferedImage, "png", stored);      
+	         st.executeQuery();
+         }
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    
+    }   	
     
     
     // Loads physician's notes when row is selected
@@ -202,8 +217,6 @@ public class TechnicianViewController {
         			selectedRows.get(0).getModalityId()
         			);
         return newBill;
-        
-
     }
     
 
