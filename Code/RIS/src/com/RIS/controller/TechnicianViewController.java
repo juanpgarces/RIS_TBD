@@ -107,7 +107,7 @@ public class TechnicianViewController {
     	String allNotes = "Physician Notes:\n" + selectedRows.get(0).getNotes()
     			+ "\nTechnician Notes:\n" + textAreaTechNotes.getText();
     	
-    	String query = "UPDATE appointments SET status = 'pending', notes= ? WHERE appointmentID = ?;";
+    	String query = "UPDATE appointment SET status = 'pending', notes= ? WHERE appointmentID = ?;";
 		try (Connection conn = RISDbConfig.getConnection();
 		PreparedStatement updateApp = conn.prepareStatement(query);) {
 			updateApp.setString(1, allNotes);
