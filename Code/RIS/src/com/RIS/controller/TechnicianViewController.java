@@ -8,8 +8,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.imageio.ImageIO;
-
-import java.awt.Label;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -53,7 +51,7 @@ public class TechnicianViewController {
     	//Appointment Table
     	colTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTimeToString"));
     	colPatientID.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("patientId"));
-    	colUserID.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("userId"));
+    	//colUserID.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("userId"));
     	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modality"));
     	colEmergencyLevel.setCellValueFactory(new PropertyValueFactory<Appointment, String>("emergencyLevel"));
  
