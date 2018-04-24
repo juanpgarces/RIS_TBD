@@ -199,7 +199,7 @@ public class ReceptionistMainController {
 	    public ObservableList<Bill>  getBillList(){
 	    	
 	    	//Billing Table
-	    	billCost.setCellValueFactory(new PropertyValueFactory<Bill, Double>("Cost"));
+	    	billCost.setCellValueFactory(new PropertyValueFactory<Bill, Double>("cost"));
 	    	appIdBill.setCellValueFactory(new PropertyValueFactory<Bill, Integer>("appId"));
 	    	userIdBill.setCellValueFactory(new PropertyValueFactory<Bill, String>("userId"));
 	    	patientIdBill.setCellValueFactory(new PropertyValueFactory<Bill, String>("patientId"));
@@ -222,7 +222,7 @@ public class ReceptionistMainController {
 	       		rs = displaybill.executeQuery();
 	       		// check to see if receiving any data
 	       		while (rs.next()){
-	       			bill.add(new Bill(Double.parseDouble(df.format(rs.getDouble("Cost"))),rs.getInt("appID"),rs.getString("userID").toString(),rs.getString("patientID").toString(),rs.getInt("modalityID")));
+	       			bill.add(new Bill(Double.parseDouble(df.format(rs.getDouble("cost"))),rs.getInt("appID"),rs.getString("userID").toString(),rs.getString("patientID").toString(),rs.getInt("modalityID")));
 	       		}
 	       	}catch(SQLException ex){
 	       		RISDbConfig.displayException(ex);

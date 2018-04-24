@@ -38,7 +38,7 @@
                                     <Button layoutX="148.0" layoutY="153.0" mnemonicParsing="false" onAction="#imageSelect" prefHeight="38.0" prefWidth="122.0" text="Browse..." />
                                     <Button layoutX="301.0" layoutY="153.0" mnemonicParsing="false" onAction="#upload" prefHeight="38.0" prefWidth="122.0" text="Upload..." />
                                     <Button layoutX="162.0" layoutY="231.0" mnemonicParsing="false" onAction="#submit" prefHeight="46.0" prefWidth="250.0" text="Submit" />
-                                    <Label fx:id="txtReady" layoutX="273.0" layoutY="214.0" />
+                                    <Label fx:id="txtReady" layoutX="163.0" layoutY="214.0" prefHeight="17.0" prefWidth="250.0" textAlignment="CENTER" />
                                  </children>
                               </AnchorPane>
                            </children>

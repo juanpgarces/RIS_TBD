@@ -15,6 +15,7 @@ public class Bill {
 		this.modalityId  = modalityId;	
 	}
 	
+
 	/* Start of GETTERS AND SETTERS */
 
 	public double getCost() {

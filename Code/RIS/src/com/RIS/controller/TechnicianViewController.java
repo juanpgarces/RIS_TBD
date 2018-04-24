@@ -139,8 +139,10 @@ public class TechnicianViewController {
 	    		st.setInt(1, selectedRows.get(0).getModalityId());
 	    		ResultSet rs = st.executeQuery();
 	    		
-			if(rs.next())
+			if(rs.next()){
 				cost = rs.getDouble("cost");
+				cost = cost*1.07;
+			}
 			
 			} catch (Exception e) {
 			System.out.println("Status: operation failed due to "+e);
