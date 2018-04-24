@@ -85,7 +85,6 @@ public class TechnicianViewController {
     
     @FXML
     void displayAppointments(ActionEvent event) {
-
     }
 
     @FXML
@@ -107,16 +106,16 @@ public class TechnicianViewController {
     	String query = "UPDATE appointment SET status = 'pending', notes= ? WHERE appID = ?;";
 		try (Connection conn = RISDbConfig.getConnection();
 		PreparedStatement updateApp = conn.prepareStatement(query);) {
+			
 			updateApp.setString(1, allNotes);
 			updateApp.setInt(2, selectedRows.get(0).getAppointmentId());
+			
 			updateApp.execute();
 
 		} catch (Exception e) {
 			System.out.println("Status: operation failed due to "+e);
 			
 			}
-		
-		
     	createBill();
     }
     @FXML
@@ -201,7 +200,7 @@ public class TechnicianViewController {
     			PreparedStatement st = conn.prepareStatement(query);) {
     		st.setInt(1, selectedRows.get(0).getModalityId());
     		ResultSet rs = st.executeQuery();
-		
+		if(rs.next())
 			cost = rs.getDouble("cost");
 		
 		} catch (Exception e) {
