@@ -23,7 +23,7 @@
                         <TableColumn fx:id="colModality" prefWidth="414.0" text="Modality" />
                     </columns>
                   </TableView>
-                  <Button layoutX="1119.0" layoutY="323.0" mnemonicParsing="false" onAction="#refreshApps" prefHeight="17.0" prefWidth="79.0" text="Refresh" />
+                  <Button fx:id="refreshApps" layoutX="1119.0" layoutY="323.0" mnemonicParsing="false" onAction="#refreshApps" prefHeight="17.0" prefWidth="79.0" text="Refresh" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

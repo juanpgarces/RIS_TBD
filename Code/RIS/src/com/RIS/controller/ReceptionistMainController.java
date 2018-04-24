@@ -77,15 +77,16 @@ public class ReceptionistMainController {
 	    	//Query to move all appointments in that day
 	    	
 	    	//And Appointment are past last 
-	    	String query = "UPDATE Appointment SET startTime = startTime + ?  WHERE date = ?  AND stopTime > ?;";
-
+	    	String query = "UPDATE Appointment SET startTime = startTime + ?, stopTime = stopTime + ?  WHERE date = ?  AND startTime >= ?;";
+	    	
         	try(
         	    Connection conn = RISDbConfig.getConnection();
         	    PreparedStatement updateapps = conn.prepareStatement(query);
         	){
         		updateapps.setString(1, comboShift.getValue()/60*100+"");
-        		updateapps.setString(2, datepicker.getValue()+"");
-        		updateapps.setString(3, date.format(dtf));
+        		updateapps.setString(2, comboShift.getValue()/60*100+"");
+        		updateapps.setString(3, datepicker.getValue()+"");
+        		updateapps.setString(4, date.format(dtf));
         		
         		updateapps.executeUpdate();
         	} catch (Exception e) {
