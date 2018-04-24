@@ -29,7 +29,7 @@
       <ComboBox fx:id="comboModality" layoutX="34.0" layoutY="266.0" prefHeight="27.0" prefWidth="188.0" promptText="Please Select a Modality" />
       <Button layoutX="449.0" layoutY="401.0" mnemonicParsing="false" onAction="#createAppointment" text="Add Appointment" />
       <Text fx:id="txtSuccess" layoutX="356.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="336.13671875" />
-      <ComboBox fx:id="comboHour" layoutX="34.0" layoutY="196.0" prefHeight="27.0" prefWidth="76.0" />
+      <ComboBox fx:id="comboHour" layoutX="34.0" layoutY="196.0" onAction="#setComboModality" prefHeight="27.0" prefWidth="76.0" />
       <ComboBox fx:id="comboMinute" layoutX="130.0" layoutY="197.0" onAction="#setComboModality" prefHeight="25.0" prefWidth="87.0" />
       <Text layoutX="115.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" wrappingWidth="12.6015625">
          <font>
