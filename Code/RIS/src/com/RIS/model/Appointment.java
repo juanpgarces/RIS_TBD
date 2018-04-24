@@ -53,10 +53,10 @@ public class Appointment {
 		this.notes = new SimpleStringProperty(notes);
 		this.status = new SimpleStringProperty("new");
 	}
-	
-	public Appointment(int appointmentId, String patientId, int modalityId, String date,int startTime, int stopTime, String notes) {
+	public Appointment(int appointmentId, String userId, String patientId, int modalityId, String date,int startTime, int stopTime, String notes) {
 		
 		this.appointmentId = appointmentId;
+		this.userId = new SimpleStringProperty(userId);
 		this.patientId = new SimpleStringProperty(patientId);
 		this.modalityId  = modalityId;
 		this.date  = new SimpleStringProperty(date);
@@ -65,6 +65,7 @@ public class Appointment {
 		this.notes = new SimpleStringProperty(notes);
 		this.status = new SimpleStringProperty("new");
 	}
+
 	
 	/* Start of GETTERS AND SETTERS */
 	public int getAppointmentId() {

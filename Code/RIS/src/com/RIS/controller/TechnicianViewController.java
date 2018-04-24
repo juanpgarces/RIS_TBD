@@ -8,37 +8,46 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.imageio.ImageIO;
+
+import java.awt.Desktop;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 import com.RIS.model.Appointment;
 import com.RIS.model.Bill;
-import com.RIS.model.Patient;
 
 import application.RISDbConfig;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
 public class TechnicianViewController {
 
+	@FXML private ImageView pacsViewer;
     @FXML private TableView<Appointment> techTable;
     @FXML private TableColumn<Appointment, Integer> colPatientID;
     @FXML private TableColumn<Appointment, String> colTime, colModality, colEmergencyLevel, colUserID;
     @FXML private TextField textAreaTechNotes;
     @FXML private Text txtNotes;
-    
+    @FXML private Label txtReady;  
     File stored;
     private String ID;
+    
     @FXML
     void initialize() { 
     	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -70,7 +79,7 @@ public class TechnicianViewController {
        		rs = displayappointment.executeQuery();
        		
        		while (rs.next()){
-       			appointment.add(new Appointment(rs.getString("userID"),rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
+       			appointment.add(new Appointment(rs.getInt("appID"), rs.getString("userID"),rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
        		}
        			
        	}catch(SQLException ex){
@@ -83,19 +92,8 @@ public class TechnicianViewController {
        	}
         return appointment;
     }
-    
-    @FXML
-    void displayAppointments(ActionEvent event) {
-    }
-
     @FXML
     void submit(ActionEvent event) {
-    	
-    	//load image into PACS
-    	//
-    	//
-    	
-    	
     	
     	// sets appointment = 'pending' and appends technician notes to physician notes	
     	ObservableList<Appointment> selectedRows;
@@ -110,6 +108,7 @@ public class TechnicianViewController {
 			
 			updateApp.setString(1, allNotes);
 			updateApp.setInt(2, selectedRows.get(0).getAppointmentId());
+			System.out.println( selectedRows.get(0).getAppointmentId());
 			
 			updateApp.execute();
 
@@ -117,117 +116,31 @@ public class TechnicianViewController {
 			System.out.println("Status: operation failed due to "+e);
 			
 			}
+		txtReady.setText("Images Have been Submitted Successfully!");
     	createBill();
     }
-    @FXML
-    void browse(ActionEvent event) {
-    	imageSelect(event);
-    	
-    	
-    	//set status = "pending" in the database.
-
-    }
     
-    @FXML void imageSelect(ActionEvent event) {
-    	
-    	//Select Image
-    	FileChooser fileChooser = new FileChooser();
-    	File file = fileChooser.showOpenDialog(null);
-    	stored = file;
-    }
-    
-    @FXML void imageSave(ActionEvent event) {
-    	//Save Image
-    	if (stored != null) {
-    		try {
-    			saveImage(stored);
-    		} catch (IOException ex) {
-    			ex.printStackTrace();
-    		}
-    	}   	    	
-    }
-    
-    public void saveImage(File file) throws IOException {
-    	
-        BufferedImage bufferedImage = new BufferedImage(500, 500, 1);
-    	ObservableList<Appointment> selectedRows;
-    	selectedRows = techTable.getSelectionModel().getSelectedItems();
-        
-        stored = new File("images/" + stored.getName());
-        String fullpath = stored.getAbsolutePath()+""+stored.getName();
-        
-        String query = "INSERT INTO pacs (image, appointment_appID, appointment_userID, appointment_patientID, appointment_modalityID)" + "VALUES (?,?,?,?,?)";
-        
-        try (Connection conn = RISDbConfig.getConnection();
-	       			PreparedStatement st = conn.prepareStatement(query);){
-         if (!stored.exists()) {
-        	 st.setString(1, fullpath);
-        	 st.setInt(2, selectedRows.get(0).getAppointmentId());
-        	 st.setString(3, selectedRows.get(0).getUserId());
-        	 st.setString(4, selectedRows.get(0).getPatientId());
-        	 st.setInt(5, selectedRows.get(0).getModalityId());
-        	 
-	         ImageIO.write(bufferedImage, "png", stored);      
-	         st.executeQuery();
-         }
-        } catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}    
-    }   	
-    
-    
-    // Loads physician's notes when row is selected
-    void loadNotes(){
-    	 ObservableList<Appointment> selectedRows;
-
-         //this gives us the rows that were selected
-         selectedRows = techTable.getSelectionModel().getSelectedItems();
-         
-         txtNotes.setText(selectedRows.get(0).getNotes());
-         String SQLQuery = "SELECT * FROM appointment WHERE appointmentID = ?;";
-        	ResultSet rs = null;
-
-        	try(
-        			Connection conn = RISDbConfig.getConnection();
-        			PreparedStatement displaypatient = conn.prepareStatement(SQLQuery);
-        	){
-        		displaypatient.setString(1, selectedRows.get(0).getPatientId());
-        		
-        		rs = displaypatient.executeQuery();
-        		// check to see if receiving any data
-        		Appointment newApp = new Appointment(rs.getString("userID"),rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString());
-        		
-        		//Load Appointment Info
-             txtNotes.setText(newApp.getNotes());
-             
-           	}catch(SQLException ex){
-           		RISDbConfig.displayException(ex);
-           	}
-    }
-  
     //creates bill
-    public Bill createBill(){
+    public void createBill(){
     	double cost = 0.0;
     	
     	ObservableList<Appointment> selectedRows;
     	
     	selectedRows = techTable.getSelectionModel().getSelectedItems();
-    	
-       
     	String query = "SELECT cost FROM modality WHERE modID = ?;";
+    	
     	try (Connection conn = RISDbConfig.getConnection();
     			PreparedStatement st = conn.prepareStatement(query);) {
-    		st.setInt(1, selectedRows.get(0).getModalityId());
-    		ResultSet rs = st.executeQuery();
-		if(rs.next())
-			cost = rs.getDouble("cost");
-		
-		} catch (Exception e) {
-		System.out.println("Status: operation failed due to "+e);
-		}
+	    		st.setInt(1, selectedRows.get(0).getModalityId());
+	    		ResultSet rs = st.executeQuery();
+	    		
+			if(rs.next())
+				cost = rs.getDouble("cost");
+			
+			} catch (Exception e) {
+			System.out.println("Status: operation failed due to "+e);
+			}
 	
-        	
         	Bill newBill = new Bill(
         			cost,
         			selectedRows.get(0).getAppointmentId(),
@@ -235,8 +148,120 @@ public class TechnicianViewController {
         			selectedRows.get(0).getPatientId(),
         			selectedRows.get(0).getModalityId()
         			);
-        return newBill;
+        	
+        	query = "INSERT INTO bills (Cost, AppID, userID, patientID, modalityID) VALUES (?,?,?,?,?)";
+        	try (Connection conn = RISDbConfig.getConnection();
+        			PreparedStatement st = conn.prepareStatement(query);) {
+        		
+    	    		st.setDouble(1, cost);
+    	    		st.setInt(2, selectedRows.get(0).getAppointmentId());
+    	    		st.setString(3, selectedRows.get(0).getUserId());
+    	    		st.setString(4, selectedRows.get(0).getPatientId());
+    	    		st.setInt(5, selectedRows.get(0).getModalityId());
+    	    		
+    	    		st.executeUpdate();
+    	    		
+    			} catch (Exception e) {
+    			System.out.println("Status: operation failed due to "+e);
+    		}
     }
+
+    @FXML void imageSelect(ActionEvent event) {
+    	//Select Image
+    	FileChooser fileChooser = new FileChooser();
+    	File file = fileChooser.showOpenDialog(null);
+    	if(file != null) {
+    		openFile(file);
+    	}
+		txtReady.setText("Ready to be uploaded...");
+    }
+    public void openFile(File file) {
+    	try {	
+    		File destination = new File("src/com/RIS/images/"+file.getName());
+    		
+    		Files.copy(file.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+    		BufferedImage bimage = ImageIO.read(destination);
+    		
+    		Image image = SwingFXUtils.toFXImage(bimage, null);
+    		
+    		pacsViewer.setImage(image);
+    		stored = destination;
+    		///saveImage(destination);
+    		
+    	} catch(IOException ex) {
+    		ex.printStackTrace();
+    	}
+    }
+    
+    @FXML void upload(ActionEvent event) {
+    	//Save Image
+    	if (stored != null) {
+    		try {
+    			saveImage(stored);
+    		} catch (IOException ex) {
+    			ex.printStackTrace();
+    		}
+    		txtReady.setText("File has been Uploaded Succesfully.");
+    	}   	    	
+    }
+    
+    public void saveImage(File file) throws IOException {
+    	
+        ObservableList<Appointment> selectedRows;
+    	selectedRows = techTable.getSelectionModel().getSelectedItems();
+        
+        String query = "INSERT INTO pacs (image, appointment_appID, appointment_userID, appointment_patientID, appointment_modalityID)" + "VALUES (?,?,?,?,?)";
+        
+        try (Connection conn = RISDbConfig.getConnection();
+	       			PreparedStatement st = conn.prepareStatement(query);){
+         if (file != null) {
+        	 
+        	 st.setString(1, file.getPath());
+        	 st.setInt(2, selectedRows.get(0).getAppointmentId());
+        	 st.setString(3, selectedRows.get(0).getUserId());
+        	 st.setString(4, selectedRows.get(0).getPatientId());
+        	 st.setInt(5, selectedRows.get(0).getModalityId());
+        	       
+	         st.executeUpdate();
+         }
+        } catch (Exception e) {
+			// TODO Auto-generated catch block
+        	System.out.println("Status: operation failed due to "+e);
+		}    
+    }   	 
+    // Loads physician's notes when row is selected
+    @FXML
+    void loadNotes(ActionEvent event){
+    	
+    	 ObservableList<Appointment> selectedRows;
+
+         //this gives us the rows that were selected
+         selectedRows = techTable.getSelectionModel().getSelectedItems();
+         
+         if(!selectedRows.isEmpty()) {
+	         txtNotes.setText(selectedRows.get(0).getNotes());
+	         String SQLQuery = "SELECT * FROM appointment WHERE appID = ?;";
+	        	ResultSet rs = null;
+	
+	        	try(
+	        			Connection conn = RISDbConfig.getConnection();
+	        			PreparedStatement displaypatient = conn.prepareStatement(SQLQuery);
+	        	){
+	        		displaypatient.setString(1, selectedRows.get(0).getPatientId());
+	        		
+	        		rs = displaypatient.executeQuery();
+	        		// check to see if receiving any data
+	        		Appointment newApp = new Appointment(rs.getString("userID"),rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString());
+	        		
+	        		//Load Appointment Info
+	             txtNotes.setText(newApp.getNotes());
+	             
+	           	}catch(SQLException ex){
+	           		RISDbConfig.displayException(ex);
+	           	}
+         }
+    }
+  
     
 
 	public void setID(String text) {

@@ -48,11 +48,11 @@ public class RadiologistController {
     	tableViewApp.setItems(refreshApp());
     }
     @FXML
-    void loadImage(ActionEvent event) {
+    void openImage(ActionEvent event) {
+    	
     	ObservableList<PACS> selectedRows;
     	
     	selectedRows = tableViewPacs.getSelectionModel().getSelectedItems();
-    	
     	URL urlToImage = this.getClass().getResource(selectedRows.get(0).getImage());
     	try {
 			ImageIO.read(urlToImage);
@@ -152,7 +152,7 @@ public class RadiologistController {
         lblStopTime.setText(selectedRows.get(0).getStopTime()+"");
         lblNotesApp.setText(selectedRows.get(0).getNotes());
         
-        String SQLQuery = "SELECT * FROM Patient WHERE PatientID = ?;";
+        String SQLQuery = "SELECT * FROM patient WHERE PatientID = ?;";
        	ResultSet rs = null;
 
        	try(
@@ -162,8 +162,8 @@ public class RadiologistController {
        		displaypatient.setString(1, selectedRows.get(0).getPatientId());
        		
        		rs = displaypatient.executeQuery();
-       		// check to see if receiving any data
-       		Patient newPatient = new Patient(rs.getString("patientID").toString(), rs.getString("firstName").toString(),rs.getString("lastName").toString(),rs.getString("gender").toString(), rs.getString("DOB").toString(), rs.getString("insurance").toString(), rs.getString("address").toString(), rs.getString("phone").toString(), rs.getString("email").toString(), rs.getString("notes").toString());
+       		if(rs.next()) {
+       			Patient newPatient = new Patient(rs.getString("patientID").toString(), rs.getString("firstName").toString(),rs.getString("lastName").toString(),rs.getString("gender").toString(), rs.getString("DOB").toString(), rs.getString("insurance").toString(), rs.getString("address").toString(), rs.getString("phone").toString(), rs.getString("email").toString(), rs.getString("notes").toString());
        		
        		//Load Patient Info
             lblPatientId.setText(newPatient.getidPatient());
@@ -172,10 +172,10 @@ public class RadiologistController {
             lblDOB.setText(newPatient.getDOB());
             lblGender.setText(newPatient.getGender());
             lblNotesPatient.setText(newPatient.getNotes());
-            
+       		
             //Load Images
        		tableViewPacs.setItems(LoadImages(newPatient.getidPatient(), selectedRows.get(0).getAppointmentId()));
-       		
+       		}
        	}catch(SQLException ex){
        		RISDbConfig.displayException(ex);
        	}
@@ -187,7 +187,7 @@ public class RadiologistController {
     	tableViewPacs.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     	
     	ObservableList<PACS> pacs = FXCollections.observableArrayList();
-        String SQLQuery = "SELECT * FROM pacs WHERE patientID = ? AND appID = ? ORDER BY imageID;";
+        String SQLQuery = "SELECT * FROM pacs WHERE appointment_patientID = ? AND appointment_appID = ? ORDER BY imageID;";
        	ResultSet rs = null;
 
        	try(
