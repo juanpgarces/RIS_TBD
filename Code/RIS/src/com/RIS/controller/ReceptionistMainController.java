@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -207,6 +208,8 @@ public class ReceptionistMainController {
 	    	tableViewBill.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	    	
 	    	ObservableList<Bill> bill = FXCollections.observableArrayList();
+	    	
+	    	DecimalFormat df = new DecimalFormat("#.00");
 
 	        String SQLQuery = "SELECT * FROM bills ORDER BY billID ASC;"; //ADD WHERE idPatient == ''
 	       	ResultSet rs = null;
@@ -219,7 +222,7 @@ public class ReceptionistMainController {
 	       		rs = displaybill.executeQuery();
 	       		// check to see if receiving any data
 	       		while (rs.next()){
-	       			bill.add(new Bill(rs.getDouble("Cost"),rs.getInt("appID"),rs.getString("userID").toString(),rs.getString("patientID").toString(),rs.getInt("modalityID")));
+	       			bill.add(new Bill(Double.parseDouble(df.format(rs.getDouble("Cost"))),rs.getInt("appID"),rs.getString("userID").toString(),rs.getString("patientID").toString(),rs.getInt("modalityID")));
 	       		}
 	       	}catch(SQLException ex){
 	       		RISDbConfig.displayException(ex);
