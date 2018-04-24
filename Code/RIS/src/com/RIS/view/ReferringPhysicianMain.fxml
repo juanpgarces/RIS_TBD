@@ -100,5 +100,6 @@
       <Button layoutX="1095.0" layoutY="655.0" mnemonicParsing="false" onAction="#Logout" text="Log Out" />
       <Text fx:id="txtSuccess" layoutX="726.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="164.00002241134644" />
       <DatePicker fx:id="dateDOB" layoutX="467.0" layoutY="306.0" prefHeight="30.0" prefWidth="231.0" />
+      <Text fx:id="txtSuccess2" layoutX="962.0" layoutY="541.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="164.00002241134644" />
    </children>
 </AnchorPane>

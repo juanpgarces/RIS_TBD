@@ -20,6 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 import com.RIS.model.Order;
 import com.RIS.model.Patient;
@@ -34,15 +35,19 @@ public class ReferringPhysicianMainController {
 		@FXML private DatePicker dateDOB;
 		@FXML private TextField txtSearch, txtPatientId, txtPatientFirstName, txtPatientLastName, txtPatientPhoneNumber, txtPatientAddress, txtInsuranceType, txtPatientEmail;
 	    @FXML private TextArea txtPatientNotes, txtOrderNotes;
-	    @FXML private Text txtSuccess;
+	    @FXML private Text txtSuccess, txtSuccess2;
 	    private String ID;
 	    
 		@FXML private ComboBox<String> txtPatientGender;
 		@FXML private ComboBox<String> txtModality;
 		@FXML private ComboBox<String> txtEmergencyLevel;
+		
+		private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			
 	    public void initialize()
 	    {
+
+	    	 
 	    	txtModality.getItems().removeAll(txtModality.getItems());
 	    	txtPatientGender.getItems().removeAll(txtPatientGender.getItems());
 	    	txtPatientGender.getItems().add("M");
@@ -86,7 +91,8 @@ public class ReferringPhysicianMainController {
 	       			txtPatientGender.setValue(rs.getString("gender"));
 	       			txtPatientPhoneNumber.setText(rs.getString("phone"));
 	       			txtPatientAddress.setText(rs.getString("address"));
-	       			LocalDate localDate = rs.getDate("DOB").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	       			
+	       			LocalDate localDate = LocalDate.parse(rs.getDate("DOB").toString(), formatter);
 	       			dateDOB.setValue(localDate);
 	       			txtInsuranceType.setText(rs.getString("insurance"));
 	       			txtPatientEmail.setText(rs.getString("email"));
@@ -94,7 +100,6 @@ public class ReferringPhysicianMainController {
 	       			
 	       		}
 	       		else {
-	       			
 	       			Alert alert = new Alert(AlertType.ERROR);
     	    		alert.setTitle("User Not Found");
     	    		alert.setHeaderText("User Not Found");
@@ -130,13 +135,8 @@ public class ReferringPhysicianMainController {
 				insertprofile.setString(5, newOrder.getNotes());
 			
 				insertprofile.execute();
-				//message to successfull
-       			Alert alert = new Alert(AlertType.ERROR);
-	    		alert.setTitle("Order Created");
-	    		alert.setHeaderText("Order Created");
-	    		alert.setContentText("A new Order has been created.");
-	    		alert.showAndWait();
-	    		
+				//message to successfull    		
+       			txtSuccess2.setText("A new Order has been created for Patient with ID: "+newOrder.getPatientId());
 	    		//SET EVERYTHING TO BLANK
 	    		txtPatientId.setText("");
 				txtPatientFirstName.setText("");
