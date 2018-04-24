@@ -61,7 +61,7 @@ public class AddNewAppointmentController {
     	}
     }
     public void setComboModality() {
-    	if(ModalityId == 0 && date != null) {
+    	if(ModalityId == 0 && date == null) {
 	        comboModality.getItems().removeAll(comboModality.getItems());
 	    	String query = "SELECT modID FROM modality WHERE name = ?  AND NOT EXISTS (SELECT modID from appointment WHERE status = 'new' AND Date = ? AND startTime = ? );";
 	    	ResultSet rs = null;
