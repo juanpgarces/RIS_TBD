@@ -105,7 +105,7 @@ public class AddNewAppointmentController {
     			System.out.println("Status: operation failed due to "+e);
     			}  	
     	
-    	stopTime = ((startTime + (duration/60)*100);
+    	stopTime = ((startTime + (duration/60)*100));
     	
     	// creates appointment object. 
     	Appointment newApp = new Appointment(
