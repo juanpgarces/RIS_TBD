@@ -91,7 +91,7 @@ public class AddNewAppointmentController {
     	startTime = (comboHour.getValue()*100) + (comboMinute.getValue()/60)*100; 
     	
     	//Gets modality ID and duration based on the modality selected in the comboBox
-    	String query = "SELECT duration FROM modality WHERE name = ?;";
+    	String query = "SELECT duration FROM modality WHERE modID = ?;";
     	
     	try (Connection conn = RISDbConfig.getConnection();
     		PreparedStatement dur = conn.prepareStatement(query);) {
@@ -105,7 +105,7 @@ public class AddNewAppointmentController {
     			System.out.println("Status: operation failed due to "+e);
     			}  	
     	
-    	stopTime = ((startTime) + (duration/60)*100);
+    	stopTime = ((startTime + (duration/60)*100);
     	
     	// creates appointment object. 
     	Appointment newApp = new Appointment(
