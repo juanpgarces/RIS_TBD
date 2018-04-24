@@ -123,6 +123,7 @@ public class TechnicianViewController {
 			}
 		txtReady.setText("Images Have been Submitted Successfully!");
     	createBill();
+    	refresh();
     }
     
     //creates bill
@@ -286,6 +287,13 @@ public class TechnicianViewController {
     	
 		techTable.setItems(getAppointmentList(dtf.format(localDate)));
     	
+    }
+    
+    public void refresh(){
+    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    	LocalDate localDate = LocalDate.now();
+    	
+		techTable.setItems(getAppointmentList(dtf.format(localDate)));
     }
 
 	public void setID(String text) {
