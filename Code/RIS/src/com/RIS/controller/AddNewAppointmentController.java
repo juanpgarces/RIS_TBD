@@ -121,6 +121,8 @@ public class AddNewAppointmentController {
    		//parameters-->	Appointment(String userId, String patientId, int modalityId, String startTime, String stopTime)
     		/// insert appointment into database
     		String query2 = "INSERT INTO appointment (userID, patientID, modalityID, date, startTime, stopTime, notes, status) " + "VALUES(?,?,?,?,?,?,?,?)";
+    		String query3 = "UPDATE appointment SET (userID = ?, patientID = ?, modalityID = ?, date = ?, startTime = ?, stopTime = ?, notes = ?, statues = ?) WHERE appID = ?";
+    		String query4 = "SELECT * FROM appointment WHERE appID = ?;";		
     			try (Connection conn = RISDbConfig.getConnection();
     					PreparedStatement insertprofile = conn.prepareStatement(query2);) {
     				

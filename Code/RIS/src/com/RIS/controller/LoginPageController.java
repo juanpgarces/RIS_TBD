@@ -67,29 +67,33 @@ public class LoginPageController implements Initializable {
         	    	
         	    	FXMLLoader loader = new FXMLLoader(getClass().getResource(temp));
         	    	Parent root = (Parent) loader.load();
-        	    	
+        	        Stage stage = new Stage();
+
+        	        
         	    	//Decides Which Controller to start Running
         	    	switch(rs.getString(1)) {
         	    		case "Technician": TechnicianViewController tcontroller = loader.getController();
-            	        //SETS ID IN OTHER CONTROLLER
             	        tcontroller.setID(TextUsername.getText());
+            	        stage.setTitle("RIS - Technician");
         	    		break;
         	    		case "Physician": ReferringPhysicianMainController pcontroller = loader.getController();
             	        pcontroller.setID(TextUsername.getText());
+            	        stage.setTitle("RIS - Physician");
         	    		break;
         	    		case "Radiologist": RadiologistController racontroller = loader.getController();
             	        racontroller.setID(TextUsername.getText());
+            	        stage.setTitle("RIS - Radiologist");
         	    		break;
         	    		case "Receptionist": ReceptionistMainController rcontroller = loader.getController();
             	        rcontroller.setID(TextUsername.getText());
+            	        stage.setTitle("RIS - Receptionist");
         	    		break;
         	    		case "Administrator":
+        	    		stage.setTitle("RIS - Technician");
         	    		break;
         	    		default:
         	    	}
         	    	//Initiates New View
-        	        Stage stage = new Stage();
-        	        stage.setTitle("RIS");
         	        stage.setScene(new Scene (root));
         	        stage.show();
         	        

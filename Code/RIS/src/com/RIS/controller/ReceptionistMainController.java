@@ -42,11 +42,7 @@ public class ReceptionistMainController {
 	    @FXML private TableColumn<Bill, Double> billCost;
 	    @FXML private TableColumn<Bill, String> userIdBill, patientIdBill;
 	    @FXML private DatePicker datepicker;
-		@FXML private ComboBox<Integer> comboShift = new ComboBox<Integer>(
-				FXCollections.observableArrayList(
-						  15, 30, 45, 60
-		    	 )
-				);
+		@FXML private ComboBox<Integer> comboShift;
 	    private String ID;
 	    
 	    @FXML
@@ -67,6 +63,11 @@ public class ReceptionistMainController {
 			comboShift.getItems().add(45);
 			comboShift.getItems().add(60);
 	    }
+	    // Method used to enable the detailed view button on mouse click event
+	    public void mouseClickedOnTableView(){
+	         	//this.bDeletePatient.setDisable(false);
+	         	//this.patientRecords.setDisable(false);
+	       }
 	    @FXML
 	    public void onSelectedBill() {
 			tableViewBill.setItems(getBillList());
@@ -84,7 +85,7 @@ public class ReceptionistMainController {
 	    	
 	    	//And Appointment are past last 
 	    	String query = "UPDATE Appointment SET startTime = startTime + ?, stopTime = stopTime + ?  WHERE date = ?  AND startTime >= ?;";
-	    	
+    		
         	try(
         	    Connection conn = RISDbConfig.getConnection();
         	    PreparedStatement updateapps = conn.prepareStatement(query);
@@ -243,16 +244,13 @@ public class ReceptionistMainController {
 	        selectedRows = tableViewOrder.getSelectionModel().getSelectedItems();
 	        
 	        //Change the Status of that order to completed
-	    	String query = "UPDATE order SET status = 'received' WHERE orderId = ?;";
+	    	String query = "UPDATE orders SET status = 'received' WHERE orderID = ?;";
 
         	try(
         	    Connection conn = RISDbConfig.getConnection();
         	    PreparedStatement updateapps = conn.prepareStatement(query);
         	){
         		updateapps.setInt(1, selectedRows.get(0).getOrderId());
-        		updateapps.setString(2, datepicker.getValue()+"");
-        		updateapps.setString(3, "CURRENT TIME");
-        		
         		updateapps.executeUpdate();
         	} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
