@@ -1,5 +1,11 @@
 package com.RIS.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import application.RISDbConfig;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Appointment {
@@ -142,4 +148,52 @@ public class Appointment {
 			time = hour + ":" + min;
 		return time;	
 	}
+	public String getModName(){
+		String modalityName="";
+		
+		String SQLQuery = "SELECT name FROM modality WHERE modID = '" + modalityId + "';";
+       	ResultSet rs = null;
+       	try(
+       			Connection conn = RISDbConfig.getConnection();
+       			PreparedStatement  st = conn.prepareStatement(SQLQuery);
+       	){
+     
+       		rs = st.executeQuery();
+       		modalityName = rs.getString("name");
+       		rs.close();
+       		
+       			
+       	}catch(SQLException ex){
+       		RISDbConfig.displayException(ex);
+       		return null;
+       	}
+	
+		
+		return modalityName;
+	}
+	
+	public String getFullName(){
+		String fullName="";
+		
+		String SQLQuery = "SELECT firstName, lastName FROM user WHERE userID = '" + userId + "';";
+       	ResultSet rs = null;
+       	try(
+       			Connection conn = RISDbConfig.getConnection();
+       			PreparedStatement  st = conn.prepareStatement(SQLQuery);
+       	){
+     
+       		rs = st.executeQuery();
+       		fullName = rs.getString("firstName") + " " + rs.getString("lastName");
+       		rs.close();
+       		
+       			
+       	}catch(SQLException ex){
+       		RISDbConfig.displayException(ex);
+       		return null;
+       	}
+	
+		
+		return fullName;
+	}
+	
 }

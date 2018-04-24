@@ -31,8 +31,8 @@ import javafx.stage.FileChooser;
 public class TechnicianViewController {
 
     @FXML private TableView<Appointment> techTable;
-    @FXML private TableColumn<Appointment, Integer> colPatientID, colUserID;
-    @FXML private TableColumn<Appointment, String> colTime, colModality, colEmergencyLevel;
+    @FXML private TableColumn<Appointment, Integer> colPatientID;
+    @FXML private TableColumn<Appointment, String> colTime, colModality, colEmergencyLevel, colUserID;
     @FXML private TextField textAreaTechNotes;
     @FXML private Text txtNotes;
     
@@ -51,8 +51,8 @@ public class TechnicianViewController {
     	//Appointment Table
     	colTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTimeToString"));
     	colPatientID.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("patientId"));
-    	//colUserID.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("userId"));
-    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modality"));
+    	colUserID.setCellValueFactory(new PropertyValueFactory<Appointment, String>("userId"));
+    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modId"));
     	colEmergencyLevel.setCellValueFactory(new PropertyValueFactory<Appointment, String>("emergencyLevel"));
  
     	
@@ -71,7 +71,7 @@ public class TechnicianViewController {
        		rs = displayappointment.executeQuery();
        		
        		while (rs.next()){
-       			appointment.add(new Appointment(rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
+       			appointment.add(new Appointment(rs.getString("userID"),rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
        		}
        			
        	}catch(SQLException ex){

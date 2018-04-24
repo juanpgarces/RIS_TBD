@@ -1,4 +1,10 @@
 package com.RIS.model;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import application.RISDbConfig;
 import javafx.beans.property.SimpleStringProperty;
 
 public class User {
@@ -86,5 +92,5 @@ public class User {
 		return "User [userType=" + userType + ", firstName=" + firstName + ", lastName=" + lastName + ", gender="
 				+ gender + ", email=" + email + ", userType=" + userType + "]";
 	}
-
+	
 }
