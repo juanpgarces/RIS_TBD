@@ -91,7 +91,7 @@ public class AddNewAppointmentController {
     	startTime = (comboHour.getValue()*100) + (comboMinute.getValue()/60)*100; 
     	
     	//Gets modality ID and duration based on the modality selected in the comboBox
-    	String query = "SELECT duration from modality WHERE modID = ?;";
+    	String query = "SELECT duration FROM modality WHERE name = ?;";
     	
     	try (Connection conn = RISDbConfig.getConnection();
     		PreparedStatement dur = conn.prepareStatement(query);) {
