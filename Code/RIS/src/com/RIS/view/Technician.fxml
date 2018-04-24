@@ -16,10 +16,10 @@
                <children>
                   <TableView fx:id="techTable" layoutX="409.0" layoutY="103.0" onSort="#displayAppointments" prefHeight="444.0" prefWidth="1018.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="colTime" prefWidth="89.0" text="Time" />
-                      <TableColumn fx:id="colPatientID" prefWidth="162.0" text="Patient ID" />
-                        <TableColumn fx:id="colUserID" minWidth="0.0" prefWidth="158.0" text="Physician ID" />
-                        <TableColumn fx:id="colModality" prefWidth="227.0" text="Modality" />
+                      <TableColumn fx:id="colTime" prefWidth="146.0" text="Time" />
+                      <TableColumn fx:id="colPatientID" prefWidth="170.0" text="Patient ID" />
+                        <TableColumn fx:id="colUserID" minWidth="0.0" prefWidth="295.0" text="Physician ID" />
+                        <TableColumn fx:id="colModality" prefWidth="205.0" text="Modality" />
                     </columns>
                   </TableView>
                </children>

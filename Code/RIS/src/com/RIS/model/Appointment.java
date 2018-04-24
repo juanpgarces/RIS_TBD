@@ -159,16 +159,16 @@ public class Appointment {
        	){
      
        		rs = st.executeQuery();
-       		modalityName = rs.getString("name");
+       		//always verify if there is a result
+       		if(rs.next())
+       			modalityName = rs.getString("name");
        		rs.close();
        		
        			
        	}catch(SQLException ex){
        		RISDbConfig.displayException(ex);
        		return null;
-       	}
-	
-		
+       	}	
 		return modalityName;
 	}
 	
@@ -183,16 +183,15 @@ public class Appointment {
        	){
      
        		rs = st.executeQuery();
-       		fullName = rs.getString("firstName") + " " + rs.getString("lastName");
+       		//always verify if there is a result
+       		if(rs.next())
+       			fullName = rs.getString("firstName") + " " + rs.getString("lastName");
        		rs.close();
-       		
-       			
+	
        	}catch(SQLException ex){
        		RISDbConfig.displayException(ex);
        		return null;
        	}
-	
-		
 		return fullName;
 	}
 	
