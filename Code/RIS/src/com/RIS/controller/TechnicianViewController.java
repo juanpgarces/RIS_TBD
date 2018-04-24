@@ -51,17 +51,11 @@ public class TechnicianViewController {
     	//Appointment Table
     	colTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTimeToString"));
     	colPatientID.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("patientId"));
-<<<<<<< HEAD
     	//colUserID.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("userId"));
-    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modalityId"));
-=======
     	colUserID.setCellValueFactory(new PropertyValueFactory<Appointment, String>("userId"));
-    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modId"));
->>>>>>> 8e5e9828715ced30520de3f8341af0aee8b7753f
-    	colEmergencyLevel.setCellValueFactory(new PropertyValueFactory<Appointment, String>("emergencyLevel"));
+    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modName"));
  
     	techTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-    	
     	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
 
         String SQLQuery = "SELECT * FROM appointment WHERE date = ? AND status='new' ORDER BY startTime ASC;";
