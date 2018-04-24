@@ -36,8 +36,8 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="630.0" prefWidth="777.0">
                <children>
-                  <Button layoutX="18.0" layoutY="558.0" mnemonicParsing="false" onAction="#NewAppfromOrder" prefHeight="36.0" prefWidth="113.0" text="Edit" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="1069.0" AnchorPane.topAnchor="558.0" />
-                  <Button layoutX="173.0" layoutY="558.0" mnemonicParsing="false" onAction="#NewAppfromOrder" prefHeight="37.0" prefWidth="116.0" text="Delete" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="911.0" AnchorPane.topAnchor="558.0" />
+                  <Button layoutX="18.0" layoutY="558.0" mnemonicParsing="false" onAction="#editAppointment" prefHeight="36.0" prefWidth="113.0" text="Edit" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="1069.0" AnchorPane.topAnchor="558.0" />
+                  <Button layoutX="173.0" layoutY="558.0" mnemonicParsing="false" onAction="#deleteAppointment" prefHeight="37.0" prefWidth="116.0" text="Delete" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="911.0" AnchorPane.topAnchor="558.0" />
                   <TableView fx:id="tableViewAppointment" layoutX="18.0" layoutY="14.0" prefHeight="458.0" prefWidth="1164.0" AnchorPane.bottomAnchor="199.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="14.0">
                      <columns>
                      	<TableColumn fx:id="colStartTime" prefWidth="109.0" text="StartTime" />
@@ -45,6 +45,7 @@
                         <TableColumn fx:id="colDate" prefWidth="105.0" text="Date" />
                         <TableColumn fx:id="colModality" prefWidth="237.0" text="Modality" />
                         <TableColumn fx:id="colPatientidApp" prefWidth="236.0" text="Patient ID" />
+                        <TableColumn fx:id="colUseridApp" prefWidth="236.0" text="User ID" />
              	        <TableColumn fx:id="colNotesApp" prefWidth="383.0" text="Notes" />
                      </columns>
                   </TableView>

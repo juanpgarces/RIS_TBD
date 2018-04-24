@@ -35,8 +35,7 @@ public class ReceptionistMainController {
 		@FXML private TableView<Bill> tableViewBill;
 	    @FXML private TableColumn<Order, Integer> colOrderId;
 	    @FXML private TableColumn<Order, String> colEmergency, colUserId, colPatientId, colNotesOrder, colModalityorder;
-	    @FXML private TableColumn<Appointment, String> colStartTime, colStopTime, colDate, colPatientidApp, colNotesApp;
-	    @FXML private TableColumn<Appointment, String> colModality;
+	    @FXML private TableColumn<Appointment, String> colStartTime, colStopTime, colDate, colPatientidApp, colNotesApp, colModality, colUseridApp;
 	    @FXML private TableColumn<Bill, Integer> billId, appIdBill, modalityIdBill;
 	    @FXML private TableColumn<Bill, Double> billCost;
 	    @FXML private TableColumn<Bill, String> userIdBill, patientIdBill;
@@ -124,7 +123,7 @@ public class ReceptionistMainController {
 			tableViewOrder.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	    	
 	    	ObservableList<Order> order = FXCollections.observableArrayList();
-	        String SQLQuery = "SELECT * FROM orders WHERE status != 'received' ORDER BY emergencyLevel;";
+	        String SQLQuery = "SELECT * FROM orders WHERE status = 'new' ORDER BY emergencyLevel;";
 	       	ResultSet rs = null;
 
 	       	try(
@@ -158,6 +157,7 @@ public class ReceptionistMainController {
 	    	colStopTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("stopTimeToString"));
 	    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modalityId"));
 	    	colPatientidApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("patientId"));
+	    	colUseridApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("userId"));
 	    	colNotesApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("notes"));
 	    	
 	    	tableViewAppointment.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -175,7 +175,7 @@ public class ReceptionistMainController {
 	       		rs = displayappointment.executeQuery();
 	       		while (rs.next()){
 	       			
-	       			appointment.add(new Appointment(rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
+	       			appointment.add(new Appointment(rs.getString("userId"), rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
 	       		}
 	       	}catch(SQLException ex){
 	       		RISDbConfig.displayException(ex);
@@ -312,8 +312,9 @@ public class ReceptionistMainController {
 	        controller.setStopTime(selectedRows.get(0).getStopTime());
 	        
 	        Stage stage = new Stage();
-	        stage.setTitle("RIS");
+	        stage.setTitle("RIS - New Appointment - Receptionist");
 	        stage.setScene(new Scene (root));
+	        controller.initialize();
 	        stage.show();
 	       
 	    }

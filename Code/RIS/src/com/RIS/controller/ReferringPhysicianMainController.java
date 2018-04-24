@@ -123,7 +123,7 @@ public class ReferringPhysicianMainController {
 	    			txtOrderNotes.getText()
 	    			);
 	    	
-	    	String query = "INSERT INTO orders " + "(emergencyLevel, userID, patientID, modality, notes) " + "VALUES(?,?,?,?,?)";
+	    	String query = "INSERT INTO orders " + "(emergencyLevel, userID, patientID, modality, notes, status) " + "VALUES(?,?,?,?,?,?)";
 			
 			try (Connection conn = RISDbConfig.getConnection();
 				PreparedStatement insertprofile = conn.prepareStatement(query);) {
@@ -133,6 +133,7 @@ public class ReferringPhysicianMainController {
 				insertprofile.setString(3, newOrder.getPatientId());
 				insertprofile.setString(4, newOrder.getModality());
 				insertprofile.setString(5, newOrder.getNotes());
+				insertprofile.setString(6, newOrder.getStatus());
 			
 				insertprofile.execute();
 				//message to successfull    		

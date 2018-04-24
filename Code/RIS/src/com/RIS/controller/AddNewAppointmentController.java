@@ -48,17 +48,20 @@ public class AddNewAppointmentController {
     	comboMinute.getItems().add(45);
     	
     	//For event Edits
-    	if(ModalityId != 0) {
+    	if(date != null) {
     		txtId.setText(PatientID);
     		txtNotes.setText(Notes);
-    		comboHour.setValue(startTime);
-    		comboMinute.setValue(stopTime);
+    		comboHour.getItems().add(startTime/100);
+    		comboHour.setValue(startTime/100);
+    		comboHour.getItems().add((startTime - (startTime))*60/100);
+    		comboMinute.setValue((startTime - (startTime))*60/100);
     		txtDate.setValue(date);
+    		comboModality.getItems().add(ModalityId);
     		comboModality.setValue(ModalityId);
     	}
     }
     public void setComboModality() {
-    	if(ModalityId != 0) {
+    	if(ModalityId == 0 && date != null) {
 	        comboModality.getItems().removeAll(comboModality.getItems());
 	    	String query = "SELECT modID FROM modality WHERE name = ?  AND NOT EXISTS (SELECT modID from appointment WHERE status = 'new' AND Date = ? AND startTime = ? );";
 	    	ResultSet rs = null;
@@ -94,10 +97,9 @@ public class AddNewAppointmentController {
     		PreparedStatement dur = conn.prepareStatement(query);) {
     		
     		dur.setInt(1, comboModality.getValue());
-
     		rs = dur.executeQuery();
-    		
-    		duration = rs.getInt("duration");
+    		if(rs.next())
+    			duration = rs.getInt("duration");
     		
     		} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
@@ -118,9 +120,9 @@ public class AddNewAppointmentController {
     	
    		//parameters-->	Appointment(String userId, String patientId, int modalityId, String startTime, String stopTime)
     		/// insert appointment into database
-    		query = "INSERT INTO appointment (userID, patientID, modalityID, date, startTime, stopTime, notes, status) " + "VALUES(?,?,?,?,?,?,?,?)";
+    		String query2 = "INSERT INTO appointment (userID, patientID, modalityID, date, startTime, stopTime, notes, status) " + "VALUES(?,?,?,?,?,?,?,?)";
     			try (Connection conn = RISDbConfig.getConnection();
-    					PreparedStatement insertprofile = conn.prepareStatement(query);) {
+    					PreparedStatement insertprofile = conn.prepareStatement(query2);) {
     				
     					insertprofile.setString(1, newApp.getUserId());
     					insertprofile.setString(2, newApp.getPatientId());
