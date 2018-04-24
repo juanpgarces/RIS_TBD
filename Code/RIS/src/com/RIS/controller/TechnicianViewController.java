@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import com.RIS.model.Appointment;
 import com.RIS.model.Bill;
+import com.RIS.model.Patient;
 
 import application.RISDbConfig;
 import javafx.collections.FXCollections;
@@ -185,6 +186,25 @@ public class TechnicianViewController {
          selectedRows = techTable.getSelectionModel().getSelectedItems();
          
          txtNotes.setText(selectedRows.get(0).getNotes());
+         String SQLQuery = "SELECT * FROM appointment WHERE appointmentID = ?;";
+        	ResultSet rs = null;
+
+        	try(
+        			Connection conn = RISDbConfig.getConnection();
+        			PreparedStatement displaypatient = conn.prepareStatement(SQLQuery);
+        	){
+        		displaypatient.setString(1, selectedRows.get(0).getPatientId());
+        		
+        		rs = displaypatient.executeQuery();
+        		// check to see if receiving any data
+        		Appointment newApp = new Appointment(rs.getString("userID"),rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString());
+        		
+        		//Load Appointment Info
+             txtNotes.setText(newApp.getNotes());
+             
+           	}catch(SQLException ex){
+           		RISDbConfig.displayException(ex);
+           	}
     }
   
     //creates bill
