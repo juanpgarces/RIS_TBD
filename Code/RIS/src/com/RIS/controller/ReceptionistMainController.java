@@ -44,8 +44,7 @@ public class ReceptionistMainController {
 				FXCollections.observableArrayList(
 						  15, 30, 45, 60
 		    	 )
-		);
-	    
+				);
 	    private String ID;
 	    
 	    @FXML
@@ -60,6 +59,11 @@ public class ReceptionistMainController {
 	    	
 			tableViewAppointment.setItems(getAppointmentList(dtf.format(localDate)));
 			datepicker.setValue(localDate);
+			comboShift.getItems().removeAll(comboShift.getItems());
+			comboShift.getItems().add(15);
+			comboShift.getItems().add(30);
+			comboShift.getItems().add(45);
+			comboShift.getItems().add(60);
 	    }
 	    @FXML
 	    public void onSelectedBill() {
