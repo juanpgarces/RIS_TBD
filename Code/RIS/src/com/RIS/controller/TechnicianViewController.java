@@ -277,6 +277,14 @@ public class TechnicianViewController {
         window.show();
     	
     }
+    
+    public void refreshApps(ActionEvent event) {
+    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    	LocalDate localDate = LocalDate.now();
+    	
+		techTable.setItems(getAppointmentList(dtf.format(localDate)));
+    	
+    }
 
 	public void setID(String text) {
 		// TODO Auto-generated method stub
