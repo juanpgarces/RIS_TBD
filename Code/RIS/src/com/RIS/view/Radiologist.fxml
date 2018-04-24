@@ -127,6 +127,7 @@
             <Text fx:id="lblStopTime" layoutX="432.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="216.13671875" />
             <Text fx:id="lblNotesApp" layoutX="432.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="216.13671875" />
             <Label fx:id="txtReady" contentDisplay="CENTER" layoutX="803.0" layoutY="636.0" prefHeight="17.0" prefWidth="0.0" />
+            <Button layoutX="1175.0" layoutY="624.0" mnemonicParsing="false" onAction="#logout" text="Log Out" />
       </children>
     </AnchorPane>
   </children>

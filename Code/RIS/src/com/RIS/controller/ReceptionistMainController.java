@@ -19,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -325,6 +326,16 @@ public class ReceptionistMainController {
 	        controller.initialize();
 	        stage.show();
 	       
+	    }
+	    public void logout(ActionEvent event) throws IOException
+	    {
+	        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/LoginPage.fxml"));
+	        Scene tableViewScene = new Scene(tableViewParent);
+	        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+	        window.setTitle("RIS Home");
+	        window.setScene(tableViewScene);
+	        window.show();
+	    	
 	    }
 		public void setID(String text) {
 			// TODO Auto-generated method stub
