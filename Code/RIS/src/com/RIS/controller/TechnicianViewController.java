@@ -106,7 +106,7 @@ public class TechnicianViewController {
     	String allNotes = "Physician Notes:\n" + selectedRows.get(0).getNotes()
     			+ "\nTechnician Notes:\n" + textAreaTechNotes.getText();
     	
-    	String query = "UPDATE appointment SET status = 'pending', notes= ? WHERE appointmentID = ?;";
+    	String query = "UPDATE appointment SET status = 'pending', notes= ? WHERE appID = ?;";
 		try (Connection conn = RISDbConfig.getConnection();
 		PreparedStatement updateApp = conn.prepareStatement(query);) {
 			updateApp.setString(1, allNotes);
@@ -152,6 +152,8 @@ public class TechnicianViewController {
     public void saveImage(File file) throws IOException {
     	
         BufferedImage bufferedImage = new BufferedImage(500, 500, 1);
+    	ObservableList<Appointment> selectedRows;
+    	selectedRows = techTable.getSelectionModel().getSelectedItems();
         
         stored = new File("images/" + stored.getName());
         String fullpath = stored.getAbsolutePath()+""+stored.getName();
@@ -162,10 +164,10 @@ public class TechnicianViewController {
 	       			PreparedStatement st = conn.prepareStatement(query);){
          if (!stored.exists()) {
         	 st.setString(1, fullpath);
-        	 st.setString(2, "");
-        	 st.setString(3, "");
-        	 st.setString(4, "");
-        	 st.setString(5, "");
+        	 st.setInt(2, selectedRows.get(0).getAppointmentId());
+        	 st.setString(3, selectedRows.get(0).getUserId());
+        	 st.setString(4, selectedRows.get(0).getPatientId());
+        	 st.setInt(5, selectedRows.get(0).getModalityId());
         	 
 	         ImageIO.write(bufferedImage, "png", stored);      
 	         st.executeQuery();
