@@ -52,10 +52,9 @@ public class TechnicianViewController {
     	colTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTimeToString"));
     	colPatientID.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("patientId"));
     	//colUserID.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("userId"));
-    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modality"));
+    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modalityId"));
     	colEmergencyLevel.setCellValueFactory(new PropertyValueFactory<Appointment, String>("emergencyLevel"));
  
-    	
     	techTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     	
     	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
