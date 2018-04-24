@@ -31,8 +31,8 @@ import javafx.stage.FileChooser;
 public class TechnicianViewController {
 
     @FXML private TableView<Appointment> techTable;
-    @FXML private TableColumn<Appointment, Integer> colPatientID, colUserID;
-    @FXML private TableColumn<Appointment, String> colTime, colModality, colEmergencyLevel;
+    @FXML private TableColumn<Appointment, Integer> colPatientID;
+    @FXML private TableColumn<Appointment, String> colTime, colModality, colEmergencyLevel, colUserID;
     @FXML private TextField textAreaTechNotes;
     @FXML private Text txtNotes;
     
@@ -51,8 +51,13 @@ public class TechnicianViewController {
     	//Appointment Table
     	colTime.setCellValueFactory(new PropertyValueFactory<Appointment, String>("startTimeToString"));
     	colPatientID.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("patientId"));
+<<<<<<< HEAD
     	//colUserID.setCellValueFactory(new PropertyValueFactory<Appointment, Integer>("userId"));
     	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modalityId"));
+=======
+    	colUserID.setCellValueFactory(new PropertyValueFactory<Appointment, String>("userId"));
+    	colModality.setCellValueFactory(new PropertyValueFactory<Appointment, String>("modId"));
+>>>>>>> 8e5e9828715ced30520de3f8341af0aee8b7753f
     	colEmergencyLevel.setCellValueFactory(new PropertyValueFactory<Appointment, String>("emergencyLevel"));
  
     	techTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -70,7 +75,7 @@ public class TechnicianViewController {
        		rs = displayappointment.executeQuery();
        		
        		while (rs.next()){
-       			appointment.add(new Appointment(rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
+       			appointment.add(new Appointment(rs.getString("userID"),rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date"), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
        		}
        			
        	}catch(SQLException ex){
