@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="600.0" prefWidth="1262.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RIS.controller.RadiologistController">
+<VBox prefHeight="700.0" prefWidth="1262.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RIS.controller.RadiologistController">
   <children>
     <MenuBar prefHeight="22.0" prefWidth="760.0" VBox.vgrow="NEVER">
       <menus>
@@ -56,7 +56,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="602.0" prefWidth="1262.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1262.0" VBox.vgrow="ALWAYS">
       <children>
             <Label layoutX="350.0" layoutY="94.0" text="Patient ID:" />
             <Separator layoutX="324.0" layoutY="1.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="10.0" />
@@ -65,7 +65,7 @@
             <Label layoutX="364.0" layoutY="187.0" text="DOB:" />
             <Label layoutX="356.0" layoutY="219.0" text="Gender:" />
             <Label layoutX="360.0" layoutY="246.0" text="Notes:" />
-            <TableView fx:id="tableViewApp" layoutX="14.0" layoutY="61.0" prefHeight="462.0" prefWidth="298.0">
+            <TableView fx:id="tableViewApp" layoutX="14.0" layoutY="61.0" prefHeight="505.0" prefWidth="298.0">
               <columns>
                   <TableColumn fx:id="colAppId" prefWidth="63.0" text="App ID" />
                 <TableColumn fx:id="colPatientId" minWidth="0.0" prefWidth="91.00003051757812" text="Patient ID" />
@@ -73,7 +73,7 @@
                 <TableColumn fx:id="colModality" prefWidth="69.0" text="Modality" />
               </columns>
             </TableView>
-            <Button layoutX="65.0" layoutY="537.0" mnemonicParsing="false" onAction="#refreshApp" prefHeight="35.0" prefWidth="81.0" text="Refresh" />
+            <Button layoutX="65.0" layoutY="590.0" mnemonicParsing="false" onAction="#refreshApp" prefHeight="35.0" prefWidth="81.0" text="Refresh" />
             <Button layoutX="1094.0" layoutY="478.0" mnemonicParsing="false" onAction="#openImage" prefHeight="30.0" prefWidth="107.0" text="Load Image" />
             <Label layoutX="1115.0" layoutY="13.0" text="Images">
                <font>
@@ -113,8 +113,8 @@
             <Label layoutX="370.0" layoutY="431.0" text="Start Time:" />
             <Label layoutX="370.0" layoutY="375.0" text="Modality:" />
             <Label layoutX="370.0" layoutY="403.0" text="Date:" />
-            <Button layoutX="774.0" layoutY="572.0" mnemonicParsing="false" onAction="#submitReport" prefHeight="35.0" prefWidth="118.0" text="Submit" />
-            <Button layoutX="163.0" layoutY="537.0" mnemonicParsing="false" onAction="#loadData" prefHeight="35.0" prefWidth="81.0" text="Load" />
+            <Button layoutX="774.0" layoutY="584.0" mnemonicParsing="false" onAction="#submitReport" prefHeight="35.0" prefWidth="118.0" text="Submit" />
+            <Button layoutX="163.0" layoutY="590.0" mnemonicParsing="false" onAction="#loadData" prefHeight="35.0" prefWidth="81.0" text="Load" />
             <Text fx:id="lblPatientId" layoutX="420.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="224.13671875" />
             <Text fx:id="lblFirstName" layoutX="420.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="224.13671875" />
             <Text fx:id="lblLastName" layoutX="420.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="224.13671875" />
@@ -126,6 +126,7 @@
             <Text fx:id="lblStartTime" layoutX="432.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="216.13671209383756" />
             <Text fx:id="lblStopTime" layoutX="432.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="216.13671875" />
             <Text fx:id="lblNotesApp" layoutX="432.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="216.13671875" />
+            <Label fx:id="txtReady" contentDisplay="CENTER" layoutX="803.0" layoutY="636.0" prefHeight="17.0" prefWidth="0.0" />
       </children>
     </AnchorPane>
   </children>

@@ -1,5 +1,7 @@
 package com.RIS.controller;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -38,7 +40,7 @@ public class RadiologistController {
     @FXML private TableColumn<Appointment, String> colModality;
     @FXML private TableColumn<Appointment, String> colDate;
     @FXML private TableColumn<Appointment, Integer> colAppId;
-    
+    @FXML private Label txtReady;
     @FXML private TextArea lblTranscript;
     @FXML private Text lblDOB, lblLastName, lblFirstName, lblPatientId, lblNotesPatient, lblGender, lblNotesApp, lblStopTime, lblStartTime, lblDate, lblModality;
     private String ID;
@@ -50,12 +52,16 @@ public class RadiologistController {
     @FXML
     void openImage(ActionEvent event) {
     	
+    	Desktop desktop = Desktop.getDesktop();
     	ObservableList<PACS> selectedRows;
     	
     	selectedRows = tableViewPacs.getSelectionModel().getSelectedItems();
-    	URL urlToImage = this.getClass().getResource(selectedRows.get(0).getImage());
+    	//URL urlToImage = this.getClass().getResource(selectedRows.get(0).getImage());
+    	File file = new File(selectedRows.get(0).getImage());
+    			
     	try {
-			ImageIO.read(urlToImage);
+    		desktop.open(file);
+			//ImageIO.read(urlToImage);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -73,28 +79,44 @@ public class RadiologistController {
     	
     	Transcript newTranscript = new Transcript(lblTranscript.getText(),
 						selectedRows.get(0).getAppointmentId(),
-						ID,
 						selectedRows.get(0).getPatientId(),
+						selectedRows.get(0).getUserId(),
 						selectedRows.get(0).getModalityId());
 		
-		String query = "INSERT INTO transcripts " + "(transcript, appointment_appID, appointment_userID, appointment_patientID, appointment_modalityID) " + "values(?,?,?,?,?)";
-		String queryapp = "UPDATE appointments SET status = 'completed' WHERE appointmentID = ? ;";
+		String query = "INSERT INTO transcripts " + "(transcript, appointment_appID, appointment_userID, appointment_patientID, appointment_modalityID) " + "VALUES (?,?,?,?,?)";
+		String queryapp = "UPDATE appointment SET status = 'completed' WHERE appID = ? ;";
 		
 		try (Connection conn = RISDbConfig.getConnection();
 		PreparedStatement insertTranscript = conn.prepareStatement(query);PreparedStatement updateApp = conn.prepareStatement(queryapp);) {
-		
-		insertTranscript.setString(1, newTranscript.getTranscript());
-		insertTranscript.setInt(2, newTranscript.getAppointmentId());
-		insertTranscript.setString(3, newTranscript.getUserId());
-		insertTranscript.setString(4, newTranscript.getPatientId());
-		insertTranscript.setInt(5, newTranscript.getModalityId());
-		
-		updateApp.setInt(1, newTranscript.getAppointmentId());
-		
-		//Changes appointment Status to Completed 
-		insertTranscript.execute();
-		updateApp.execute();
-		
+			
+			insertTranscript.setString(1, newTranscript.getTranscript());
+			insertTranscript.setInt(2, newTranscript.getAppointmentId());
+			insertTranscript.setString(3, newTranscript.getUserId());
+			insertTranscript.setString(4, newTranscript.getPatientId());
+			insertTranscript.setInt(5, newTranscript.getModalityId());
+			
+			updateApp.setInt(1, newTranscript.getAppointmentId());
+			
+			//Changes appointment Status to Completed 
+			insertTranscript.execute();
+			updateApp.execute();
+			txtReady.setText("Report has been Submited");
+			
+			//Set everything to blank
+	        lblModality.setText("");
+	        lblDate.setText("");
+	        lblStartTime.setText("");
+	        lblStopTime.setText("");
+	        lblNotesApp.setText("");
+            lblPatientId.setText("");
+            lblFirstName.setText("");
+            lblLastName.setText("");
+            lblDOB.setText("");
+            lblGender.setText("");
+            lblNotesPatient.setText("");
+            refreshApp();
+	        
+	        
 		} catch (Exception e) {
 		System.out.println("Status: operation failed due to "+e);
 		
@@ -124,7 +146,7 @@ public class RadiologistController {
        		rs = displayapp.executeQuery();
        		// check to see if receiving any data
        		while (rs.next()){
-       			appointment.add(new Appointment(rs.getInt("appID"), rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date").toString(), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
+       			appointment.add(new Appointment(rs.getInt("appID"), rs.getString("userID"), rs.getString("patientID").toString(),rs.getInt("modalityID"),rs.getString("date").toString(), rs.getInt("startTime"), rs.getInt("stopTime"), rs.getString("notes").toString()));
        		}
        	}catch(SQLException ex){
        		RISDbConfig.displayException(ex);
