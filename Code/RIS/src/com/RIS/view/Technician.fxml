@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RIS.controller.TechnicianViewController">
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.RIS.controller.TechnicianViewController">
    <children>
       <SplitPane dividerPositions="0.5" layoutX="54.0" layoutY="656.0" orientation="VERTICAL" prefHeight="898.0" prefWidth="829.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
