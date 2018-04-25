@@ -54,8 +54,8 @@ public class AddNewAppointmentController {
     		txtNotes.setText(Notes);
     		comboHour.getItems().add(startTime/100);
     		comboHour.setValue(startTime/100);
-    		comboHour.getItems().add((startTime - (startTime))*60/100);
-    		comboMinute.setValue((startTime - (startTime))*60/100);
+    		comboHour.getItems().add((startTime - ((startTime))/60)*100);
+    		comboMinute.setValue((startTime - ((startTime))/60)*100);
     		txtDate.setValue(date);
     		comboModality.getItems().add(ModalityId);
     		comboModality.setValue(ModalityId);
