@@ -379,6 +379,7 @@ public class ReceptionistMainController {
 	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../com/RIS/view/AddNewAppointment.fxml"));
 	    	Parent root = (Parent) loader.load();
 	        AddNewAppointmentController controller = loader.getController();
+	        controller.setAppID(selectedRows.get(0).getAppointmentId());
 	        controller.setID(selectedRows.get(0).getPatientId());
 	        controller.setNotes(selectedRows.get(0).getNotes());
 	        controller.setUserID(selectedRows.get(0).getUserId());

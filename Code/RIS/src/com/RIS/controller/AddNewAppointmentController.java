@@ -30,6 +30,7 @@ public class AddNewAppointmentController {
 	LocalDate date;
 	private int startTime, stopTime;
 	private int ModalityId;
+	private int appID;
     
     public void initialize() {
     	
@@ -129,10 +130,28 @@ public class AddNewAppointmentController {
     		/// insert appointment into database
     		String query2 = "INSERT INTO appointment (userID, patientID, modalityID, date, startTime, stopTime, notes, status) " + "VALUES(?,?,?,?,?,?,?,?)";
     		String query3 = "UPDATE appointment SET (userID = ?, patientID = ?, modalityID = ?, date = ?, startTime = ?, stopTime = ?, notes = ?, statues = ?) WHERE appID = ?";
-    		String query4 = "SELECT * FROM appointment WHERE appID = ?;";		
+    		String query4 = "SELECT * FROM appointment WHERE appID = ?;";	
+    		
     			try (Connection conn = RISDbConfig.getConnection();
-    					PreparedStatement insertprofile = conn.prepareStatement(query2);) {
+    					PreparedStatement searchapp = conn.prepareStatement(query4);) {
     				
+    				searchapp.setInt(1, appID);
+    				rs = searchapp.executeQuery();
+    				if(rs.next()) {
+    					PreparedStatement updateapp = conn.prepareStatement(query3);
+    					
+    					updateapp.setString(1, newApp.getUserId());
+    					updateapp.setString(2, newApp.getPatientId());
+    					updateapp.setInt(3, newApp.getModalityId());
+    					updateapp.setString(4, newApp.getDate());
+    					updateapp.setInt(5, newApp.getStartTime());
+    					updateapp.setInt(6, newApp.getStopTime());
+    					updateapp.setString(7, newApp.getNotes());
+    					updateapp.setString(8, newApp.getStatus());
+    					updateapp.setInt(9, appID);
+    				}
+    				else {
+    					PreparedStatement insertprofile = conn.prepareStatement(query2);
     					insertprofile.setString(1, newApp.getUserId());
     					insertprofile.setString(2, newApp.getPatientId());
     					insertprofile.setInt(3, newApp.getModalityId());
@@ -143,6 +162,7 @@ public class AddNewAppointmentController {
     					insertprofile.setString(8, newApp.getStatus());
 
     					insertprofile.execute();
+    				}
     					txtSuccess.setText("Success! Appointment has been created.");
     					
     				} catch (Exception e) {
@@ -182,5 +202,9 @@ public class AddNewAppointmentController {
 	}
 	public void setModalityId(int modalityId) {
 		this.ModalityId = modalityId;
+	}
+	public void setAppID(int appointmentId) {
+		this.appID = appointmentId;
+		
 	}	
 }
