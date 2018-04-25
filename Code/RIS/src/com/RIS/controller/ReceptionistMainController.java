@@ -46,6 +46,7 @@ public class ReceptionistMainController {
 	    @FXML private TableColumn<Bill, Double> billCost;
 	    @FXML private TableColumn<Bill, String> userIdBill, patientIdBill;
 	    @FXML private DatePicker datepicker;
+	    @FXML private ComboBox<String> comboModality;
 		@FXML private ComboBox<Integer> comboShift;
 	    private String ID;
 	    
@@ -62,7 +63,16 @@ public class ReceptionistMainController {
 			comboShift.getItems().add(30);
 			comboShift.getItems().add(45);
 			comboShift.getItems().add(60);
-
+			
+			comboModality.getItems().removeAll(comboModality.getItems());
+			comboModality.getItems().add("MRI");
+			comboModality.getItems().add("CT Scan");
+			comboModality.getItems().add("Ultrasound");
+			comboModality.getItems().add("Nuclear Machine");
+			comboModality.getItems().add("Anesthesia Imaging");
+			comboModality.getItems().add("Radiography");
+			comboModality.getItems().add("Flouroscopy");
+			comboModality.getItems().add("Interventional Radiology");
 	    }
 	    @FXML
 	    public void onSelectedApp() {
@@ -119,7 +129,7 @@ public class ReceptionistMainController {
         		updateapps.setInt(2, (comboShift.getValue()*100)/60);
         		updateapps.setString(3, datepicker.getValue().toString());
         		updateapps.setInt(4, (Integer.parseInt(date.format(dtf))*100)+((Integer.parseInt(date.format(dtf2))/60)*100));
-        		System.out.println(updateapps);
+        		//System.out.println(updateapps);
         		updateapps.executeUpdate();
         	} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
@@ -198,10 +208,40 @@ public class ReceptionistMainController {
 	    	colNotesApp.setCellValueFactory(new PropertyValueFactory<Appointment, String>("notes"));
 	    	
 	    	tableViewAppointment.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-	    	
-	    	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
 
-	        String SQLQuery = "SELECT * FROM appointment WHERE date = ? AND status != 'pending' AND status != 'completed' ORDER BY startTime ASC;";
+	    	ObservableList<Appointment> appointment = FXCollections.observableArrayList();
+	    	String SQLQuery ="";
+	    	if(comboModality.getValue() != null) {
+	    		switch(comboModality.getValue()) {
+	    		case "MRI":
+	    			SQLQuery = "SELECT * FROM appointment WHERE modalityID = 1 AND date = ? AND status != 'pending' AND status != 'completed' ORDER BY startTime ASC;";
+	    			break;
+	    		case "CT Scan":
+	    			SQLQuery = "SELECT * FROM appointment WHERE modalityID = 2 AND date = ? AND status != 'pending' AND status != 'completed' ORDER BY startTime ASC;";
+	    			break;
+	    		case "Ultrasound":
+	    			SQLQuery = "SELECT * FROM appointment WHERE modalityID = 3 AND date = ? AND status != 'pending' AND status != 'completed' ORDER BY startTime ASC;";
+	    			break;
+	    		case "Nuclear Machine":
+	    			SQLQuery = "SELECT * FROM appointment WHERE modalityID = 4 AND date = ? AND status != 'pending' AND status != 'completed' ORDER BY startTime ASC;";
+	    			break;
+	    		case "Anesthesia Imaging":
+	    			SQLQuery = "SELECT * FROM appointment WHERE modalityID = 5 AND date = ? AND status != 'pending' AND status != 'completed' ORDER BY startTime ASC;";
+	    			break;
+	    		case "Radiography":
+	    			SQLQuery = "SELECT * FROM appointment WHERE modalityID = 6 AND date = ? AND status != 'pending' AND status != 'completed' ORDER BY startTime ASC;";
+	    			break;
+	    		case "Flouroscopy":
+	    			SQLQuery = "SELECT * FROM appointment WHERE modalityID = 7 AND date = ? AND status != 'pending' AND status != 'completed' ORDER BY startTime ASC;";
+	    			break;
+	    		case "Interventional Radiology":
+	    			SQLQuery = "SELECT * FROM appointment WHERE modalityID = 8 AND date = ? AND status != 'pending' AND status != 'completed' ORDER BY startTime ASC;";
+	    			break;
+	    		}
+	    	}
+	    	else {
+	    		SQLQuery = "SELECT * FROM appointment WHERE date = ? AND status != 'pending' AND status != 'completed' ORDER BY startTime ASC;";
+	    	}
 	       	ResultSet rs = null;
 
 	       	try(

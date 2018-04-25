@@ -60,9 +60,10 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="datepicker" layoutX="488.0" layoutY="515.0" prefHeight="30.0" prefWidth="207.0" promptText="Please Select a Date" />
+                  <DatePicker fx:id="datepicker" layoutX="600.0" layoutY="517.0" prefHeight="30.0" prefWidth="207.0" promptText="Please Select a Date" />
                   <Button layoutX="14.0" layoutY="632.0" mnemonicParsing="false" onAction="#logout" text="Log Out" />
-                  <Button layoutX="534.0" layoutY="576.0" mnemonicParsing="false" onAction="#refreshApps" prefHeight="35.0" prefWidth="115.0" text="Refresh Schedule" />
+                  <Button layoutX="521.0" layoutY="576.0" mnemonicParsing="false" onAction="#refreshApps" prefHeight="35.0" prefWidth="115.0" text="Refresh Schedule" />
+                  <ComboBox fx:id="comboModality" layoutX="358.0" layoutY="515.0" prefHeight="31.0" prefWidth="181.0" promptText="Select Modality" />
                </children>
             </AnchorPane>
          </content>

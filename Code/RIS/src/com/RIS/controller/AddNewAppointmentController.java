@@ -76,7 +76,7 @@ public class AddNewAppointmentController {
 	    		st.setString(2, txtDate.getValue().toString());
 	    		st.setInt(3, startTime);
 	    		st.setInt(4, startTime);
-	    		System.out.println(st);
+	    		//System.out.println(st);
 	    		rs = st.executeQuery(); 		
 	    	    
 	            while(rs.next()) {
