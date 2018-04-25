@@ -80,7 +80,7 @@ public class AddNewAppointmentController {
 	    		st.setInt(4, startTime);
 	    		st.setInt(5, startTime);
 	    		
-	    		System.out.println(st);
+	    		//System.out.println(st);
 	    		rs = st.executeQuery(); 		
 	    	    
 	            while(rs.next()) {
