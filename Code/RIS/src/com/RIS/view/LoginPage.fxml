@@ -10,11 +10,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RIS.controller.LoginPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RIS.controller.LoginPageController">
    <children>
-      <AnchorPane style="-fx-background-color: #fff;">
+      <AnchorPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #fff;">
          <children>
-            <AnchorPane layoutX="630.0" prefHeight="600.0" prefWidth="480.0" style="-fx-background-color: #fff;">
+            <AnchorPane layoutX="692.0" prefHeight="600.0" prefWidth="480.0" style="-fx-background-color: #fff;">
                <children>
                   <Text fontSmoothingType="LCD" layoutX="43.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="177.00001001358032">
                      <font>
@@ -35,22 +35,6 @@
                <children>
                   <Accordion layoutX="110.0" layoutY="185.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="250.0">
                     <panes>
-                      <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" text="Objective">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="244.0">
-                                 <children>
-                                    <TextArea editable="false" layoutY="-6.0" prefHeight="357.0" prefWidth="250.0" text="Radiology Information System&#10;&#10;" wrapText="true">
-                                       <font>
-                                          <Font name="Calibri Italic" size="17.0" />
-                                       </font>
-                                    </TextArea>
-                                 </children>
-                              </AnchorPane>
-                        </content>
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                      </TitledPane>
                       <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="270.0" text="Contributors">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="133.0" prefWidth="182.0">

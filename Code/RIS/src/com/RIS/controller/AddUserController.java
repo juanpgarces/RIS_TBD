@@ -74,7 +74,7 @@ public class AddUserController {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/LoginPage.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setTitle("RIS Home");
+        window.setTitle("RIS Home - Administrator");
         window.setScene(tableViewScene);
         window.show();
     	

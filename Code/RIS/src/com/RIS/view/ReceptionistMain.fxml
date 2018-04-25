@@ -18,7 +18,7 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="489.0" prefWidth="600.0">
                <children>
-                  <TableView fx:id="tableViewOrder" prefHeight="481.0" prefWidth="1164.0" AnchorPane.bottomAnchor="147.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="43.0">
+                  <TableView fx:id="tableViewOrder" onMouseClicked="#onTableSelectOrder" prefHeight="481.0" prefWidth="1164.0" AnchorPane.bottomAnchor="147.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="43.0">
                      <columns>
                         <TableColumn fx:id="colEmergency" prefWidth="209.0" text="Emergency Level" />
                         <TableColumn fx:id="colUserId" prefWidth="209.0" text="User ID" />
@@ -27,8 +27,9 @@
                         <TableColumn fx:id="colNotesOrder" prefWidth="209.0" text="Notes" />
                      </columns>
                   </TableView>
-                  <Button layoutX="521.0" layoutY="555.0" mnemonicParsing="false" onAction="#NewAppfromOrder" prefHeight="60.0" prefWidth="168.0" text="Add New Appointment" />
-                  <Button layoutX="23.0" layoutY="632.0" mnemonicParsing="false" text="Log Out" />
+                  <Button fx:id="btnNewOrder" layoutX="494.0" layoutY="575.0" mnemonicParsing="false" onAction="#NewAppfromOrder" prefHeight="57.0" prefWidth="213.0" text="Add New Appointment" />
+                  <Button layoutX="14.0" layoutY="632.0" mnemonicParsing="false" onAction="#logout" text="Log Out" />
+                  <Button layoutX="572.0" layoutY="537.0" mnemonicParsing="false" onAction="#RefreshOrder" text="Refresh" />
              </children>
             </AnchorPane>
          </content>
@@ -37,9 +38,9 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="630.0" prefWidth="777.0">
                <children>
-                  <Button layoutX="32.0" layoutY="514.0" mnemonicParsing="false" onAction="#editAppointment" prefHeight="36.0" prefWidth="113.0" text="Edit" AnchorPane.bottomAnchor="121.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="1055.0" AnchorPane.topAnchor="514.0" />
-                  <Button layoutX="178.0" layoutY="513.0" mnemonicParsing="false" onAction="#deleteAppointment" prefHeight="37.0" prefWidth="116.0" text="Delete" AnchorPane.bottomAnchor="121.0" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="906.0" AnchorPane.topAnchor="513.0" />
-                  <TableView fx:id="tableViewAppointment" layoutX="18.0" layoutY="14.0" prefHeight="458.0" prefWidth="1164.0" AnchorPane.bottomAnchor="199.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="14.0">
+                  <Button fx:id="btnEdit" layoutX="32.0" layoutY="514.0" mnemonicParsing="false" onAction="#editAppointment" prefHeight="36.0" prefWidth="113.0" text="Edit" AnchorPane.bottomAnchor="121.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="1055.0" AnchorPane.topAnchor="514.0" />
+                  <Button fx:id="btnDelete" layoutX="178.0" layoutY="513.0" mnemonicParsing="false" onAction="#deleteAppointment" prefHeight="37.0" prefWidth="116.0" text="Delete" AnchorPane.bottomAnchor="121.0" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="906.0" AnchorPane.topAnchor="513.0" />
+                  <TableView fx:id="tableViewAppointment" layoutX="18.0" layoutY="14.0" onMouseClicked="#onTableSelectSchedule" prefHeight="458.0" prefWidth="1164.0" AnchorPane.bottomAnchor="199.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="14.0">
                      <columns>
                      	<TableColumn fx:id="colStartTime" prefWidth="109.0" text="StartTime" />
                         <TableColumn fx:id="colStopTime" prefWidth="92.99996948242188" text="StopTime" />
@@ -60,8 +61,8 @@
                      </font>
                   </Label>
                   <DatePicker fx:id="datepicker" layoutX="488.0" layoutY="515.0" prefHeight="30.0" prefWidth="207.0" promptText="Please Select a Date" />
-                  <Button layoutX="534.0" layoutY="576.0" mnemonicParsing="false" onAction="#refreshApps" prefHeight="35.0" prefWidth="115.0" text="Refresh Schedule" />
                   <Button layoutX="14.0" layoutY="632.0" mnemonicParsing="false" onAction="#logout" text="Log Out" />
+                  <Button layoutX="534.0" layoutY="576.0" mnemonicParsing="false" onAction="#refreshApps" prefHeight="35.0" prefWidth="115.0" text="Refresh Schedule" />
                </children>
             </AnchorPane>
          </content>
@@ -72,15 +73,15 @@
                <children>
                   <TableView fx:id="tableViewBill" prefHeight="359.0" prefWidth="656.0" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="43.0">
                      <columns>
-                        <TableColumn fx:id="billCost" prefWidth="106.0" text="Bill Cost" />
-                        <TableColumn minWidth="0.0" prefWidth="0.0" text="Patient ID" />
-                        <TableColumn fx:id="appIdBill" prefWidth="180.0" text="Appointment ID" />
-                        <TableColumn fx:id="userIdBill" prefWidth="129.0" text="User ID" />
-                        <TableColumn fx:id="patientIdBill" prefWidth="252.0" text="Patient ID" />
-                        <TableColumn fx:id="modalityIdBill" minWidth="0.0" prefWidth="259.0" text="Modality ID" />
+                        <TableColumn fx:id="billCost" prefWidth="147.99996948242188" text="Bill Cost" />
+                        <TableColumn fx:id="appIdBill" prefWidth="195.00003051757812" text="Appointment ID" />
+                        <TableColumn fx:id="userIdBill" prefWidth="267.0" text="User ID" />
+                        <TableColumn fx:id="patientIdBill" prefWidth="263.0" text="Patient ID" />
+                        <TableColumn fx:id="modalityIdBill" minWidth="0.0" prefWidth="291.0" text="Modality ID" />
                      </columns>
                   </TableView>
-                  <Button layoutX="23.0" layoutY="632.0" mnemonicParsing="false" onAction="#logout" text="Log Out" />
+                  <Button layoutX="14.0" layoutY="632.0" mnemonicParsing="false" onAction="#logout" text="Log Out" />
+                  <Button layoutX="540.0" layoutY="613.0" mnemonicParsing="false" onAction="#RefreshBill" prefHeight="39.0" prefWidth="131.0" text="Refresh" />
                </children>
             </AnchorPane>
          </content>

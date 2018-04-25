@@ -10,23 +10,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RIS.controller.AddUserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.RIS.controller.AddUserController">
    <children>
       <TextField fx:id="txtUserId" layoutX="220.0" layoutY="163.0" prefHeight="31.0" prefWidth="231.0" promptText="User ID" />
       <TextField fx:id="txtPasswd" layoutX="220.0" layoutY="206.0" prefHeight="31.0" prefWidth="231.0" promptText="Password" />
       <TextField fx:id="txtUserFirstName" layoutX="220.0" layoutY="247.0" prefHeight="31.0" prefWidth="231.0" promptText="First Name" />
       <TextField fx:id="txtUserLastName" layoutX="220.0" layoutY="285.0" prefHeight="31.0" prefWidth="231.0" promptText="Last Name" />
       <TextField fx:id="txtUserPhoneNumber" layoutX="220.0" layoutY="323.0" prefHeight="31.0" prefWidth="231.0" promptText="Phone Number" />
-      <Button fx:id="btnAddNewUser" layoutX="496.0" layoutY="325.0" mnemonicParsing="false" onAction="#addNewUser" prefHeight="58.0" prefWidth="123.0" text="Add New User">
+      <Button fx:id="btnAddNewUser" layoutX="229.0" layoutY="568.0" mnemonicParsing="false" onAction="#addNewUser" prefHeight="83.0" prefWidth="213.0" text="Add New User">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Button>
-      <Text fontSmoothingType="LCD" layoutX="374.0" layoutY="865.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RIS ©">
-         <font>
-            <Font name="Bell MT" size="9.0" />
-         </font>
-      </Text>
       <Text layoutX="44.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID:" underline="true">
          <font>
             <Font name="Bell MT" size="18.0" />
@@ -57,7 +52,7 @@
             <Font name="Bell MT" size="18.0" />
          </font>
       </Text>
-      <AnchorPane prefHeight="113.0" prefWidth="1100.0" style="-fx-background-color: #000099;">
+      <AnchorPane prefHeight="111.0" prefWidth="1200.0" style="-fx-background-color: #000099;">
          <children>
             <Label alignment="CENTER" layoutX="327.0" layoutY="21.0" prefHeight="71.0" prefWidth="446.0" text="Add New User" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -66,11 +61,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="btndoctorHomeButton" layoutX="14.0" layoutY="837.0" style="-fx-background-color: #fff; -fx-border-color: #fff;" text="Home" textAlignment="CENTER">
-         <font>
-            <Font name="Bell MT Italic" size="13.0" />
-         </font>
-      </Button>
       <ComboBox fx:id="txtUserGender" layoutX="220.0" layoutY="373.0" prefHeight="31.0" prefWidth="231.0" promptText="Select Gender Type">
       	<items>
        		<FXCollections fx:factory="observableArrayList">

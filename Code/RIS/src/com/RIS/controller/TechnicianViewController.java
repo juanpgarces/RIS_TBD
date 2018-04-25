@@ -29,6 +29,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -42,7 +43,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class TechnicianViewController {
+	
 
+    @FXML private Button btnBrowse, btnUpload, btnSubmit;
 	@FXML private ImageView pacsViewer;
     @FXML private TableView<Appointment> techTable;
     @FXML private TableColumn<Appointment, Integer> colPatientID;
@@ -54,13 +57,23 @@ public class TechnicianViewController {
     private String ID;
     
     @FXML
-    void initialize() { 
+    void initialize() {
+    	
+    	this.btnBrowse.setDisable(true);
+    	this.btnUpload.setDisable(true);
+    	this.btnSubmit.setDisable(true);
+    	
     	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     	LocalDate localDate = LocalDate.now();
     	
 		techTable.setItems(getAppointmentList(dtf.format(localDate)));
     }
-
+    @FXML
+    public void onSelectTable() {
+    	this.btnBrowse.setDisable(false);
+    	this.btnUpload.setDisable(false);
+    	this.btnSubmit.setDisable(false);
+    }
     public ObservableList<Appointment>  getAppointmentList(String date){
     	
     	//Appointment Table

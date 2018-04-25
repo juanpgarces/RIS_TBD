@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.SelectionMode;
@@ -32,6 +33,7 @@ import javafx.stage.Stage;
 
 public class ReceptionistMainController {
 
+		@FXML private Button btnNewOrder, btnEdit, btnDelete;
 		@FXML private TableView<Order> tableViewOrder;
 		@FXML private TableView<Appointment> tableViewAppointment;
 		@FXML private TableView<Bill> tableViewBill;
@@ -49,6 +51,10 @@ public class ReceptionistMainController {
 	    void initialize() {  	
 			//Set Items into all tables
 	    	tableViewOrder.setItems(getOrderList());
+	    	this.btnNewOrder.setDisable(true);
+	    	this.btnEdit.setDisable(true);
+	    	this.btnDelete.setDisable(true);
+
 	    }
 	    @FXML
 	    public void onSelectedApp() {
@@ -64,10 +70,15 @@ public class ReceptionistMainController {
 			comboShift.getItems().add(60);
 	    }
 	    // Method used to enable the detailed view button on mouse click event
-	    public void mouseClickedOnTableView(){
-	         	//this.bDeletePatient.setDisable(false);
-	         	//this.patientRecords.setDisable(false);
-	       }
+	    @FXML
+	    public void onTableSelectSchedule() {
+	    	this.btnEdit.setDisable(false);
+	    	this.btnDelete.setDisable(false);
+	    }
+	    @FXML
+	    public void onTableSelectOrder() {
+	    	this.btnNewOrder.setDisable(false);
+	    }
 	    @FXML
 	    public void onSelectedBill() {
 			tableViewBill.setItems(getBillList());
@@ -75,6 +86,14 @@ public class ReceptionistMainController {
 	    @FXML
 	    public void onSelectedOrder() {
 	    	tableViewOrder.setItems(getOrderList());
+	    }
+	    @FXML
+	    public void RefreshOrder(ActionEvent event) {
+	    	tableViewOrder.setItems(getOrderList());
+	    }
+	    @FXML
+	    public void RefreshBill(ActionEvent event) {
+	    	tableViewBill.setItems(getBillList());
 	    }
 	    @FXML
 	    public void shiftSchedule(ActionEvent event) {
@@ -325,6 +344,7 @@ public class ReceptionistMainController {
 	        stage.show();
 	       
 	    }
+	    
 	    public void logout(ActionEvent event) throws IOException
 	    {
 	        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../../com/RIS/view/LoginPage.fxml"));
