@@ -150,7 +150,7 @@ public class ReceptionistMainController {
 			tableViewOrder.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	    	
 	    	ObservableList<Order> order = FXCollections.observableArrayList();
-	        String SQLQuery = "SELECT * FROM orders WHERE status = 'new' ORDER BY emergencyLevel;";
+	        String SQLQuery = "SELECT * FROM orders WHERE status = 'new' ORDER BY emergencyLevel DESC;";
 	       	ResultSet rs = null;
 
 	       	try(

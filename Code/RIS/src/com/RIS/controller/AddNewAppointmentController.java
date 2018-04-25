@@ -63,16 +63,20 @@ public class AddNewAppointmentController {
     public void setComboModality() {
     	if(ModalityId == 0 && date == null) {
 	        comboModality.getItems().removeAll(comboModality.getItems());
-	    	String query = "SELECT modID FROM modality WHERE name = ?  AND NOT EXISTS (SELECT modID from appointment WHERE appointment.modID = modality.modID AND status = 'new' AND date = ? AND startTime = ? );";
+	    	String query = "SELECT modID FROM modality, appointment WHERE appointment.modalityID = modality.modID "
+	    			+ "AND name = ? AND status = 'new' AND date = ? AND startTime"
+	    			+ " NOT BETWEEN ? AND (?+duration);";
 	    	ResultSet rs = null;
 	    	
-	    	startTime = (comboHour.getValue()) + (comboMinute.getValue()/60)*100;
+	    	startTime = ((comboHour.getValue()) + (comboMinute.getValue()/60))*100;
 	    	
 	    	try (Connection conn = RISDbConfig.getConnection();
 	    			PreparedStatement st = conn.prepareStatement(query);) {
 	    		st.setString(1, modality);
 	    		st.setString(2, txtDate.getValue().toString());
 	    		st.setInt(3, startTime);
+	    		st.setInt(4, startTime);
+	    		System.out.println(st);
 	    		rs = st.executeQuery(); 		
 	    	    
 	            while(rs.next()) {
