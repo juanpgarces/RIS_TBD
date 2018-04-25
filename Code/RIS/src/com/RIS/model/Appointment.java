@@ -147,7 +147,7 @@ public class Appointment {
 		String time="";
 
 		hour = stopTime/100;
-		min = (stopTime - (hour * 100))*(60/100);
+		min = (stopTime - (hour * 100))*60/100;
 		if(min==0)
 			time =  hour + ":00";
 		else

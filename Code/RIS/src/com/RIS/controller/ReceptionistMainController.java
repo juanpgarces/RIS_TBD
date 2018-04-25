@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.RIS.model.Appointment;
@@ -54,6 +56,12 @@ public class ReceptionistMainController {
 	    	this.btnNewOrder.setDisable(true);
 	    	this.btnEdit.setDisable(true);
 	    	this.btnDelete.setDisable(true);
+	    	
+			comboShift.getItems().removeAll(comboShift.getItems());
+			comboShift.getItems().add(15);
+			comboShift.getItems().add(30);
+			comboShift.getItems().add(45);
+			comboShift.getItems().add(60);
 
 	    }
 	    @FXML
@@ -63,11 +71,7 @@ public class ReceptionistMainController {
 	    	
 			tableViewAppointment.setItems(getAppointmentList(dtf.format(localDate)));
 			datepicker.setValue(localDate);
-			comboShift.getItems().removeAll(comboShift.getItems());
-			comboShift.getItems().add(15);
-			comboShift.getItems().add(30);
-			comboShift.getItems().add(45);
-			comboShift.getItems().add(60);
+
 	    }
 	    // Method used to enable the detailed view button on mouse click event
 	    @FXML
@@ -97,30 +101,36 @@ public class ReceptionistMainController {
 	    }
 	    @FXML
 	    public void shiftSchedule(ActionEvent event) {
-	    	comboShift.getValue();
-	    	LocalDate date = LocalDate.now();
-	    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
-	    	//Query to move all appointments in that day
+
+	    	LocalDateTime date = LocalDateTime.now();
+	    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH");
+	    	DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("mm");
 	    	
+	    	//Query to move all appointments in that day
+
 	    	//And Appointment are past last 
-	    	String query = "UPDATE Appointment SET startTime = startTime + ?, stopTime = stopTime + ?  WHERE date = ?  AND startTime >= ?;";
+	    	String query = "UPDATE appointment SET startTime = startTime + ?, stopTime = stopTime + ?  WHERE (date = ?  AND startTime > ?);";
     		
         	try(
         	    Connection conn = RISDbConfig.getConnection();
         	    PreparedStatement updateapps = conn.prepareStatement(query);
         	){
-        		updateapps.setString(1, comboShift.getValue()/60*100+"");
-        		updateapps.setString(2, comboShift.getValue()/60*100+"");
-        		updateapps.setString(3, datepicker.getValue()+"");
-        		updateapps.setString(4, date.format(dtf));
-        		
+        		updateapps.setInt(1, (comboShift.getValue()*100)/60);
+        		updateapps.setInt(2, (comboShift.getValue()*100)/60);
+        		updateapps.setString(3, datepicker.getValue().toString());
+        		updateapps.setInt(4, (Integer.parseInt(date.format(dtf))*100)+((Integer.parseInt(date.format(dtf2))/60)*100));
+        		System.out.println(updateapps);
         		updateapps.executeUpdate();
         	} catch (Exception e) {
     			System.out.println("Status: operation failed due to "+e);
 
     		}
 	    }
-	    @FXML
+	    private SimpleDateFormat SimpleDateFormat(String string) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		@FXML
 	    public void refreshApps(ActionEvent event) {
 	    	
 	    	if(datepicker.getValue() != null) {
